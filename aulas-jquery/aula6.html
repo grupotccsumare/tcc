@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <title>Eventos de navegador</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script type="text/javascript" charset="utf-8">
+        
+            $(document).ready(function(){
+                var ex = $('.ex1');
+               $('.ev1').click(function(){
+                   $(this).css({background:'#ccc'});
+                   ex.text("você clicou");
+                   
+               }); 
+               
+               $('.ev2').dblclick(function(){
+                      $(this).css({background:'#ccc'});
+                   ex.text("você deu dois cliques");
+               });
+               
+               
+               $('.ev3').focusin(function(){
+                   $(this).css({background:'#ccc'});
+                   ex.text("você deu foco");
+                   
+               }).focusout(function(){
+                   $(this).css({background:'#000'});
+                   ex.text("você tirou o foco");
+                   
+               });
+                
+                $('.ev4').hover(function(){
+                    $(this).css({background:'#ccc'});
+                   ex.text("você passou o mouse");
+                });
+                
+                $('.ev5').mousedown(function(){
+                    $(this).css({background:'#ccc'});
+                   ex.text("você apertou");
+                }).mouseup(function(){
+                    $(this).css({background:'#000'});
+                   ex.text("você woltou");
+                });
+                
+                var a = 0;
+                 $('.ev6').mouseenter(function(){
+                   a=a+1;
+                   ex.text("Entradas do mouse: "+a);
+                }).mouseout(function(){
+                   ex.text('saida do mouse'); 
+                });
+                
+                var b = 0;
+                $('.ev7').mouseover(function(){
+                    b+=1;
+                    ex.text("mouse over: "+b);
+                }).mouseleave(function(){
+                    ex.text('voce saiu');
+                });
+                
+                $('.ev8').mousemove(function(move){
+                    var localx = move.pageX;
+                    var localy = move.pageY;
+                    
+                    ex.text("Movimento x: "+ localx +" Movimento y: "+ localy);
+                });
+                
+                
+                
+                
+                
+            });
+        
+        
+           
+            
+        </script>
+        <style type="text/css" media="all">
+            body{
+                font:14px;
+                
+            }
+            
+            .ex1{
+                width:460px;
+                padding:20px;
+                background:#1e90ff;
+                margin:0 auto;
+                text-align:center;
+                color:#fff;
+                
+            }
+            
+            
+            p, input{
+                display:block;
+                width:460px;
+                padding:5px;
+                background:#000;
+                margin:0 auto;
+                text-align:center;
+                color:#fff;
+                border:5px solid #ccc;
+                margin-top:10px;
+                left:50%;
+                
+            }
+            
+            
+        </style>
+    </head>
+    <body>
+    <div class="ex1">
+        Aguardando Ação
+    </div>
+    <p class="ev1">Um clique</p>
+    <p class="ev2">Um clique</p>
+    <input type="text" class="ev3" name="" id="" value="" />
+    <p class="ev4">Passe o mouse</p>
+    <p class="ev5">clique e solte</p>
+    <p class="ev6">entra e <span> sai</span></p>
+    <p class="ev7">mouse <span>over</span></p>
+    <p class="ev8">mova o mouse no elemento</p>
+       
+    </body>
+</html>

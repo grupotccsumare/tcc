@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <title>Eventos de navegador</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script type="text/javascript" charset="utf-8">
+        
+        $(document).ready(function(){
+            /*
+             
+             $('img').error(function(){
+                var imagem = $(this).attr('src');
+                alert('imagem ' + imagem + ' indisponivel');
+                $('img').attr('src','https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTUlDuOwzfqlOrjBLL-g2q4psS9rnByg0D7ZoLESU8SUDQShFIZtCbSSQ'); 
+                
+                
+                
+            });
+            
+            */
+            
+            $('body').css({'height': '5000px'});
+            
+            
+            $('img').width($(window).width());
+            $('img').height($(window).height());
+            
+            
+            $(window).resize(function(){
+                $('img').width($(window).width());
+                $('img').height($(window).height());
+                
+            });
+            
+            
+            $(window).scroll(function(){
+               var topo = $(window).scrollTop();
+               if(topo >= 150){
+                   $('img').fadeOut('1000');
+               }else{
+                   $('img').fadeIn('1000');
+               }
+            });
+            
+            
+        });
+            
+        </script>
+    </head>
+    <body>
+    
+        <img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSSD5SOSpRkzf_kUQ0FLK53HnKD99r1YW_kTvu1uQP54QRjM5To" alt="" />
+    </body>
+</html>

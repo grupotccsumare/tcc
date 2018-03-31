@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="utf-8">
+        <link href="css/estilo.css" rel="stylesheet" type="text/css" media="screen">
+         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <title>Curso HTML5 e CSS3</title>
+        
+        <script type="text/javascript" charset="utf-8">
+            $('body').ready(function(){
+                var nav = $('.menu');
+                
+                $(window).scroll(function(){
+                    if($(this).scrollTop() > 173){
+                        nav.addClass("menu-fixo");
+                    }else{
+                        nav.removeClass("menu-fixo");
+                    }
+                });
+                
+            });
+        </script>
+        
+        <style type="text/css" media="all">
+            @charset "utf-8";
+/* CSS Document */
+
+* {
+	margin:0;
+	padding:0;
+}
+
+
+a{
+	color:#999;
+	text-decoration:none;
+}
+
+a:hover{
+	text-decoration:underline;
+	color: #34ABE0;
+}
+
+body{
+	margin: 0 auto;
+	font: 13px Verdana, Geneva, sans-serif;
+	background-color: #f5f5f5;
+	color: #999;
+}
+
+div.topo, div.corpo{
+	width: 940px;
+	height: 173px;
+	margin: 0 auto;
+}
+
+header, nav, section, article, footer, aside{
+	display:block;
+
+}
+
+header h1{
+	font-size: 30px;
+	line-height: 40px;
+	padding: 20px 0;
+	margin-top: 20px;
+	
+}
+
+header.topo figure.logo img{
+	height: 120px;
+	width: 120px;
+	margin-top: 20px;
+}
+
+header.topo hgroup{
+	float: left;
+}
+
+header.topo figure.logo{
+	float: left;
+	margin-bottom: 30px;
+	margin-right: 30px;
+
+}
+
+header.topo hgroup h1{
+	margin-bottom: -20px;
+}
+
+
+div.menu{
+	clear: both;
+	height: 30px;
+	background-color: blue;]
+	min-width: 940px;
+
+}
+
+.menu-fixo{
+    position:fixed;
+    top:0;
+    z-index:999;
+    width:100%;
+}
+
+
+nav{
+	margin: 0 auto;
+	width: 940px;
+}
+nav ul {
+	list-style:none;
+	clear: both;
+	color: white;
+	margin: 0 auto;
+}
+
+nav ul li {
+	float:left;
+}
+
+nav ul li a{
+	display:block;
+	height:30px;
+	padding-left: 30px;
+	padding-right: 30px;
+	font-size:14px;
+	line-height:30px;
+	text-align:center;
+	text-decoration:none;
+	font-weight:bold;
+color: white;
+}
+
+nav ul li a:hover{
+	color: #34ABE0;
+}
+
+nav ul li a.selecionado{
+	background-color:#34ABE0;
+	margin-left: 10px;
+	color: #FFF;
+	height: 25px;
+	line-height:25px;
+	margin-top:2px;
+	margin-left:0px;
+	
+}
+
+section#intro{
+	height: 235px;
+	width: 940px;
+	background:url('../img/intro_bg.png') right top no-repeat #DDEEEE;
+	margin-top: 60px;
+	padding-left: 10px;
+	
+}
+
+section#intro hgroup h1{
+	font-size:24px;
+	text-align: left;
+	line-height: 40px;
+	color: #999;
+}
+
+section#intro hgroup h2{
+	font-size: 20px;
+	line-height: 30px;
+	font-style: italic;
+	color: #999;
+}
+
+section#intro p{
+	padding-top: 35px;
+	font-style: italic;
+	font-weight: bold;
+	font-size: 16px;
+	width: 600px;
+	color: #34A8E0;
+}
+
+article header h1{
+	font-size: 20px;
+	text-align: left;
+	line-height: 40px;
+	margin-top: 20px;
+	padding:0;
+}
+
+article p{
+	margin-bottom: 10px;
+	padding-right: 10px;
+	width: 610px;
+	
+}
+
+article header p{
+	font-size: 15px;
+	line-height: 30px;
+	font-style: italic;
+	margin-bottom:0px;
+}
+
+article{
+	float:left;
+	width: 620px;
+}
+
+aside{
+	float:left;
+	width: 280px;
+	padding-left: 40px;	
+}
+
+aside section{
+	margin-top: 35px;
+	padding: 10px;
+	background-color:#eee;	
+}
+
+aside section h1{
+	margin-bottom: 10px;
+	font-size: 16px;
+}
+
+aside ul{
+	list-style:none;
+}
+
+aside ul li{
+	margin-left: 20px;
+}
+
+aside ul li a{
+	color:#999;
+	text-decoration:none;
+}
+
+aside ul li a:hover{
+	text-decoration:underline;
+	color: #34ABE0;
+}
+
+footer{
+	clear:both;
+
+}
+
+
+footer.rodape {
+	float:left;
+	margin: 0 auto;
+	width: 920px;
+	margin-top: 35px;
+	padding: 10px;
+	padding-top: 30px;
+	padding-bottom: 30px;
+	background-color: #eee;
+	text-align: center;
+}
+
+footer.rodape p{
+	margin-bottom: 10px;
+	font-size: 16px;
+}
+	
+	
+        </style>
+    </head>
+
+    <body>
+        <div class="topo">
+        <header class="topo"> 
+            <figure class="logo">
+                <img src="img/intro_bg.png" alt="PontoCOM" />
+            </figure>
+            <hgroup>
+                <h1>PontoCOM</h1> 
+                <h2>Desenvolvimento e Manutenção</h2>
+            </hgroup>
+        </header>
+    </div>
+        <div class="menu">
+            <nav>
+                <ul>
+                    <li><a href="#"> Home </a></li>
+                    <li><a href="#"> Portifólio </a></li>
+                    <li><a href="#"> Clientes </a></li>
+                    <li><a href="#"> Quem Somos? </a></li>
+                    <li><a href="#"> Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="corpo">
+        <article>
+            <header>
+                <h1> Trabalhando com a Tag Article </h1>
+                <p>Postado em: <time pubdate datetime="2013-08-22T16:18:00-03:00"> 22 de Agosto de 2013 </time> </p>
+            </header>
+            <p>  Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+            Fusce id fermentum purus. Nullam aliquam neque  et dignissim rutrum. 
+            Vestibulum purus diam, convallis ornare condimentum et, iaculis id quam. 
+            Sed nec nulla adipiscing, pulvinar turpis in, adipiscing nibh. 
+            Quisque id ante nisi. Pellentesque habitant morbi tristique senectus 
+            et netus et malesuada fames ac turpis egestas. Class aptent taciti sociosqu
+            ad litora torquent per conubia nostra, per inceptos himenaeos.
+            Pellentesque id porttitor lectus, at vestibulum ligula. Maecenas 
+            consectetur tincidunt enim, nec semper ipsum sodales a. 
+            Nam in gravida odio. Sed urna dui, varius non faucibus at, 
+            auctor tempus lectus. Nunc porta iaculis purus nec 
+            euismod. Duis et metus ac nunc iaculis bibendum. 
+            Integer ultrices varius est, nec ullamcorper metus iaculis eu.</p>
+    
+            <p>Phasellus ut porta elit. In quis lectus aliquet, consequat leo et,
+             dignissim odio. Proin non blandit enim, nec porta magna. Aenean non 
+             metus magna. Aenean ligula tellus, rutrum id condimentum sed,
+             ullamcorper sit amet nisl. Curabitur auctor nibh orci, id tincidunt urna dapibus 
+             vehicula. Sed blandit, risus eu viverra malesuada, ligula mauris eleifend tortor, 
+             tempus laoreet nibh nunc sit amet purus. Duis vehicula mi vel mi suscipit aliquet. 
+             Praesent egestas massa eu odio suscipit tristique. In lacus est, cursus 
+             imperdiet orci vitae, sagittis auctor diam. Duis imperdiet consectetur dui 
+             quis tincidunt. Class aptent taciti sociosqu ad litora torquent per conubia 
+             nostra, per inceptos himenaeos. Phasellus hendrerit dolor posuere fermentum 
+             ullamcorper. Nam bibendum mauris lorem, a pellentesque quam egestas id. 
+             Curabitur auctor ultricies tortor vel ultrices. Ut ut lacus in lectus tincidunt pharetra.</p>
+    
+            <p>Vivamus a tempus felis. Pellentesque vitae tincidunt purus. Donec libero enim, 
+            faucibus vel odio rutrum, iaculis pharetra mi. In nec cursus orci, ac venenatis nisl. 
+            Donec nec fermentum diam, non porttitor mauris. Nunc accumsan neque sem. Quisque non 
+            volutpat magna. Sed non elementum lectus, non posuere urna.</p>
+    
+            <p>Ut dapibus velit non mi consequat euismod. In sed gravida nunc, quis congue 
+            mauris. Nulla dictum est justo, id posuere leo venenatis sed. Nullam iaculis elit 
+            lectus, eu placerat tellus elementum sed. Etiam sit amet felis blandit, hendrerit 
+            lacus ac, rhoncus velit. Vestibulum a ante vel justo blandit facilisis. Vestibulum 
+            at arcu vel lectus tempus blandit. Pellentesque laoreet rhoncus purus, nec tempus 
+            ligula tempor in. Sed adipiscing rutrum leo id consectetur. Aliquam rutrum nunc nec 
+            mi volutpat, nec aliquam tellus posuere. Vivamus a ipsum sodales, sodales ipsum eget, 
+            venenatis risus.</p>
+    
+            <p>Nullam at ligula molestie, adipiscing dui nec, cursus orci. 
+            Donec fermentum eget sem tincidunt facilisis. Sed et sapien convallis, 
+            pulvinar arcu ac, aliquam nibh. Nam ligula velit, lobortis sed tristique eget, 
+            convallis vel massa. Aliquam quis tempor urna. Nam et pharetra diam, sed feugiat 
+            eros. Nulla rhoncus scelerisque orci non tincidunt. In blandit nisl libero, quis tincidunt 
+            mauris lobortis in. Phasellus in sapien in elit sodales faucibus sit amet in libero. 
+            Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis 
+            egestas. Pellentesque ipsum felis, mattis nec neque non, commodo fermentum diam. Aenean quis 
+            risus at odio cursus laoreet ac eget augue. Fusce euismod dapibus odio, non 
+            rhoncus nulla pharetra quis. Pellentesque et metus vehicula, convallis ligula a, vehicula enim.</p>
+            
+            <footer>
+                <address> Por: <a href="contato.html">Emerson Carvalho</a>  </address>
+            </footer> 
+        </article>
+                <aside>
+            <section>
+                <h1> Sites Relacionados </h1>
+                <ul>
+                    <li><a href="#">Guia Ouro Fino </a> </li>
+                    <li><a href="#">PontoCOM </a> </li>
+                    <li><a href="#">Difusora Ouro Fino </a> </li>
+                </ul>
+            </section>
+            <section>
+                <h1> Artigos Arquivados </h1>
+                <ul>
+                    <li><a href="#"> Agosto 2013</a> </li>
+                    <li><a href="#"> Julho 2013</a> </li>
+                    <li><a href="#"> Junho 2013</a> </li>
+                </ul>
+            </section>
+        </aside>
+        <footer class="rodape">
+
+                <p> Todos os direitos preservados a <strong>Nome da Empresa</strong> &copy;2014</p>
+               
+        </footer> 
+   </div>
+    </body>
+    </html>

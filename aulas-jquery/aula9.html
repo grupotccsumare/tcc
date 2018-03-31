@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <title>Eventos de navegador</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script type="text/javascript" charset="utf-8">
+        
+            $(document).ready(function(){
+                var ex = $('.ex1');
+                
+                $('.ev1').click(function(){
+                   ex.hide('slow'); 
+                   
+                    
+                });
+                
+                $('.ev2').click(function(){
+                    
+                    ex.show('slow');
+                });
+                
+                $('.ev3').click(function(){
+                    
+                    ex.toggle('slow');
+                });
+                
+                
+                $('.ev4').keyup(function(){
+                   var texto =  $(this).val();
+                   
+                   if(texto == 'hide'){
+                       ex.hide('slow');
+                   }
+                   if(texto == 'show'){
+                       ex.show('slow');
+                   }
+                   if(texto == 'toggle'){
+                       ex.toggle('slow');
+                   }
+                   
+                });
+                
+            });
+        
+        
+           
+            
+        </script>
+        <style type="text/css" media="all">
+            body{
+                font:14px;
+                
+            }
+            
+            .ex1{
+                width:460px;
+                padding:20px;
+                background:#1e90ff;
+                margin:0 auto;
+                text-align:center;
+                color:#fff;
+                
+            }
+            
+            
+            p, input{
+                display:block;
+                width:460px;
+                padding:5px;
+                background:#000;
+                margin:0 auto;
+                text-align:center;
+                color:#fff;
+                border:5px solid #ccc;
+                margin-top:10px;
+                left:50%;
+                
+            }
+            
+            
+        </style>
+    </head>
+    <body>
+    <div class="ex1">
+        Aguardando Ação
+    </div>
+    <p class="ev1">Hide</p>
+    <p class="ev2">Show</p>
+    <p class="ev3">Toggle</p>
+    <input type="text" class="ev4" name="" id="" value="" />
+    
+       
+    </body>
+</html>
