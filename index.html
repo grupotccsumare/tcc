@@ -1,58 +1,42 @@
-<!DOCTYPE html>
-<html>
+<script>
+    novatag = function (tag) {
+        return document.createElement(tag)
+    }
 
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Page Title</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-    <script src="main.js"></script>
-</head>
+    add = function (tag) {
+        return app.appendChild(tag)
+    }
 
-<body>
-    <script>
-        novatag = function (tag) {
-            return document.createElement(tag)
-        }
+    document.write('')
+    codigos = []
 
-        add = function (tag) {
-            return app.appendChild(tag)
-        }
+    app = novatag('div')
+    app.id = "app"
 
-        document.write('')
-        codigos = []
+    divCodigo = novatag('div')
+    divCodigo.id = 'divCodigo'
 
-        app = novatag('div')
-        app.id = "app"
+    let divControles = novatag('div')
+    divControles.id = 'divControles'
 
-        divCodigo = novatag('div')
-        divCodigo.id = 'divCodigo'
+    let inputBtn = document.createElement('input')
 
-        let divControles = novatag('div')
-        divControles.id = 'divControles'
+    divControles.appendChild(inputBtn)
 
-        let inputBtn = document.createElement('input')
+    let inputPonteiro = document.createElement('input')
 
-        divControles.appendChild(inputBtn)
+    divControles.appendChild(inputPonteiro)
 
-        let inputPonteiro = document.createElement('input')
+    let btnEnvia = document.createElement('input')
+    btnEnvia.type = 'button'
+    btnEnvia.value = 'ok'
+    btnEnvia.addEventListener('click', function () {
+        console.log('ok')
+    })
+    divControles.appendChild(btnEnvia)
 
-        divControles.appendChild(inputPonteiro)
+    document.append(app)
 
-        let btnEnvia = document.createElement('input')
-        btnEnvia.type = 'button'
-        btnEnvia.value = 'ok'
-        btnEnvia.addEventListener('click', function () {
-            console.log('ok')
-        })
-        divControles.appendChild(btnEnvia)
-
-        document.append(app)
-
-        add(divCodigo)
-        add(divControles)
-    </script>
-</body>
-
-</html>
+    add(divCodigo)
+    add(divControles)
+</script>
