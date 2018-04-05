@@ -1,0 +1,23 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<meta name="viewport" content="initial-scale=1, maximum-scale=1"/>
+
+
+<!--
+    projeto iniciado com a variavel do template seen false
+    para visualizar o template necessario alterar para true
+-->
+
+
+<div id="app1">
+    <span v-if="seen" v-html="template"></span>
+</div>
+
+<div id="app2">
+	<span v-if="seen" v-html="template"></span>
+</div>
+
+
+<script src="app1.js"></script>
+<script src="app2.js"></script> 
