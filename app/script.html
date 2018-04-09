@@ -2,13 +2,17 @@
     let comando
     let opcoes = []
     let codigos = []
+    codigos['main'] = []
+
+    
 
 
-    function adicionar(termo, indice){
-        console.log(termo, indice)
+    function adicionar(termo, indice) {
+        codigos['main'].splice(indice, 0, termo);
+        console.log(codigos)
     }
 
-    function app(opcoes) {
+    function app() {
         if (!opcoes['navegadorOuNode'])
             opcoes['navegadorOuNode'] = prompt('navegadorOuNode')
         if (!opcoes['importarOuNovo'])
@@ -26,5 +30,5 @@
         }
         comando = ''
     }
-    app(opcoes)
+    app()
 </script>
