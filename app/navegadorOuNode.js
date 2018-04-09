@@ -263,7 +263,7 @@ let navegadorOuNodeTemplate = `
     }
 </style>
 `
-var navegadorOuNode = new Vue({
+let navegadorOuNode = new Vue({
     el: '#navegadorOuNode',
     data: {
         template: navegadorOuNodeTemplate,

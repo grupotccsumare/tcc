@@ -1,4 +1,4 @@
-let template1 = `
+let codigoTelaTemplate = `
 
 
 	<div class="row">
@@ -188,11 +188,11 @@ let template1 = `
 
 
 
-var app2 = new Vue({
+var codigoTela = new Vue({
 	
-	el: '#app2',
+	el: '#codigoTela',
 	data : {
-		template : template1,
+		template : codigoTelaTemplate,
 		seen : true
 	}
 	
