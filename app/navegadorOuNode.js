@@ -1,4 +1,4 @@
-let tem2 = `
+let navegadorOuNodeTemplate = `
 
 <div class="row row-principal-texto">
     <div class="col m12">
@@ -263,10 +263,10 @@ let tem2 = `
     }
 </style>
 `
-var app2 = new Vue({
-    el: '#app2',
+var navegadorOuNode = new Vue({
+    el: '#navegadorOuNode',
     data: {
-        template: tem2,
+        template: navegadorOuNodeTemplate,
         seen: true
     }
 })
