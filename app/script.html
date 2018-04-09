@@ -1,0 +1,30 @@
+<script>
+    let comando
+    let opcoes = []
+    let codigos = []
+
+
+    function adicionar(termo, indice){
+        console.log(termo, indice)
+    }
+
+    function app(opcoes) {
+        if (!opcoes['navegadorOuNode'])
+            opcoes['navegadorOuNode'] = prompt('navegadorOuNode')
+        if (!opcoes['importarOuNovo'])
+            opcoes['importarOuNovo'] = prompt('importarOuNovo')
+        comando = prompt('comando')
+        if (comando == 'adicionar') {
+            let termo = prompt('termo')
+            let indice = prompt('indice')
+            adicionar(termo, indice)
+        }
+        if (comando == 'sair') {
+            return
+        } else {
+            app(opcoes)
+        }
+        comando = ''
+    }
+    app(opcoes)
+</script>
