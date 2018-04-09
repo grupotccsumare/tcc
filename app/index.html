@@ -1,42 +1,13 @@
-<script>
-    novatag = function (tag) {
-        return document.createElement(tag)
-    }
-
-    add = function (tag) {
-        return app.appendChild(tag)
-    }
-
-    document.write('')
-    codigos = []
-
-    app = novatag('div')
-    app.id = "app"
-
-    divCodigo = novatag('div')
-    divCodigo.id = 'divCodigo'
-
-    let divControles = novatag('div')
-    divControles.id = 'divControles'
-
-    let inputBtn = document.createElement('input')
-
-    divControles.appendChild(inputBtn)
-
-    let inputPonteiro = document.createElement('input')
-
-    divControles.appendChild(inputPonteiro)
-
-    let btnEnvia = document.createElement('input')
-    btnEnvia.type = 'button'
-    btnEnvia.value = 'ok'
-    btnEnvia.addEventListener('click', function () {
-        console.log('ok')
-    })
-    divControles.appendChild(btnEnvia)
-
-    document.append(app)
-
-    add(divCodigo)
-    add(divControles)
-</script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<div id="app1">
+    <span v-if="seen" v-html="template"></span>
+</div>
+<div id="app2">
+    <span v-if="seen" v-html="template"></span>
+</div>
+<script src="novoProjetoOuImportar.js"></script>
+<script src="navegadorOuNode.js"></script>

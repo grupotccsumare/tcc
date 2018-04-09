@@ -1,4 +1,4 @@
-let tem1 = `
+let novoProjetoOuImportarTemplate = `
 
 <div class="row row-principal-texto">
     <div class="col m12">
@@ -264,10 +264,10 @@ let tem1 = `
     }
 </style>
 `
-var app1 = new Vue({
-    el: '#app1',
+var novoProjetoOuImportar = new Vue({
+    el: '#novoProjetoOuImportar',
     data: {
-        template: tem1,
+        template: novoProjetoOuImportarTemplate,
         seen: true
     }
 })
