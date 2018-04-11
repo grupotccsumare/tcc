@@ -1,5 +1,5 @@
 # Projeto tcc Faculdade Sumaré 
-
+# ok
 # Pure Functions
 
 # Anonymous Functions
