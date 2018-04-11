@@ -1,4 +1,3 @@
-# test
 # Projeto tcc Faculdade Sumaré 
 
 # Pure Functions
