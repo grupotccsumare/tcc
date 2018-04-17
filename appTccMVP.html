@@ -2,267 +2,235 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta charset="UTF-8">
-    <title>Document</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="UTF-8">
+	<title>Document</title>
 </head>
 
 <body>
-
-    <div id="app" v-html="tela"></div>
-
-
-
-    <script>
-        let app = {}
-        app['tela'] = new Vue({
-            el: "#app",
-            data: {
-                tela: `
+	<div id="app" v-html="tela"></div>
+	<script>
+		let app = {}
+		app['tela'] = new Vue({
+			el: "#app",
+			data: {
+				tela: `
                 <div class="row">
-  <div class="col m12">
-	<div id="code">
-	</div>
-  </div>
-</div>
-<div class="row">
-  <div class="col m12">
-	<div class="row">
-	  <div class="input-field col s6">
-		<input id="icon_prefix" type="text" class="validate termo"/>
-		<label for="icon_prefix">termo</label>
-	  </div>
-	  <div class="input-field col s6">
-		<input id="icon_telephone" type="tel" class="validate posicao"/>
-		<label for="icon_telephone">posicao</label>
-	  </div>
-	</div>
-	<div class="row">
-	  <div class="input-field col s6">
-		<input type="text" class="validate array"/>
-		<label for="icon_prefix">array</label>
-	  </div>
-	  <div class="input-field col s6">
-		<a class="btn waves-effect waves-light black adicionar">adicionar<br/></a>
-	  </div>
-	</div>
-  </div>
-</div>
-<style>* {
-  box-sizing: border-box;
-  }
-  body {
-	margin: 0;
-  }
-  .row{
-	display:table;
-	padding-top:10px;
-	padding-right:10px;
-	padding-bottom:10px;
-	padding-left:10px;
-	width:100%;
-  }
-  #banner-gradient{
-	background-image:linear-gradient(45deg, rgb(122, 188, 255) 0%, rgb(96, 171, 248) 44%, rgb(64, 150, 238) 100%);
-	background-position-x:initial;
-	background-position-y:initial;
-	background-size:initial;
-	background-repeat-x:initial;
-	background-repeat-y:initial;
-	background-attachment:initial;
-	background-origin:initial;
-	background-clip:initial;
-	background-color:initial;
-  }
-  .col:empty{
-	display:table-cell;
-	height:75px;
-  }
-  #myForm .col:empty{
-	display:table-cell;
-	height:75px;
-	position:relative;
-  }
-  #myForm .col:empty::after{
-	content:"Add form elements here";
-	color:rgb(136, 136, 136);
-	position:absolute;
-	left:10px;
-	top:10px;
-	display:block;
-	width:400px;
-  }
-  nav ul a, nav .brand-logo{
-	color:rgb(68, 68, 68);
-  }
-  p{
-	line-height:2rem;
-  }
-  .parallax-container .section{
-	width:100%;
-  }
-  footer.gram-footer ul.collection > li.collection-item, footer.gram-footer ul.collection > li.collection-header{
-	background-image:initial;
-	background-position-x:initial;
-	background-position-y:initial;
-	background-size:initial;
-	background-repeat-x:initial;
-	background-repeat-y:initial;
-	background-attachment:initial;
-	background-origin:initial;
-	background-clip:initial;
-	background-color:transparent;
-	border-top-width:0px;
-	border-right-width:0px;
-	border-bottom-width:0px;
-	border-left-width:0px;
-	border-top-style:initial;
-	border-right-style:initial;
-	border-bottom-style:initial;
-	border-left-style:initial;
-	border-top-color:initial;
-	border-right-color:initial;
-	border-bottom-color:initial;
-	border-left-color:initial;
-	border-image-source:initial;
-	border-image-slice:initial;
-	border-image-width:initial;
-	border-image-outset:initial;
-	border-image-repeat:initial;
-  }
-  footer.gram-footer ul.collection{
-	border-top-width:0px;
-	border-right-width:0px;
-	border-bottom-width:0px;
-	border-left-width:0px;
-	border-top-style:initial;
-	border-right-style:initial;
-	border-bottom-style:initial;
-	border-left-style:initial;
-	border-top-color:initial;
-	border-right-color:initial;
-	border-bottom-color:initial;
-	border-left-color:initial;
-	border-image-source:initial;
-	border-image-slice:initial;
-	border-image-width:initial;
-	border-image-outset:initial;
-	border-image-repeat:initial;
-  }
-  .input-field [type="checkbox"] + label, .input-field [type="radio"]:not(:checked) + label, .input-field [type="radio"]:checked + label{
-	pointer-events:auto;
-  }
-  input:not([type]):focus:not([readonly]), input[type="text"]:not(.browser-default):focus:not([readonly]), input[type="password"]:not(.browser-default):focus:not([readonly]), input[type="email"]:not(.browser-default):focus:not([readonly]), input[type="url"]:not(.browser-default):focus:not([readonly]), input[type="time"]:not(.browser-default):focus:not([readonly]), input[type="date"]:not(.browser-default):focus:not([readonly]), input[type="datetime"]:not(.browser-default):focus:not([readonly]), input[type="datetime-local"]:not(.browser-default):focus:not([readonly]), input[type="tel"]:not(.browser-default):focus:not([readonly]), input[type="number"]:not(.browser-default):focus:not([readonly]), input[type="search"]:not(.browser-default):focus:not([readonly]), textarea.materialize-textarea:focus:not([readonly]){
-	border-bottom-width:1px;
-	border-bottom-style:solid;
-	border-bottom-color:orange;
-	box-shadow:orange 0px 1px 0px 0px;
-  }
-  #contact input#your-email{
-	color:rgb(255, 255, 255);
-  }
-  #contact textarea#your-message{
-	color:rgb(255, 255, 255);
-  }
-  .icon-block .material-icons{
-	font-size:inherit;
-  }
-  footer.page-footer{
-	margin-top:0px;
-	margin-right:0px;
-	margin-bottom:0px;
-	margin-left:0px;
-  }
-  *{
-	box-sizing:border-box;
-  }
-  body{
-	margin-top:0px;
-	margin-right:0px;
-	margin-bottom:0px;
-	margin-left:0px;
-  }
-  @media only screen and (max-width: 992px){
-	.parallax-container .section{
-	  position:absolute;
-	  top:40%;
-	}
-	#index-banner .section{
-	  top:10%;
-	}
-  }
-  @media only screen and (max-width: 600px){
-	#index-banner .section{
-	  top:0px;
-	}
-  }
-</style>
+										<div class="col m12">
+										<div id="code">
+										</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col m12">
+										<div class="row">
+											<div class="input-field col s6">
+											<input id="icon_prefix" type="text" class="validate termo"/>
+											<label for="icon_prefix">termo</label>
+											</div>
+											<div class="input-field col s6">
+											<input id="icon_telephone" type="tel" class="validate posicao"/>
+											<label for="icon_telephone">posicao</label>
+											</div>
+										</div>
+										<div class="row">
+											<div class="input-field col s6">
+											<input type="text" class="validate array"/>
+											<label for="icon_prefix">array</label>
+											</div>
+											<div class="input-field col s6">
+											<a class="btn waves-effect waves-light black adicionar">adicionar<br/></a>
+											</div>
+										</div>
+										</div>
+									</div>
+									<style>* {
+										box-sizing: border-box;
+										}
+										body {
+										margin: 0;
+										}
+										.row{
+										display:table;
+										padding-top:10px;
+										padding-right:10px;
+										padding-bottom:10px;
+										padding-left:10px;
+										width:100%;
+										}
+										#banner-gradient{
+										background-image:linear-gradient(45deg, rgb(122, 188, 255) 0%, rgb(96, 171, 248) 44%, rgb(64, 150, 238) 100%);
+										background-position-x:initial;
+										background-position-y:initial;
+										background-size:initial;
+										background-repeat-x:initial;
+										background-repeat-y:initial;
+										background-attachment:initial;
+										background-origin:initial;
+										background-clip:initial;
+										background-color:initial;
+										}
+										.col:empty{
+										display:table-cell;
+										height:75px;
+										}
+										#myForm .col:empty{
+										display:table-cell;
+										height:75px;
+										position:relative;
+										}
+										#myForm .col:empty::after{
+										content:"Add form elements here";
+										color:rgb(136, 136, 136);
+										position:absolute;
+										left:10px;
+										top:10px;
+										display:block;
+										width:400px;
+										}
+										nav ul a, nav .brand-logo{
+										color:rgb(68, 68, 68);
+										}
+										p{
+										line-height:2rem;
+										}
+										.parallax-container .section{
+										width:100%;
+										}
+										footer.gram-footer ul.collection > li.collection-item, footer.gram-footer ul.collection > li.collection-header{
+										background-image:initial;
+										background-position-x:initial;
+										background-position-y:initial;
+										background-size:initial;
+										background-repeat-x:initial;
+										background-repeat-y:initial;
+										background-attachment:initial;
+										background-origin:initial;
+										background-clip:initial;
+										background-color:transparent;
+										border-top-width:0px;
+										border-right-width:0px;
+										border-bottom-width:0px;
+										border-left-width:0px;
+										border-top-style:initial;
+										border-right-style:initial;
+										border-bottom-style:initial;
+										border-left-style:initial;
+										border-top-color:initial;
+										border-right-color:initial;
+										border-bottom-color:initial;
+										border-left-color:initial;
+										border-image-source:initial;
+										border-image-slice:initial;
+										border-image-width:initial;
+										border-image-outset:initial;
+										border-image-repeat:initial;
+										}
+										footer.gram-footer ul.collection{
+										border-top-width:0px;
+										border-right-width:0px;
+										border-bottom-width:0px;
+										border-left-width:0px;
+										border-top-style:initial;
+										border-right-style:initial;
+										border-bottom-style:initial;
+										border-left-style:initial;
+										border-top-color:initial;
+										border-right-color:initial;
+										border-bottom-color:initial;
+										border-left-color:initial;
+										border-image-source:initial;
+										border-image-slice:initial;
+										border-image-width:initial;
+										border-image-outset:initial;
+										border-image-repeat:initial;
+										}
+										.input-field [type="checkbox"] + label, .input-field [type="radio"]:not(:checked) + label, .input-field [type="radio"]:checked + label{
+										pointer-events:auto;
+										}
+										input:not([type]):focus:not([readonly]), input[type="text"]:not(.browser-default):focus:not([readonly]), input[type="password"]:not(.browser-default):focus:not([readonly]), input[type="email"]:not(.browser-default):focus:not([readonly]), input[type="url"]:not(.browser-default):focus:not([readonly]), input[type="time"]:not(.browser-default):focus:not([readonly]), input[type="date"]:not(.browser-default):focus:not([readonly]), input[type="datetime"]:not(.browser-default):focus:not([readonly]), input[type="datetime-local"]:not(.browser-default):focus:not([readonly]), input[type="tel"]:not(.browser-default):focus:not([readonly]), input[type="number"]:not(.browser-default):focus:not([readonly]), input[type="search"]:not(.browser-default):focus:not([readonly]), textarea.materialize-textarea:focus:not([readonly]){
+										border-bottom-width:1px;
+										border-bottom-style:solid;
+										border-bottom-color:orange;
+										box-shadow:orange 0px 1px 0px 0px;
+										}
+										#contact input#your-email{
+										color:rgb(255, 255, 255);
+										}
+										#contact textarea#your-message{
+										color:rgb(255, 255, 255);
+										}
+										.icon-block .material-icons{
+										font-size:inherit;
+										}
+										footer.page-footer{
+										margin-top:0px;
+										margin-right:0px;
+										margin-bottom:0px;
+										margin-left:0px;
+										}
+										*{
+										box-sizing:border-box;
+										}
+										body{
+										margin-top:0px;
+										margin-right:0px;
+										margin-bottom:0px;
+										margin-left:0px;
+										}
+										@media only screen and (max-width: 992px){
+										.parallax-container .section{
+											position:absolute;
+											top:40%;
+										}
+										#index-banner .section{
+											top:10%;
+										}
+										}
+										@media only screen and (max-width: 600px){
+										#index-banner .section{
+											top:0px;
+										}
+										}
+									</style>
                 `
-            }
-        })
+			}
+		})
+
+		function montaString(appRefs) {
+			let posicaoString = 0
+			return appRefs.reduce(function (acc, att) {
+				acc += ` <span class='${posicaoString++} posicaoArray'>${att}</span>`
+				return acc
+			}, '')
+		}
+
+		$('.btn').on('click', function () {
+			if (!app[$('.array').val()]) {
+				app[$('.array').val()] = []
+			}
+			app['posicao'] = Number($('.posicao').val())
+			app['termo'] = $('.termo').val()
+			
+			app[$('.array').val()].splice(app['posicao'], 0, app['termo'])
+			$('#code').empty();
+			$('#code').append(`${montaString(app['main'])}`)
 
 
-        //app['codigo'] = new Vue({
-        //    el:'#code',
-        //    data : {
-        //        code: ``
-        //    }
-        //})
-        /*
-        let comando
-        let app = {}
-        app['main'] = []
 
-
-
-
-        function adicionar(termo, indice) {
-            app['main'].splice(indice, 0, termo);
-            console.log(app)
-        }
-
-        function appInit() {
-            if (!app['navegadorOuNode']) {
-                app['navegadorOuNode'] = prompt('navegadorOuNode')
-            }
-
-            if (!app['importarOuNovo']) {
-                app['importarOuNovo'] = prompt('importarOuNovo')
-            }
-
-            comando = prompt('comando')
-            if (comando == 'adicionar') {
-                let termo = prompt('termo')
-                let indice = prompt('indice')
-                adicionar(termo, indice)
-            }
-            if (comando == 'sair') {
-                return
-            } else {
-                appInit(app)
-            }
-            comando = ''
-        }
-        appInit()
-        */
-
-        $('#code').append('<span></span>')
-
-        $('.btn').on('click', function () {
-            if(!app[$('.array').val()]){
-                app[$('.array').val()] = []
-            }
-            app[$('.array').val()].splice(Number($('.posicao').val()), 0, $('.termo').val())
-            console.log(app)
-        })
-    </script>
+			$('.posicaoArray').on('click', function () {
+				$(this).css( "background-color", "red" )
+				console.log($('.posicaoArray'))
+			})
+		})
+	</script>
 
 </body>
 
