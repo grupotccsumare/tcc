@@ -218,7 +218,7 @@
 
 		function carregarClique() {
 			$('.posicaoArray').on('click', function (e) {
-				
+
 
 				d = e.target.classList.value.split(" ")
 				d.forEach(element => {
@@ -238,16 +238,16 @@
 
 		function init() {
 
-			if (!app['main']) {// verificacao se nao existe o espaço de memoria main. true = iniciado /// false = undefined
-				app['main'] = []  // nao existindo é iniciado o espaco de memoria main e recebe um array vazio
+			if (!app['main']) { // verificacao se nao existe o espaço de memoria main. true = iniciado /// false = undefined
+				app['main'] = [] // nao existindo é iniciado o espaco de memoria main e recebe um array vazio
 			}
 
 			$('.excluir').on('click', function () { // selecionado todos os elementos que tenham class="excluir" e executada a funcao on recebendo 2 parametros.
-													// primeiro parametro string indicando o evento. segundo parametro (callback) funcao que vai ser chamada quando
-													// a classe excluir receber algum clique
+				// primeiro parametro string indicando o evento. segundo parametro (callback) funcao que vai ser chamada quando
+				// a classe excluir receber algum clique
 				app['posicao'] = Number($('.posicao').val()) // atribui na variavel da aplicacao a conversao da string para numero do input class="posicao"
-				app['main'].splice(app['posicao'], 1)  // funcao splice que na implementacao está sendo usado para excluir o elemento do array no espacao de memoria passado
-														// passados dois parametros primeiro posicao que sera usada. segundo parametro é quantidade de elementos retirados.
+				app['main'].splice(app['posicao'], 1) // funcao splice que na implementacao está sendo usado para excluir o elemento do array no espacao de memoria passado
+				// passados dois parametros primeiro posicao que sera usada. segundo parametro é quantidade de elementos retirados.
 				render() // chamada a funcao render que limpa e escreve o codigo novamente
 				carregarClique()
 			})
@@ -256,14 +256,49 @@
 				$('.posicao').val(Number($('.posicao').val()) + 1) // troca o valor do input class="posicao" para a (atual + 1) para proxima posicao a ser inserida 
 				app['posicao'] = Number($('.posicao').val()) // atribui na variavel da aplicacao a conversao da string para numero do input class="posicao"
 				app['termo'] = $('.termo').val() // atribui para variavel da aplicacao o valor do input class="termo" que foi digitado em string 
-				app['main'].splice(app['posicao'], 0, app['termo']) 
+				if (app['termo'] == 'if') {
+					let arra = []
+					arra.push('if')
+					arra.push('(')
+					arra.push(')')
+					arra.push('{')
+					arra.push('<br>')
+					arra.push('<br>')
+					arra.push('}')
+					let posicao = app['posicao']
+
+					arra.forEach(function (elemento) {
+						app['main'].splice(posicao, 0, elemento)
+						posicao++
+					})
+
+
+				} else if (app['termo'] == 'function') {
+					let arra = []
+					arra.push('function')
+					arra.push('(')
+					arra.push(')')
+					arra.push('{')
+					arra.push('<br>')
+					arra.push('<br>')
+					arra.push('}')
+					let posicao = app['posicao']
+
+					arra.forEach(function (elemento) {
+						app['main'].splice(posicao, 0, elemento)
+						posicao++
+					})
+				} else {
+					app['main'].splice(app['posicao'], 0, app['termo'])
+				}
+
 				render() // chamada a funcao render que limpa e escreve o codigo novamente
 				carregarClique()
 			})
 
 		}
 
-		init() // inicia a funcao init() onde é carregado os espaços de memoria e criado o main main onde será o start do código. iniciados os eventListeners das classes (excluir, adicionar) 
+		init() // inicia a funcao init() onde é carregado os espaços de memoria e criado o main main onde será o start do código. iniciados os eventListeners das classes (excluir, adicionar)
 	</script>
 
 </body>
