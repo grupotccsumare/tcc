@@ -288,6 +288,21 @@
 						app['main'].splice(posicao, 0, elemento)
 						posicao++
 					})
+				} else if (app['termo'] == 'for') {
+					let arra = []
+					arra.push('for')
+					arra.push('(')
+					arra.push(')')
+					arra.push('{')
+					arra.push('<br>')
+					arra.push('<br>')
+					arra.push('}')
+					let posicao = app['posicao']
+
+					arra.forEach(function (elemento) {
+						app['main'].splice(posicao, 0, elemento)
+						posicao++
+					})
 				} else {
 					app['main'].splice(app['posicao'], 0, app['termo'])
 				}
