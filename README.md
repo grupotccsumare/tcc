@@ -1,5 +1,3 @@
-# editado
-
 # Projeto tcc Faculdade Sumaré 
 
 # Pure Functions

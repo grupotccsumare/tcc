@@ -2,31 +2,27 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta charset="UTF-8">
-    <title>Document</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="UTF-8">
+	<title>Document</title>
 </head>
 
 <body>
-
-    <div id="app" v-html="tela"></div>
-
-
-
-    <script>
-        let app = {}
-        app['tela'] = new Vue({
-            el: "#app",
-            data: {
-                tela: `
-                <div class="row">
+	<div id="app" v-html="tela"></div>
+	<script>
+		let app = {}
+		app['tela'] = new Vue({
+			el: "#app",
+			data: {
+				tela: `
+				<div class="row">
   <div class="col m12">
 	<div id="code">
 	</div>
@@ -51,6 +47,7 @@
 	  </div>
 	  <div class="input-field col s6">
 		<a class="btn waves-effect waves-light black adicionar">adicionar<br/></a>
+		<a class="btn waves-effect waves-light black excluir">excluir<br data-highlightable="1"/></a>
 	  </div>
 	</div>
   </div>
@@ -205,64 +202,119 @@
   }
 </style>
                 `
-            }
-        })
+			}
+		})
+
+		function montaString(arrayReferencia, referencia) {
+			let posicaoCodigo = 0
+			return arrayReferencia[referencia].reduce(function (acumulador, atual) {
+
+				let className = `class="${posicaoCodigo} posicaoArray ${referencia}"`
+				acumulador += ` <span ${className}> ${atual} </span>`
+				posicaoCodigo++
+				return acumulador
+			}, '')
+		}
+
+		function carregarClique() {
+			$('.posicaoArray').on('click', function (e) {
 
 
-        //app['codigo'] = new Vue({
-        //    el:'#code',
-        //    data : {
-        //        code: ``
-        //    }
-        //})
-        /*
-        let comando
-        let app = {}
-        app['main'] = []
+				d = e.target.classList.value.split(" ")
+				d.forEach(element => {
+					let teste = Number(element)
+					if (!Number.isNaN(teste)) {
+						$('.posicao').val(teste)
+					}
+				})
+			})
+		}
 
 
+		function render() {
+			$('#code').empty();
+			$('#code').append(`${montaString(app, 'main')}`)
+		}
+
+		function init() {
+
+			if (!app['main']) { // verificacao se nao existe o espaço de memoria main. true = iniciado /// false = undefined
+				app['main'] = [] // nao existindo é iniciado o espaco de memoria main e recebe um array vazio
+			}
+
+			$('.excluir').on('click', function () { // selecionado todos os elementos que tenham class="excluir" e executada a funcao on recebendo 2 parametros.
+				// primeiro parametro string indicando o evento. segundo parametro (callback) funcao que vai ser chamada quando
+				// a classe excluir receber algum clique
+				app['posicao'] = Number($('.posicao').val()) // atribui na variavel da aplicacao a conversao da string para numero do input class="posicao"
+				app['main'].splice(app['posicao'], 1) // funcao splice que na implementacao está sendo usado para excluir o elemento do array no espacao de memoria passado
+				// passados dois parametros primeiro posicao que sera usada. segundo parametro é quantidade de elementos retirados.
+				render() // chamada a funcao render que limpa e escreve o codigo novamente
+				carregarClique()
+			})
+
+			$('.adicionar').on('click', function () {
+				$('.posicao').val(Number($('.posicao').val()) + 1) // troca o valor do input class="posicao" para a (atual + 1) para proxima posicao a ser inserida 
+				app['posicao'] = Number($('.posicao').val()) // atribui na variavel da aplicacao a conversao da string para numero do input class="posicao"
+				app['termo'] = $('.termo').val() // atribui para variavel da aplicacao o valor do input class="termo" que foi digitado em string 
+				if (app['termo'] == 'if') {
+					let arra = []
+					arra.push('if')
+					arra.push('(')
+					arra.push(')')
+					arra.push('{')
+					arra.push('<br>')
+					arra.push('<br>')
+					arra.push('}')
+					let posicao = app['posicao']
+
+					arra.forEach(function (elemento) {
+						app['main'].splice(posicao, 0, elemento)
+						posicao++
+					})
 
 
-        function adicionar(termo, indice) {
-            app['main'].splice(indice, 0, termo);
-            console.log(app)
-        }
+				} else if (app['termo'] == 'function') {
+					let arra = []
+					arra.push('function')
+					arra.push('(')
+					arra.push(')')
+					arra.push('{')
+					arra.push('<br>')
+					arra.push('<br>')
+					arra.push('}')
+					let posicao = app['posicao']
 
-        function appInit() {
-            if (!app['navegadorOuNode']) {
-                app['navegadorOuNode'] = prompt('navegadorOuNode')
-            }
+					arra.forEach(function (elemento) {
+						app['main'].splice(posicao, 0, elemento)
+						posicao++
+					})
+				} else if (app['termo'] == 'for') {
+					let arra = []
+					arra.push('for')
+					arra.push('(')
+					arra.push(')')
+					arra.push('{')
+					arra.push('<br>')
+					arra.push('<br>')
+					arra.push('}')
+					let posicao = app['posicao']
 
-            if (!app['importarOuNovo']) {
-                app['importarOuNovo'] = prompt('importarOuNovo')
-            }
+					arra.forEach(function (elemento) {
+						app['main'].splice(posicao, 0, elemento)
+						posicao++
+					})
+				} else {
+					app['main'].splice(app['posicao'], 0, app['termo'])
+				}
 
-            comando = prompt('comando')
-            if (comando == 'adicionar') {
-                let termo = prompt('termo')
-                let indice = prompt('indice')
-                adicionar(termo, indice)
-            }
-            if (comando == 'sair') {
-                return
-            } else {
-                appInit(app)
-            }
-            comando = ''
-        }
-        appInit()
-        */
+				render() // chamada a funcao render que limpa e escreve o codigo novamente
+				carregarClique()
+			})
 
-        $('#code').append('<span></span>')
+		}
 
-        $('.btn').on('click', function () {
-            if(!app[$('.array').val()]){
-                app[$('.array').val()] = []
-            }
-            app[$('.array').val()].splice(Number($('.posicao').val()), 0, $('.termo').val())
-            console.log(app)
-        })
-    </script>
+		init() // inicia a funcao init() onde é carregado os espaços de memoria e criado o main main onde será o start do código. iniciados os eventListeners das classes (excluir, adicionar)
+	</script>
 
 </body>
 
