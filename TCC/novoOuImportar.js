@@ -8,7 +8,7 @@ let novoOuImportarTemplate = `
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
-    
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
     <style>
@@ -18,25 +18,6 @@ let novoOuImportarTemplate = `
 
         body {
             margin: 0;
-        }
-
-        #i0npgk {
-            margin: 5% 0px 20px 0px;
-        }
-
-        #i9l5zk {
-            text-align: center;
-            font-family: Arial,
-            Helvetica, sans-serif;
-            font-size: 17px;
-        }
-
-        #iy1tbx {
-            margin: 10% 0px 20px 0px;
-        }
-        #hr-separa{
-            margin-top:17%;
-
         }
 
         .row {
@@ -49,8 +30,7 @@ let novoOuImportarTemplate = `
         }
 
         #banner-gradient {
-            background-image: linear-gradient(45deg,
-            rgb(122, 188, 255) 0%, rgb(96, 171, 248) 44%, rgb(64, 150, 238) 100%);
+            background-image: linear-gradient(45deg, rgb(122, 188, 255) 0%, rgb(96, 171, 248) 44%, rgb(64, 150, 238) 100%);
             background-position-x: initial;
             background-position-y: initial;
             background-size: initial;
@@ -74,8 +54,18 @@ let novoOuImportarTemplate = `
         }
 
         #myForm .col:empty::after {
-            content: "Add form elements
- here";color:rgb(136, 136, 136);position:absolute;left:10px;top:10px;display:block;width:400px;}nav ul a, nav .brand-logo{color:rgb(68,68, 68);
+            content: "Add form elements here";
+            color: rgb(136, 136, 136);
+            position: absolute;
+            left: 10px;
+            top: 10px;
+            display: block;
+            width: 400px;
+        }
+
+        nav ul a,
+        nav .brand-logo {
+            color: rgb(68, 68, 68);
         }
 
         p {
@@ -167,8 +157,7 @@ let novoOuImportarTemplate = `
         }
 
         #contact textarea#your-message {
-            color: rgb(255,
-            255, 255);
+            color: rgb(255, 255, 255);
         }
 
         .icon-block .material-icons {
@@ -182,13 +171,33 @@ let novoOuImportarTemplate = `
             margin-left: 0px;
         }
 
-        .btn.waves-effect.waves-light.blue {
-            width: 100%;
+        .col.m12 {
+            text-align: center;
         }
 
-        .col.m6 {
-            width: 45%;
-            padding: 0px 1px 0px 1px;
+        .green {
+            height: 50px;
+            width: 280px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        #izxfak {
+            font-size: 36px;
+            text-align: center;
+        }
+
+        #i50m8t {
+            text-align: center;
         }
 
         @media only screen and (max-width: 992px) {
@@ -206,40 +215,44 @@ let novoOuImportarTemplate = `
                 top: 0px;
             }
         }
+
+        @media (max-width: 480px) {
+            .green {
+                height: 50px;
+                width: 280px;
+                max-width: auto;
+            }
+            .green {
+                height: 50px;
+                width: 280px;
+            }
+        }
     </style>
 </head>
 
 <body>
-    <div class="row" id="i0npgk">
+    <div class="row">
         <div class="col m12">
-            <div id="i9l5zk"><h5>FERRAMENTA PARA DESENVOLVIMENTO JAVA SCRIPT</h5></div>
+            <div id="izxfak">VAMOS COMEÇAR
+            </div>
         </div>
     </div>
-    <div class="row" id="iy1tbx">
-        <div class="col m6">
-            <a id="btn-novoProjeto" class="btn waves-effect waves-light blue">NOVO PROJETO</a>
-        </div>
-        <div class="col m6">
-            <a id="btn-importar" class="btn waves-effect waves-light blue">IMPORTAR PROJETO</a>
+    <div id="i50m8t" class="row">
+        <div class="col m12">
+            <a id="btn-novoProjeto" class="btn waves-effect waves-light green">novo</a>
         </div>
     </div>
-    <hr id="hr-separa"/>
-   <!-- <div data-activates="menu" class="tap-target">
-        <div class="tap-target-content">
-            <h5>Title</h5>
-            <p>Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Proin eget tortor risus. Praesent sapien massa,
-                convallis a pellentesque nec, egestas non nisi. Nulla porttitor accumsan tincidunt.</p>
+    <div class="row">
+        <div class="col m12">
+            <a id="btn-importar" class="btn waves-effect waves-light green">importar</a>
         </div>
     </div>
-    <div class="fixed-action-btn horizontal click-to-toggle">
-        <a onclick="$('.fixed-action-btn').openFAB()" class="btn-floating btn-large waves-effect waves-light orange">
-            <i class="material-icons">menu</i>
-        </a>
-    </div>-->
-
+    <!-- this page is generateded by Gramateria -->
 </body>
 
 </html>
+
+
 `
 
 var telanovoOuImportar = new Vue({
