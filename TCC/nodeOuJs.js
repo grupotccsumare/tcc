@@ -1,5 +1,6 @@
 
 let novoOuJsTemplate = `
+<!--
 <!doctype html>
 <html>
 
@@ -7,15 +8,10 @@ let novoOuJsTemplate = `
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
-    <link rel="stylesheet" href="css/style.css">
+   
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
     <style>
-    #hr-separa{
-        margin-top:17%;
-
-    }
-
         * {
             box-sizing: border-box;
         }
@@ -24,19 +20,12 @@ let novoOuJsTemplate = `
             margin: 0;
         }
 
-        #i0npgk {
-            margin: 5% 0px 20px 0px;
+        #ipgw6y {
+            margin: 30px 0px 20px 0px;
         }
 
-        #i9l5zk {
-            text-align: center;
-            font-family: Arial,
-            Helvetica, sans-serif;
-            font-size: 17px;
-        }
-
-        #iy1tbx {
-            margin: 10% 0px 20px 0px;
+        #iq48n7 {
+            margin: 0px 0px 0px 30px;
         }
 
         .row {
@@ -45,12 +34,11 @@ let novoOuJsTemplate = `
             padding-right: 10px;
             padding-bottom: 10px;
             padding-left: 10px;
-            width: 100%;
+            width: 96%;
         }
 
         #banner-gradient {
-            background-image: linear-gradient(45deg,
-            rgb(122, 188, 255) 0%, rgb(96, 171, 248) 44%, rgb(64, 150, 238) 100%);
+            background-image: linear-gradient(45deg, rgb(122, 188, 255) 0%, rgb(96, 171, 248) 44%, rgb(64, 150, 238) 100%);
             background-position-x: initial;
             background-position-y: initial;
             background-size: initial;
@@ -74,8 +62,18 @@ let novoOuJsTemplate = `
         }
 
         #myForm .col:empty::after {
-            content: "Add form elements
- here";color:rgb(136, 136, 136);position:absolute;left:10px;top:10px;display:block;width:400px;}nav ul a, nav .brand-logo{color:rgb(68,68, 68);
+            content: "Add form elements here";
+            color: rgb(136, 136, 136);
+            position: absolute;
+            left: 10px;
+            top: 10px;
+            display: block;
+            width: 400px;
+        }
+
+        nav ul a,
+        nav .brand-logo {
+            color: rgb(68, 68, 68);
         }
 
         p {
@@ -167,8 +165,7 @@ let novoOuJsTemplate = `
         }
 
         #contact textarea#your-message {
-            color: rgb(255,
-            255, 255);
+            color: rgb(255, 255, 255);
         }
 
         .icon-block .material-icons {
@@ -182,13 +179,33 @@ let novoOuJsTemplate = `
             margin-left: 0px;
         }
 
-        .btn.waves-effect.waves-light.blue {
-            width: 100%;
+        .col.m12 {
+            text-align: center;
         }
 
-        .col.m6 {
-            width: 45%;
-            padding: 0px 1px 0px 1px;
+        .green {
+            height: 50px;
+            width: 270px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+        }
+
+        #izxfak {
+            font-size: 36px;
+            text-align: center;
+        }
+
+        #i50m8t {
+            text-align: center;
         }
 
         @media only screen and (max-width: 992px) {
@@ -206,25 +223,47 @@ let novoOuJsTemplate = `
                 top: 0px;
             }
         }
+
+        @media (max-width: 480px) {
+            .green {
+                height: 50px;
+                width: 280px;
+                max-width: auto;
+                font-size: 28px;
+                padding: 5px 28px 0px 28px;
+            }
+            .col.m12 {
+                margin: 0px 0px 0px 0px;
+            }
+            .green {
+                height: 50px;
+                width: 280px;
+            }
+        }
     </style>
 </head>
+
 <body>
-    <div class="row" id="i0npgk">
+    <div class="row" id="ipgw6y">
+        <div class="col m12" id="iq48n7">
+            <div id="izxfak">Node ou Js?</div>
+        </div>
+    </div>
+    <div id="i50m8t" class="row">
         <div class="col m12">
-            <div id="i9l5zk"><h5>NODE OU JS?</h5></div>
+            <a id="btn-node" class="btn waves-effect waves-light green">node </a>
         </div>
     </div>
-    <div class="row" id="iy1tbx">
-        <div class="col m6">
-            <a id="btn-node" class="btn waves-effect waves-light blue">NODE</a>
-        </div>
-        <div class="col m6">
-            <a id="btn-js" class="btn waves-effect waves-light blue">JAVASCRIPT</a>
+    <div class="row">
+        <div class="col m12">
+            <a id="btn-js" class="btn waves-effect waves-light green">js</a>
         </div>
     </div>
-    <hr id="hr-separa"/>
+    <!-- this page is generateded by Gramateria -->
 </body>
+
 </html>
+-->
 `
 var telanodeOuJs = new Vue({
 
