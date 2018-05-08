@@ -1,6 +1,6 @@
 
 let novoOuImportarTemplate = `
-
+<!--
 <!doctype html>
 <html>
 
@@ -251,7 +251,7 @@ let novoOuImportarTemplate = `
 </body>
 
 </html>
-
+-->
 
 `
 
@@ -260,7 +260,7 @@ var telanovoOuImportar = new Vue({
 	el: '#novoOuImportar',
 	data : {
 		template1 : novoOuImportarTemplate,
-		seen : true
+		seen : false
 	}
 	
 })

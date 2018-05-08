@@ -1,6 +1,6 @@
 
 let novoOuJsTemplate = `
-
+<!--
 <!doctype html>
 <html>
 
@@ -263,7 +263,7 @@ let novoOuJsTemplate = `
 </body>
 
 </html>
-
+-->
 `
 var telanodeOuJs = new Vue({
 

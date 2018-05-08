@@ -18,43 +18,17 @@ $('#btn-novoProjeto').on("click", function () {
 
 
 
-
+//script teleprincipal
 $(document).ready(function () {
 
-    $("#btn-inserir").click(function () {
-      $("#div-inserir").show();
-      $("#div-declarar").hide();
-
-      $("#div-variavel").hide();
-      $("#div-condicional").hide();
-      $("#div-repeticao").hide();
-
-    });
-    $("#btn-declarar").click(function () {
-      $("#div-declarar").show();
-      $("#div-inserir").hide();
-
-      $("#div-variavel").hide();
-      $("#div-condicional").hide();
-      $("#div-repeticao").hide();
-
-    });
-
-    $("#btn-condicional").click(function () {
-      $("#div-condicional").show();
-      $("#div-declarar").hide();
-      $("#div-inserir").hide();
-    });
-    $("#btn-repeticao").click(function () {
-      $("#div-repeticao").show();
-      $("#div-declarar").hide();
-      $("#div-inserir").hide();
-    });
-    $("#btn-variavel").click(function () {
-      $("#div-variavel").show();
-      $("#div-declarar").hide();
-      $("#div-inserir").hide();
-    });
-
-
+  $("#btn-condicional").click(function () {
+    $("#div-condicional").show();
+    $("#div-repeticao").hide();
   });
+  $("#btn-repeticao").click(function () {
+    $("#div-repeticao").show();
+    $("#div-condicional").hide();
+  });
+
+
+});

@@ -1,12 +1,12 @@
-
 <html>
 
 <head>
-        <title>TCC</title>
+    <title>TCC</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
- 
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
 
@@ -17,15 +17,15 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-  
+
 
 
 </head>
 
 <body>
-        <script type="text/javascript">
-            $('.modal').modal();
-          </script>
+    <script type="text/javascript">
+        $('.modal').modal();
+    </script>
 
 
 
@@ -42,13 +42,26 @@
 
     <script src="novoOuImportar.js"></script>
     <script src="nodeOuJs.js"></script>
-    <script src="acoes.js"></script>
+    
     <script src="telaPrincipal.js"></script>
+
+    <script src="https://unpkg.com/vue"></script>
+    <script>
+        var app = new Vue({
+            el: "#modal-body",
+            methods: {
+                say: function (message) {
+                    alert(message);
+                }
+
+            }
+        })
+    </script>
 
     <script type="text/javascript">
         $('.modal').modal();
-      </script>
-
+    </script>
+    <script src="acoes.js"></script>
 
 
 </body>

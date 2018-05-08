@@ -4,6 +4,7 @@ let telaPrincipalTemplate = `
 <html>
 
 <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
@@ -12,7 +13,7 @@ let telaPrincipalTemplate = `
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
 
   <style>
-    # * {
+     * {
       box-sizing: border-box;
     }
 
@@ -23,9 +24,9 @@ let telaPrincipalTemplate = `
     .row {
       display: table;
       padding-top: 2px;
-      padding-right: 10px;
+      padding-right: 2px;
       padding-bottom: 2px;
-      padding-left: 10px;
+      padding-left: 0px;
       width: 100%;
     }
 
@@ -248,8 +249,7 @@ let telaPrincipalTemplate = `
     #div-declarar,
     #div-inserir,
     #div-condicional,
-    #div-repeticao,
-    #div-variavel {
+    #div-repeticao {
       display: none;
       text-align: center;
 
@@ -274,12 +274,23 @@ let telaPrincipalTemplate = `
       margin-left: 0px;
     }
 
-      #iwjjee{
-	width:100%;
-  }
-  #iab7uk{
-	width:100%;
-  }
+    #iwjjee {
+      width: 100%;
+    }
+
+    #iab7uk {
+      width: 100%;
+    }
+
+
+
+    #btn-condicional {
+      margin-left: -12px;
+    }
+
+    .modal .modal-content {
+      padding: 14px;
+    }
   </style>
 
 </head>
@@ -288,91 +299,46 @@ let telaPrincipalTemplate = `
   <script type="text/javascript">
     $('.modal').modal();
   </script>
-  <div id="modal1" class="modal modal-fixed-footer black-text c3138">
-    <div class="modal-content">
-      <div class="row">
-        <div class="col m6">
-          <a id="btn-declarar" class="btn waves-light blue">DECLARAR</a>
+  <div id="modal1" class="modal modal-fixed-footer black-text c3138 ">
+    <div class="modal-content ">
+      <div class="row div-botoes">
+        <div class="col m6 btn-condicional  ">
+          <a id="btn-condicional" class="btn waves-light blue btn-classe">CONDICIONAL</a>
         </div>
-        <div class="col m6">
-          <a id="btn-inserir" class="btn waves-light red">INSERIR</a>
+        <div class="col m6 btn-repeticao ">
+          <a id="btn-repeticao" class="btn waves-light blue ">REPETIÇÃO</a>
         </div>
       </div>
       <hr/>
+
       <div id="modal-body">
-        <div id="div-declarar">
 
-          <button type="button" id="btn-trycatch" class="btn btn-info btn-lg">TRY CATCH</button>
-          <button type="button" id="btn-condicional" class="btn btn-info btn-lg">CONDICIONAL</button>
-          </br>
-          <button type="button" id="btn-repeticao" class="btn btn-info btn-lg">REPETICAO</button>
-          <button type="button" id="btn-variavel" class="btn btn-info btn-lg">VARÍAVEL</button>
 
-        </div>
-
-        <div id="div-inserir">
-
-          <button type="button" id="btn-objeto" class="btn btn-danger btn-lg">OBJETO</button>
-          <button type="button" id="btn-operadores" class="btn btn-danger btn-lg">OPERADORES</button>
-          <button type="button" id="btn-palavrasReservadas" class="btn btn-danger btn-lg">PALAVRAS RESERVADAS</button>
-
-        </div>
-
-        <!--declarar-->
         <div id="div-condicional">
-          <button type="button" id="btn-if" class="btn btn-info btn-lg">IF</button>
-          <button type="button" id="btn-switch" class="btn btn-info btn-lg">SWITCH</button>
+          <button type="button" id="btn-if" class="btn btn-info btn-lg" v-on:click="say('if')" >IF</button>
+          <button type="button" id="btn-switch" class="btn btn-info btn-lg" v-on:click="say('switch')" >SWITCH</button>
         </div>
         <div id="div-repeticao">
-          <button type="button" id="btn-for" class="btn btn-info btn-lg">FOR</button>
-          <button type="button" id="btn-while" class="btn btn-info btn-lg">WHILE</button>
-          <button type="button" id="btn-doWhile" class="btn btn-info btn-lg">DO WHILE</button>
-        </div>
-        <div id="div-variavel">
-
-          <div class- "row">
-            <div class="c4318">VARÍAVEL
-            </div>
-            <div class="c4462">TIPO DE DECLARAÇÃO
-            </div>
-          </div>
-          <div class="row">
-            <div class="input-field col s12">
-
-              <input name="group1" type="radio" id="test1" />
-              <label for="test1">VAR</label>
-
-              <input name="group1" type="radio" id="test2" />
-              <label for="test2">LET</label>
-
-              <input name="group1" type="radio" id="test3" class="with-gap" />
-              <label for="test3">CONST</label>
-
-            </div>
-          </div>
-          <div class="row">
-            <div id="iwjjee" class="input-field col s6">
-              <input id="icon_prefix" type="text" class="validate" />
-              <label for="icon_prefix">NOME DA DECLARAÇÃO</label>
-            </div>
-            <div id="iab7uk" class="input-field col s6 c8609">
-              <input type="text" class="validate" />
-              <label for="icon_prefix">VALOR DA DECLARAÇÃO</label>
-            </div>
-          </div>
-
-
-
-
-
-
-
-
-
+          <button type="button" id="btn-for" class="btn btn-info btn-lg" v-on:click="say('for')">FOR</button>
+          <button type="button" id="btn-while" class="btn btn-info btn-lg" v-on:click="say('while')">WHILE</button>
+          <button type="button" id="btn-doWhile" class="btn btn-info btn-lg"v-on:click="say('do while')" >DO WHILE</button>
         </div>
 
-        <!--inserir-->
 
+
+        <script src="https://unpkg.com/vue"></script>
+
+        <script>
+          var app = new Vue({
+            el: "#modal-body",
+            methods: {
+              say: function (message){
+                alert(message);
+              }
+
+            }
+          })
+        </script>
 
 
 
@@ -388,7 +354,7 @@ let telaPrincipalTemplate = `
     $('.modal').modal();
   </script>
   <div class="fixed-action-btn horizontal click-to-toggle">
-    <a href="#modal1" class="btn-floating btn-large   modal-trigger green">
+    <a href="#modal1" class="btn-floating btn-large     modal-trigger green">
       <i class="material-icons">code
       </i>
     </a>
@@ -406,6 +372,6 @@ var telaPrincipal = new Vue({
 	el: '#telaprincipal',
 	data : {
 		template : telaPrincipalTemplate,
-		seen : false
+		seen : true
 	}
 })
