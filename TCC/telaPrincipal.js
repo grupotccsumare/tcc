@@ -328,20 +328,6 @@ let telaPrincipalTemplate = `
 
         <script src="https://unpkg.com/vue"></script>
 
-        <script>
-          var app = new Vue({
-            el: "#modal-body",
-            methods: {
-              say: function (message){
-                alert(message);
-              }
-
-            }
-          })
-        </script>
-
-
-
 
       </div>
     </div>
@@ -373,5 +359,13 @@ var telaPrincipal = new Vue({
 	data : {
 		template : telaPrincipalTemplate,
 		seen : true
-	}
+  },
+  methods: {
+    say: function (message){
+      alert(message);
+    }
+  }
+
+  
+
 })
