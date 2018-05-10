@@ -1,3 +1,4 @@
+let appTcc = {}
 let telaPrincipalTemplate = `
 
 <!doctype html>
@@ -299,6 +300,10 @@ let telaPrincipalTemplate = `
   <script type="text/javascript">
     $('.modal').modal();
   </script>
+  <input id="icon_prefix" type="text" class="validate termo"/>
+  <input id="icon_telephone" type="tel" class="validate posicao"/>
+  <a class="btn waves-effect waves-light black adicionar">adicionar<br/></a>
+  
   <div id="modal1" class="modal modal-fixed-footer black-text c3138 ">
     <div class="modal-content ">
       <div class="row div-botoes">
@@ -324,11 +329,6 @@ let telaPrincipalTemplate = `
           <button type="button" id="btn-doWhile" class="btn btn-info btn-lg"v-on:click="say('do while')" >DO WHILE</button>
         </div>
 
-
-
-        <script src="https://unpkg.com/vue"></script>
-
-
       </div>
     </div>
     <div class="modal-footer">
@@ -346,8 +346,10 @@ let telaPrincipalTemplate = `
     </a>
   </div>
   <div id="ix2y4m" class="row">
+  <div id="code"><div>
   </div>
   <!-- this page is generateded by Gramateria -->
+  
 </body>
 
 </html>
@@ -355,17 +357,126 @@ let telaPrincipalTemplate = `
 `
 
 var telaPrincipal = new Vue({
-	el: '#telaprincipal',
-	data : {
-		template : telaPrincipalTemplate,
-		seen : true
+  el: '#telaprincipal',
+  data: {
+    template: telaPrincipalTemplate,
+    seen: true
   },
   methods: {
-    say: function (message){
-      alert(message);
+    say: function (message) {
+      a(message);
     }
   }
-
-  
-
 })
+
+
+
+function montaString(arrayReferencia, referencia) {
+  let posicaoCodigo = 0
+  return arrayReferencia[referencia].reduce(function (acumulador, atual) {
+
+    let className = `class="${posicaoCodigo} posicaoArray ${referencia}"`
+    acumulador += ` <span ${className}> ${atual} </span>`
+    posicaoCodigo++
+    return acumulador
+  }, '')
+}
+
+function carregarClique() {
+  $('.posicaoArray').on('click', function (e) {
+
+
+    d = e.target.classList.value.split(" ")
+    d.forEach(element => {
+      let teste = Number(element)
+      if (!Number.isNaN(teste)) {
+        $('.posicao').val(teste)
+      }
+    })
+  })
+}
+
+
+function render() {
+  $('#code').empty();
+  $('#code').append(`${montaString(appTcc, 'main')}`)
+}
+
+function init() {
+
+  if (!appTcc['main']) { // verificacao se nao existe o espaço de memoria main. true = iniciado /// false = undefined
+    appTcc['main'] = [] // nao existindo é iniciado o espaco de memoria main e recebe um array vazio
+  }
+
+  $('.excluir').on('click', function () { // selecionado todos os elementos que tenham class="excluir" e executada a funcao on recebendo 2 parametros.
+    // primeiro parametro string indicando o evento. segundo parametro (callback) funcao que vai ser chamada quando
+    // a classe excluir receber algum clique
+    appTcc['posicao'] = Number($('.posicao').val()) // atribui na variavel da aplicacao a conversao da string para numero do input class="posicao"
+    appTcc['main'].splice(appTcc['posicao'], 1) // funcao splice que na implementacao está sendo usado para excluir o elemento do array no espacao de memoria passado
+    // passados dois parametros primeiro posicao que sera usada. segundo parametro é quantidade de elementos retirados.
+    render() // chamada a funcao render que limpa e escreve o codigo novamente
+    carregarClique()
+  })
+
+  $('.adicionar').on('click', function () {
+    $('.posicao').val(Number($('.posicao').val()) + 1) // troca o valor do input class="posicao" para a (atual + 1) para proxima posicao a ser inserida 
+    appTcc['posicao'] = Number($('.posicao').val()) // atribui na variavel da aplicacao a conversao da string para numero do input class="posicao"
+    appTcc['termo'] = $('.termo').val() // atribui para variavel da aplicacao o valor do input class="termo" que foi digitado em string 
+    if (appTcc['termo'] == 'if') {
+      let arra = []
+      arra.push('if')
+      arra.push('(')
+      arra.push(')')
+      arra.push('{')
+      arra.push('<br>')
+      arra.push('<br>')
+      arra.push('}')
+      let posicao = appTcc['posicao']
+
+      arra.forEach(function (elemento) {
+        appTcc['main'].splice(posicao, 0, elemento)
+        posicao++
+      })
+
+
+    } else if (appTcc['termo'] == 'function') {
+      let arra = []
+      arra.push('function')
+      arra.push('(')
+      arra.push(')')
+      arra.push('{')
+      arra.push('<br>')
+      arra.push('<br>')
+      arra.push('}')
+      let posicao = appTcc['posicao']
+
+      arra.forEach(function (elemento) {
+        appTcc['main'].splice(posicao, 0, elemento)
+        posicao++
+      })
+    } else if (appTcc['termo'] == 'for') {
+      let arra = []
+      arra.push('for')
+      arra.push('(')
+      arra.push(')')
+      arra.push('{')
+      arra.push('<br>')
+      arra.push('<br>')
+      arra.push('}')
+      let posicao = appTcc['posicao']
+
+      arra.forEach(function (elemento) {
+        appTcc['main'].splice(posicao, 0, elemento)
+        posicao++
+      })
+    } else {
+      appTcc['main'].splice(appTcc['posicao'], 0, appTcc['termo'])
+    }
+
+    render() // chamada a funcao render que limpa e escreve o codigo novamente
+    carregarClique()
+  })
+
+}
+
+init() // inicia a funcao init() onde é carregado os espaços de memoria e criado o main main onde será o start do código. iniciados os eventListeners das classes (excluir, adicionar)
