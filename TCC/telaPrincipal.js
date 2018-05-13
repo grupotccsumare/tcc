@@ -292,6 +292,28 @@ let telaPrincipalTemplate = `
     .modal .modal-content {
       padding: 14px;
     }
+
+    #code{
+      padding-top:20px;
+    }
+    .linkestilo:link{
+      color:#FFFAFA;
+      text-decoration:none;
+    }
+    .linkestilo:visited{
+      color:#FFDEAD;
+      text-decoration:none;
+    }
+    .linkestilo:hover{
+      color:#00FF00;
+      text-decoration:underline;
+    }
+    .linkestilo:active{
+      color:#FF0000;
+      text-decoration:underline;
+      background-color:#000000;
+    }
+
   </style>
 
 </head>
@@ -318,23 +340,19 @@ let telaPrincipalTemplate = `
       <hr/>
 
       <div id="modal-body">
-
-
         <div id="div-condicional">
-          <button type="button" id="btn-if" class="btn btn-info btn-lg" v-on:click="say('if')" >IF</button>
-          <button type="button" id="btn-switch" class="btn btn-info btn-lg" v-on:click="say('switch')" >SWITCH</button>
+          <button type="button" id="btn-if" class="btn btn-info btn-lg modal-close" v-on:click="say('if')" >IF</button>
+          <button type="button" id="btn-switch" class="btn btn-info btn-lg modal-close" v-on:click="say('switch')" >SWITCH</button>
         </div>
         <div id="div-repeticao">
-          <button type="button" id="btn-for" class="btn btn-info btn-lg" v-on:click="say('for')">FOR</button>
-          <button type="button" id="btn-while" class="btn btn-info btn-lg" v-on:click="say('while')">WHILE</button>
-          <button type="button" id="btn-doWhile" class="btn btn-info btn-lg"v-on:click="say('do while')" >DO WHILE</button>
+          <button type="button" id="btn-for" class="btn btn-info btn-lg modal-close" v-on:click="say('for')">FOR</button>
+          <button type="button" id="btn-while" class="btn btn-info btn-lg modal-close" v-on:click="say('while')">WHILE</button>
+          <button type="button" id="btn-doWhile" class="btn btn-info btn-lg modal-close"v-on:click="say('do while')" >DO WHILE</button>
         </div>
 
       </div>
     </div>
-    <div class="modal-footer">
-      <a id="btn-ok" href="#!" class="modal-action modal-close waves-green btn-flat">OK</a>
-    </div>
+  
   </div>
 
   <script type="text/javascript">
@@ -357,9 +375,6 @@ let telaPrincipalTemplate = `
 
 `;
 
-
-
-
 let telaPrincipal = new Vue({
   el: "#telaprincipal",
   data: {
@@ -371,55 +386,54 @@ let telaPrincipal = new Vue({
 let app = new Vue({
   el: "#modal-body",
   methods: {
-    say: function (message) {
-      $('.termo').val(message)
-      $('.adicionar').trigger('click')
+    say: function(message) {
+      $(".termo").val(message);
+      $(".adicionar").trigger("click");
     }
   }
-})
+});
 
-let render = function () {
+let render = function() {
   $("#code").empty(); // apaga todos os elementos da div CODE
   $("#code").append(`${montaString(appTcc)}`);
-}
+};
 
-let montaString = function (arrayReferencia) {
+let montaString = function(arrayReferencia) {
   let posicaoCodigo = 0;
-  return arrayReferencia['main'].reduce(function (acumulador, atual) {
+  return arrayReferencia["main"].reduce(function(acumulador, atual) {
     let className = `class="posicaoArray ${posicaoCodigo}"`;
     acumulador += ` <span ${className}> ${atual} </span>`;
     posicaoCodigo++;
     return acumulador;
   }, "");
-}
+};
 
-let carregarClique = function () {
-  $(".posicaoArray").on("click", function (eventoClick) {
-    eventoClick.target.classList.value.split(" ").forEach(function (element) {
+let carregarClique = function() {
+  $(".posicaoArray").on("click", function(eventoClick) {
+    eventoClick.target.classList.value.split(" ").forEach(function(element) {
       let teste = Number(element);
       if (!Number.isNaN(teste)) {
         $(".posicao").val(teste);
       }
     });
   });
-}
+};
 
-let adicionarNaTela = function (arra) {
+let adicionarNaTela = function(arra) {
   let posicao = appTcc["posicao"];
-  arra.forEach(function (elemento) {
+  arra.forEach(function(elemento) {
     appTcc["main"].splice(posicao, 0, elemento);
     posicao++;
   });
-}
-
-
+};
 
 function init() {
-  if (!appTcc["main"]) { // verificacao se nao existe o espaço de memoria main. true = iniciado /// false = undefined
+  if (!appTcc["main"]) {
+    // verificacao se nao existe o espaço de memoria main. true = iniciado /// false = undefined
     appTcc["main"] = []; // nao existindo é iniciado o espaco de memoria main e recebe um array vazio
   }
 
-  $(".excluir").on("click", function () {
+  $(".excluir").on("click", function() {
     // selecionado todos os elementos que tenham class="excluir" e executada a funcao on recebendo 2 parametros.
     // primeiro parametro string indicando o evento. segundo parametro (callback) funcao que vai ser chamada quando
     // a classe excluir receber algum clique
@@ -430,16 +444,89 @@ function init() {
     carregarClique();
   });
 
-  $(".adicionar").on("click", function () {
+  $(".adicionar").on("click", function() {
     $(".posicao").val(Number($(".posicao").val()) + 1); // troca o valor do input class="posicao" para a (atual + 1) para proxima posicao a ser inserida
     appTcc["posicao"] = Number($(".posicao").val()); // atribui na variavel da aplicacao a conversao da string para numero do input class="posicao"
     appTcc["termo"] = $(".termo").val(); // atribui para variavel da aplicacao o valor do input class="termo" que foi digitado em string
     if (appTcc["termo"] == "if") {
-      adicionarNaTela(['if', '(', ')', '{', '<br>', '<br>', '}']);
+      adicionarNaTela([
+        "if",
+        "(",
+        '<a href="#" class="linkestilo">°°°</a>',
+        ")",
+        "{",
+        "<br>",
+        '<a href="#" class="linkestilo">°°°</a>', //fiz soh para testar, depois se apaga
+        "<br>",
+        "}"
+      ]);
     } else if (appTcc["termo"] == "function") {
-      adicionarNaTela(['function', '(', ')', '{', '<br>', '<br>', '}']);
+      adicionarNaTela(["function", "(", ")", "{", "<br>", "<br>", "}"]);
     } else if (appTcc["termo"] == "for") {
-      adicionarNaTela(['for', '(', ')', '{', '<br>', '<br>', '}']);
+      adicionarNaTela([
+        "for",
+        "(",
+        '<a href="#" class="linkestilo">°°°</a>',
+        ")",
+        "{",
+        "<br>",
+        '<a href="#" class="linkestilo">°°°</a>',
+        "<br>",
+        "}"
+      ]);
+    } else if (appTcc["termo"] == "while") {
+      adicionarNaTela([
+        "while",
+        "(",
+        '<a href="#" class="linkestilo">°°°</a>',
+        ")",
+        "{",
+        "<br>",
+        '<a href="#" class="linkestilo">°°°</a>',
+        "<br>",
+        "}"
+      ]);
+    } else if (appTcc["termo"] == "do while") {
+      adicionarNaTela([
+        "do",
+        "{",
+        "<br>",
+        '<a href="#" class="linkestilo">°°°</a>',
+        "<br>",
+        "}",
+        "while",
+        "(",
+        '<a href="#" class="linkestilo">°°°</a>',
+        ")"
+      ]);
+    } else if (appTcc["termo"] == "switch") {
+      adicionarNaTela([
+        "switch",
+        "(",
+        '<a href="#" class="linkestilo">°°°</a>',
+        ")",
+        "{",
+        "<br>",
+        "case ",
+        '<a href="#" class="linkestilo">°°°</a>:',
+        
+        "<br>",
+
+        '<a href="#" class="linkestilo">°°°</a>',
+        "<br>",
+        "break;",
+        "<br>",
+        "case ",
+        '<a href="#" class="linkestilo">°°°</a>',
+        ":",
+        "<br>",
+        '<a href="#" class="linkestilo">°°°</a>',
+        "<br>",
+        "break;",
+        "<br>",'default ',
+        '<a href="#" class="linkestilo">°°°</a>:','<br>',
+        "}"
+      ]);
     } else {
       appTcc["main"].splice(appTcc["posicao"], 0, appTcc["termo"]);
     }
