@@ -6,8 +6,6 @@
 
 # Function Composition
 
-# Lazy Loading
-
 # Curried Functions
 
 # Function Scope
@@ -19,17 +17,5 @@
 # filter
 
 # reduce
-
-# contains 
-
-# inludes
-
-# Recursion
-
-# Immutability
-
-# let assignments
-
-# var assignments
 
 # Objects
