@@ -19,3 +19,5 @@
 # reduce
 
 # Objects
+
+# git clone https://github.com/grupotccsumare/tcc.git && cd tcc && cd TCC && npm install && npm start
