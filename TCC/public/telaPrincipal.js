@@ -1,4 +1,3 @@
-let appTcc = {};
 let telaPrincipalTemplate = `
 
 <!doctype html>
@@ -322,10 +321,10 @@ let telaPrincipalTemplate = `
   <script type="text/javascript">
     $('.modal').modal();
   </script>
-  <input style="display: none" id="icon_prefix" type="text" class="validate termo"/>
-  <input style="display: none" id="icon_telephone" type="tel" class="validate posicao"/>
-  <a style="display: none" class="btn waves-effect waves-light black adicionar">adicionar<br/></a>
-  <a style="display: none" class="btn waves-effect waves-light black excluir">excluir<br data-highlightable="1"/></a>
+  <input style="display: block" id="icon_prefix" type="text" class="validate termo"/>
+  <input style="display: block" id="icon_telephone" type="tel" class="validate posicao"/>
+  <a style="display: block" class="btn waves-effect waves-light black adicionar">adicionar<br/></a>
+  <a style="display: block" class="btn waves-effect waves-light black excluir">excluir<br data-highlightable="1"/></a>
   
   <div id="modal1" class="modal modal-fixed-footer black-text c3138 ">
     <div class="modal-content ">
@@ -375,6 +374,10 @@ let telaPrincipalTemplate = `
 
 `;
 
+
+
+
+
 let telaPrincipal = new Vue({
   el: "#telaprincipal",
   data: {
@@ -386,154 +389,138 @@ let telaPrincipal = new Vue({
 let app = new Vue({
   el: "#modal-body",
   methods: {
-    say: function(message) {
+    say: function (message) {
       $(".termo").val(message);
       $(".adicionar").trigger("click");
     }
   }
 });
 
-let render = function() {
-  $("#code").empty(); // apaga todos os elementos da div CODE
-  $("#code").append(`${montaString(appTcc)}`);
-};
+///////////////////////////////////////////////////////////////////////////////
 
-let montaString = function(arrayReferencia) {
-  let posicaoCodigo = 0;
-  return arrayReferencia["main"].reduce(function(acumulador, atual) {
-    let className = `class="posicaoArray ${posicaoCodigo}"`;
-    acumulador += ` <span ${className}> ${atual} </span>`;
-    posicaoCodigo++;
-    return acumulador;
-  }, "");
-};
+let divCodigo = $('#code')
+let inputPosicao = $('.posicao')
+let inputToken = $('.termo')
+let botaoAdicionar = $('.adicionar')
+let botaoExcluir = $('.excluir')
+let arrayTokens = []
 
-let carregarClique = function() {
-  $(".posicaoArray").on("click", function(eventoClick) {
-    eventoClick.target.classList.value.split(" ").forEach(function(element) {
-      let teste = Number(element);
-      if (!Number.isNaN(teste)) {
-        $(".posicao").val(teste);
-      }
-    });
-  });
-};
+/////////////////////////////////////////////////////////////////////////////////
 
-let adicionarNaTela = function(arra) {
-  let posicao = appTcc["posicao"];
-  arra.forEach(function(elemento) {
-    appTcc["main"].splice(posicao, 0, elemento);
-    posicao++;
-  });
-};
-
-function init() {
-  if (!appTcc["main"]) {
-    // verificacao se nao existe o espaço de memoria main. true = iniciado /// false = undefined
-    appTcc["main"] = []; // nao existindo é iniciado o espaco de memoria main e recebe um array vazio
-  }
-
-  $(".excluir").on("click", function() {
-    // selecionado todos os elementos que tenham class="excluir" e executada a funcao on recebendo 2 parametros.
-    // primeiro parametro string indicando o evento. segundo parametro (callback) funcao que vai ser chamada quando
-    // a classe excluir receber algum clique
-    appTcc["posicao"] = Number($(".posicao").val()); // atribui na variavel da aplicacao a conversao da string para numero do input class="posicao"
-    appTcc["main"].splice(appTcc["posicao"], 1); // funcao splice que na implementacao está sendo usado para excluir o elemento do array no espacao de memoria passado
-    // passados dois parametros primeiro posicao que sera usada. segundo parametro é quantidade de elementos retirados.
-    render(); // chamada a funcao render que limpa e escreve o codigo novamente
-    carregarClique();
-  });
-
-  $(".adicionar").on("click", function() {
-    $(".posicao").val(Number($(".posicao").val()) + 1); // troca o valor do input class="posicao" para a (atual + 1) para proxima posicao a ser inserida
-    appTcc["posicao"] = Number($(".posicao").val()); // atribui na variavel da aplicacao a conversao da string para numero do input class="posicao"
-    appTcc["termo"] = $(".termo").val(); // atribui para variavel da aplicacao o valor do input class="termo" que foi digitado em string
-    if (appTcc["termo"] == "if") {
-      adicionarNaTela([
-        "if",
-        "(",
-        '<a href="#" class="linkestilo">°°°</a>',
-        ")",
-        "{",
-        "<br>",
-        '<a href="#" class="linkestilo">°°°</a>', //fiz soh para testar, depois se apaga
-        "<br>",
-        "}"
-      ]);
-    } else if (appTcc["termo"] == "function") {
-      adicionarNaTela(["function", "(", ")", "{", "<br>", "<br>", "}"]);
-    } else if (appTcc["termo"] == "for") {
-      adicionarNaTela([
-        "for",
-        "(",
-        '<a href="#" class="linkestilo">°°°</a>',
-        ")",
-        "{",
-        "<br>",
-        '<a href="#" class="linkestilo">°°°</a>',
-        "<br>",
-        "}"
-      ]);
-    } else if (appTcc["termo"] == "while") {
-      adicionarNaTela([
-        "while",
-        "(",
-        '<a href="#" class="linkestilo">°°°</a>',
-        ")",
-        "{",
-        "<br>",
-        '<a href="#" class="linkestilo">°°°</a>',
-        "<br>",
-        "}"
-      ]);
-    } else if (appTcc["termo"] == "do while") {
-      adicionarNaTela([
-        "do",
-        "{",
-        "<br>",
-        '<a href="#" class="linkestilo">°°°</a>',
-        "<br>",
-        "}",
-        "while",
-        "(",
-        '<a href="#" class="linkestilo">°°°</a>',
-        ")"
-      ]);
-    } else if (appTcc["termo"] == "switch") {
-      adicionarNaTela([
-        "switch",
-        "(",
-        '<a href="#" class="linkestilo">°°°</a>',
-        ")",
-        "{",
-        "<br>",
-        "case ",
-        '<a href="#" class="linkestilo">°°°</a>:',
-        
-        "<br>",
-
-        '<a href="#" class="linkestilo">°°°</a>',
-        "<br>",
-        "break;",
-        "<br>",
-        "case ",
-        '<a href="#" class="linkestilo">°°°</a>',
-        ":",
-        "<br>",
-        '<a href="#" class="linkestilo">°°°</a>',
-        "<br>",
-        "break;",
-        "<br>",'default ',
-        '<a href="#" class="linkestilo">°°°</a>:','<br>',
-        "}"
-      ]);
-    } else {
-      appTcc["main"].splice(appTcc["posicao"], 0, appTcc["termo"]);
-    }
-
-    render(); // chamada a funcao render que limpa e escreve o codigo novamente
-    carregarClique();
-  });
+let escreverCodigoNaTela = function (viewCodigo, codigoProcessado) {
+  viewCodigo.empty();
+  viewCodigo.append(codigoProcessado)
+  carregarClick($('.posicaoArray'))
 }
 
-init(); // inicia a funcao init() onde é carregado os espaços de memoria e criado o main main onde será o start do código. iniciados os eventListeners das classes (excluir, adicionar)
+//////////////////////////////////////////////////////////////////////////////////
+
+let manipuladorDoArrayCodigo = function (arrayCode, posicaoQueSeraInseridoNoArray, tokemQueSeraInseridoNoArray, quantidadeDeElementosDoArrayQueSeramExcluidos) {
+  arrayCode.splice(posicaoQueSeraInseridoNoArray, quantidadeDeElementosDoArrayQueSeramExcluidos, tokemQueSeraInseridoNoArray);
+  escreverCodigoNaTela(divCodigo, arrayToHTML(arrayCode))
+}
+
+//////////////////////////////////////////////////////////////////////////////////
+
+let snippets = function (arrayTokens, arraySnippet) {
+  let posicao = Number(inputPosicao.val())
+  arraySnippet.forEach(function (elemento) {
+    manipuladorDoArrayCodigo(arrayTokens, posicao, elemento, 0)
+    posicao++
+  })
+}
+
+
+//////////////////////////////////////////////////////////////////////////////////
+
+let arrayToHTML = function (arrayCode) {
+  let posicaoCodigo = 0
+  return arrayCode.reduce(function (acumulador, atual) {
+    
+    if (atual == '{') {
+      let className = `class='posicaoArray ${posicaoCodigo}'`
+      acumulador += `<span ${className}>${atual}</span><br><br>`
+      posicaoCodigo++
+    } else {
+      let className = `class='posicaoArray ${posicaoCodigo}'`
+      acumulador += `<span ${className}>${atual}</span>`
+      posicaoCodigo++
+    }
+    return acumulador
+  }, "")
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+
+let carregarClick = function (elementoClicavel) {
+  let posicaoArray = elementoClicavel
+  posicaoArray.on('click', function (eventoClick) {
+    let classDoClick = eventoClick.target.classList.value;
+    classDoClick.split(" ").forEach(function (elementoDoArray) {
+      let elementoStringConvertidoParaNumber = Number(elementoDoArray);
+      if (!Number.isNaN(elementoStringConvertidoParaNumber)) {
+        inputPosicao.val(elementoStringConvertidoParaNumber)
+      }
+    });
+  })
+}
+
+//////////////////////////////////////////////////////////////////////////////////
+
+botaoAdicionar.on('click', function () {
+  let token = inputToken.val()
+  if (token == 'if') {
+    snippets(arrayTokens, ['if', '(', ')', '{', '***','}'])
+  } else if (token == 'function') {
+    snippets(arrayTokens, ['function', prompt('nome da função'), '(', ')', '{', '<br>', '<br>', '}'])
+  } else if (token == 'for') {
+    snippets(arrayTokens, ['for', '(', prompt('primeiro parametro'), prompt('segundo parametro'), prompt('terceiro parametro'), ')', '{', '<br>', '<br>', '}'])
+  } else if (token == 'while') {
+    snippets(arrayTokens, ['while', '(', ')', '{', '<br>', '<br>', '}'])
+  } else if (token == 'do while') {
+    snippets(arrayTokens, ['do', '{', '<br>', '<br>', '}', 'while', '(', ')'])
+  } else if (token == 'switch') {
+    snippets(arrayTokens, ['switch', '(', ')', '{', '}', '<br>', 'case', '<br>', '<br>', 'break', '<br>', 'default'])
+  } else {
+    manipuladorDoArrayCodigo(arrayTokens, Number(inputPosicao.val()), inputToken.val(), 0)
+  }
+})
+
+//////////////////////////////////////////////////////////////////////////////////
+
+botaoExcluir.on("click", function () {
+  let posicaoQueSeraRetirada = Number(inputPosicao.val())
+  let arrayCode = arrayTokens
+  arrayCode.splice(posicaoQueSeraRetirada, 1)
+  escreverCodigoNaTela(divCodigo, arrayToHTML(arrayCode))
+});
+
+/*
+  $(".excluir").on("click", function() {
+    appTcc["posicao"] = Number($(".posicao").val()); 
+    appTcc["main"].splice(appTcc["posicao"], 1); 
+   
+    render();
+    carregarClique();
+  });
+
+  let arrayToHTML = function (arrayCode) {
+  let posicaoCodigo = 0
+  return arrayCode.reduce(function (acumulador, atual) {
+    let className = ''
+    if (atual == '}' || atual == 'if' || atual == '{' || atual == ')' || atual == '<br>' || atual == ';') {
+      className = `class='posicaoArray ${posicaoCodigo}'`
+      acumulador += `<span ${className}>${atual}</span>`
+      posicaoCodigo++
+    } else {
+      className = `class='posicaoArray ${posicaoCodigo}'`
+      acumulador += `<span ${className}>${atual}</span>`
+      posicaoCodigo++
+      className = `class='posicaoArray ${posicaoCodigo}'`
+      acumulador += `<span ${className}> *** </span>`
+      posicaoCodigo++
+    }
+    return acumulador
+  }, "")
+}
+*/
