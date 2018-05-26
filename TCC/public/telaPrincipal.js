@@ -321,10 +321,11 @@ let telaPrincipalTemplate = `
   <script type="text/javascript">
     $('.modal').modal();
   </script>
-  <input style="display: none" id="icon_prefix" type="text" class="validate termo"/>
-  <input style="display: none" id="icon_telephone" type="tel" class="validate posicao"/>
-  <a style="display: none" class="btn waves-effect waves-light black adicionar">adicionar<br/></a>
-  <a style="display: none" class="btn waves-effect waves-light black excluir">excluir<br data-highlightable="1"/></a>
+  <input style="display: block" id="icon_prefix" type="text" class="validate termo"/>
+  <input style="display: block" id="icon_telephone" type="tel" class="validate posicao"/>
+  <a style="display: block" class="btn waves-effect waves-light black adicionar">adicionar<br/></a>
+  <a style="display: block" class="btn waves-effect waves-light black selecao">selecao<br/></a>
+  <a style="display: block" class="btn waves-effect waves-light black excluir">excluir<br data-highlightable="1"/></a>
   
   <div id="modal1" class="modal modal-fixed-footer black-text c3138 ">
     <div class="modal-content ">
@@ -410,7 +411,7 @@ let arrayTokens = []
 let escreverCodigoNaTela = function (viewCodigo, codigoProcessado) {
   viewCodigo.empty();
   viewCodigo.append(codigoProcessado)
-  carregarClick($('.posicaoArray'))
+  carregarClick($('.posicaoArray'), $('.selecionado'))
 }
 
 //////////////////////////////////////////////////////////////////////////////////
@@ -418,6 +419,7 @@ let escreverCodigoNaTela = function (viewCodigo, codigoProcessado) {
 let manipuladorDoArrayCodigo = function (arrayCode, posicaoQueSeraInseridoNoArray, tokemQueSeraInseridoNoArray, quantidadeDeElementosDoArrayQueSeramExcluidos) {
   arrayCode.splice(posicaoQueSeraInseridoNoArray, quantidadeDeElementosDoArrayQueSeramExcluidos, tokemQueSeraInseridoNoArray);
   escreverCodigoNaTela(divCodigo, arrayToHTML(arrayCode))
+  inputPosicao.val(posicaoQueSeraInseridoNoArray)
 }
 
 //////////////////////////////////////////////////////////////////////////////////
@@ -434,19 +436,42 @@ let snippets = function (arrayTokens, arraySnippet) {
 //////////////////////////////////////////////////////////////////////////////////
 
 let arrayToHTML = function (arrayCode) {
-  let posicaoCodigo = 0
-  return arrayCode.reduce(function (acumulador, atual) {
-    let className = `class='posicaoArray ${posicaoCodigo}'`
-    acumulador += `<span ${className}>${atual}</span>`
-    posicaoCodigo++
+  return arrayCode.reduce(function (acumulador, atual, index) {
+
+    if (atual == '{') {
+      let className = `class='posicaoArray ${index}'`
+      acumulador += `<span>${atual}</span><br>`
+    } else if (atual == ';') {
+      let className = `class='selecionado posicaoArray ${index}'`
+      acumulador += `<span>${atual}</span><br>`
+      acumulador += `<span ${className}> * </span>`
+    } else if (atual == '}') {
+      let className = `class='selecionado posicaoArray ${index}'`
+      acumulador += `<br><span>${atual}</span>`
+      acumulador += `<span ${className}> * </span>`
+    } else {
+      let className = `class='selecionado posicaoArray ${index}'`
+      acumulador += `<span>${atual}</span> `
+      acumulador += `<span ${className}> * </span>`
+    }
+
     return acumulador
   }, "")
 }
 
 /////////////////////////////////////////////////////////////////////////////////
 
-let carregarClick = function (elementoClicavel) {
+let carregarClick = function (elementoClicavel, elementoClicavelDeSelecao) {
+  let a = elementoClicavelDeSelecao
   let posicaoArray = elementoClicavel
+
+
+  a.on('click',function(){
+    inputToken.val('')
+    inputToken.focus()
+  })
+
+
   posicaoArray.on('click', function (eventoClick) {
     let classDoClick = eventoClick.target.classList.value;
     classDoClick.split(" ").forEach(function (elementoDoArray) {
@@ -463,9 +488,9 @@ let carregarClick = function (elementoClicavel) {
 botaoAdicionar.on('click', function () {
   let token = inputToken.val()
   if (token == 'if') {
-    snippets(arrayTokens, ['if', '(', ')', '{', '<br>', '<br>', '}'])
+    snippets(arrayTokens, ['if', '(', ')', '{','' ,'}'])
   } else if (token == 'function') {
-    snippets(arrayTokens, ['function', prompt('nome da função'), '(', ')', '{', '<br>', '<br>', '}'])
+    snippets(arrayTokens, ['function', prompt('nome da função'), '(', ')', '{','','}'])
   } else if (token == 'for') {
     snippets(arrayTokens, ['for', '(', prompt('primeiro parametro'), prompt('segundo parametro'), prompt('terceiro parametro'), ')', '{', '<br>', '<br>', '}'])
   } else if (token == 'while') {
@@ -475,7 +500,8 @@ botaoAdicionar.on('click', function () {
   } else if (token == 'switch') {
     snippets(arrayTokens, ['switch', '(', ')', '{', '}', '<br>', 'case', '<br>', '<br>', 'break', '<br>', 'default'])
   } else {
-    manipuladorDoArrayCodigo(arrayTokens, Number(inputPosicao.val()), inputToken.val(), 0)
+    let posicaoDoArray = Number(inputPosicao.val()) + 1
+    manipuladorDoArrayCodigo(arrayTokens, posicaoDoArray, inputToken.val(), 0)
   }
 })
 
@@ -487,6 +513,17 @@ botaoExcluir.on("click", function () {
   arrayCode.splice(posicaoQueSeraRetirada, 1)
   escreverCodigoNaTela(divCodigo, arrayToHTML(arrayCode))
 });
+
+
+
+
+$('.selecao').on('click', function () {
+
+  $('.selecionado').toggle()
+
+})
+
+
 
 /*
   $(".excluir").on("click", function() {
