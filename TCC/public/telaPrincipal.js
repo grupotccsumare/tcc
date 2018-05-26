@@ -321,10 +321,10 @@ let telaPrincipalTemplate = `
   <script type="text/javascript">
     $('.modal').modal();
   </script>
-  <input style="display: block" id="icon_prefix" type="text" class="validate termo"/>
-  <input style="display: block" id="icon_telephone" type="tel" class="validate posicao"/>
-  <a style="display: block" class="btn waves-effect waves-light black adicionar">adicionar<br/></a>
-  <a style="display: block" class="btn waves-effect waves-light black excluir">excluir<br data-highlightable="1"/></a>
+  <input style="display: none" id="icon_prefix" type="text" class="validate termo"/>
+  <input style="display: none" id="icon_telephone" type="tel" class="validate posicao"/>
+  <a style="display: none" class="btn waves-effect waves-light black adicionar">adicionar<br/></a>
+  <a style="display: none" class="btn waves-effect waves-light black excluir">excluir<br data-highlightable="1"/></a>
   
   <div id="modal1" class="modal modal-fixed-footer black-text c3138 ">
     <div class="modal-content ">
@@ -436,16 +436,9 @@ let snippets = function (arrayTokens, arraySnippet) {
 let arrayToHTML = function (arrayCode) {
   let posicaoCodigo = 0
   return arrayCode.reduce(function (acumulador, atual) {
-    
-    if (atual == '{') {
-      let className = `class='posicaoArray ${posicaoCodigo}'`
-      acumulador += `<span ${className}>${atual}</span><br><br>`
-      posicaoCodigo++
-    } else {
-      let className = `class='posicaoArray ${posicaoCodigo}'`
-      acumulador += `<span ${className}>${atual}</span>`
-      posicaoCodigo++
-    }
+    let className = `class='posicaoArray ${posicaoCodigo}'`
+    acumulador += `<span ${className}>${atual}</span>`
+    posicaoCodigo++
     return acumulador
   }, "")
 }
@@ -470,7 +463,7 @@ let carregarClick = function (elementoClicavel) {
 botaoAdicionar.on('click', function () {
   let token = inputToken.val()
   if (token == 'if') {
-    snippets(arrayTokens, ['if', '(', ')', '{', '***','}'])
+    snippets(arrayTokens, ['if', '(', ')', '{', '<br>', '<br>', '}'])
   } else if (token == 'function') {
     snippets(arrayTokens, ['function', prompt('nome da função'), '(', ')', '{', '<br>', '<br>', '}'])
   } else if (token == 'for') {
