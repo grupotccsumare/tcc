@@ -20,14 +20,21 @@ $('#btn-novoProjeto').on("click", function () {
 
 //script teleprincipal
 $(document).ready(function () {
-
   $("#btn-condicional").click(function () {
     $("#div-condicional").show();
     $("#div-repeticao").hide();
+    $("#div-declaracao").hide();
   });
   $("#btn-repeticao").click(function () {
     $("#div-repeticao").show();
     $("#div-condicional").hide();
+    $("#div-declaracao").hide();
+  });
+
+  $("#btn-declaracao").click(function () {
+    $("#div-declaracao").show();
+    $("#div-condicional").hide();
+    $("#div-repeticao").hide();
   });
 
 
