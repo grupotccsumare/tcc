@@ -251,7 +251,8 @@
         #div-inserir,
         #div-condicional,
         #div-repeticao,
-        #div-declaracao {
+        #div-declaracao,
+        #div-funcao {
             display: none;
             text-align: center;
 
@@ -263,7 +264,7 @@
             margin-bottom: 0px;
             margin-left: 0px;
             font-size: 15px;
-          
+
         }
 
 
@@ -305,13 +306,7 @@
 
         /*acrecentar a div para os operadores*/
 
-        #div-operadores {
-
-
-         
-         
-
-        }
+        #div-operadores {}
 
         .toolbar-fixed {
             width: 100%;
@@ -375,39 +370,52 @@
         #code {
             margin: 1px;
         }
-        .concertaTextoCondicional{
+
+        .concertaTextoCondicional {
             margin-left: -10px;
         }
 
-        #div-declaracao button{
-            background-color:#2196F3;
+        #div-declaracao button {
+            background-color: #2196F3;
         }
     </style>
     <!--tirar-->
 
     <script src="acoes.js"></script>
     <!--tirar-->
+    <script>
+        $(document).ready(function () {
+            $("#input-funcao").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                $("#myTable tr").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
 </head>
 
 <body>
     <script type="text/javascript">
         $('.modal').modal();
     </script>
-    <div>
-    <input style="display: none" id="icon_prefix" type="text" class="validate termo" />
-    <input style="display: none" id="icon_telephone" type="tel" class="validate posicao" />
-    <a style="display: none" class="btn waves-effect waves-light black adicionar">adicionar
-        <br/>
-    </a>
-    <a style="display: none" class="btn waves-effect waves-light black excluir">excluir
-        <br data-highlightable="1" />
-    </a>
-</div>
+    <div id="div-ohonorio">
+        <input style="display: none" id="icon_prefix" type="text" class="validate termo" />
+        <input style="display: none" id="icon_telephone" type="tel" class="validate posicao" />
+        <a style="display: none" class="btn waves-effect waves-light black adicionar">adicionar
+            <br/>
+        </a>
+        <a style="display: none" class="btn waves-effect waves-light black excluir">excluir
+            <br data-highlightable="1" />
+        </a>
+    </div>
     <div id="modal1" class="modal modal-fixed-footer black-text c3138 ">
         <div class="modal-content ">
             <div class="row div-botoes">
                 <div class="col m6 btn-condicional  mesmo-tamanho ">
-                    <a id="btn-condicional" class="btn waves-light blue btn-classe"><span class="concertaTextoCondicional">CONDICIONAL</span></a>
+                    <a id="btn-condicional" class="btn waves-light blue btn-classe">
+                        <span class="concertaTextoCondicional">CONDICIONAL</span>
+                    </a>
                 </div>
                 <div class="col m6 btn-repeticao  mesmo-tamanho">
                     <a id="btn-repeticao" class="btn waves-light blue">REPETIÇÃO</a>
@@ -416,7 +424,9 @@
                     <a id="btn-funcao" class="btn blue ">FUNÇÃO</a>
                 </div>
                 <div class="col m6 btn-declaração mesmo-tamanho">
-                    <a id="btn-declaracao" class="btn waves-light blue "><span class="concertaTextoCondicional">DECLARAÇÃO</span></a>
+                    <a id="btn-declaracao" class="btn waves-light blue ">
+                        <span class="concertaTextoCondicional">DECLARAÇÃO</span>
+                    </a>
                 </div>
             </div>
             <hr/>
@@ -432,13 +442,119 @@
                     <button type="button" id="btn-doWhile" class="btn btn-info btn-lg modal-close" v-on:click="say('do while')">DO WHILE</button>
                 </div>
                 <div id="div-declaracao">
-                        <button type="button" id="btn-const" class="btn btn-info btn-lg modal-close " v-on:click="say('const')">CONST</button>
-                        <button type="button" id="btn-let" class="btn btn-info btn-lg modal-close " v-on:click="say('let')">LET</button>
-                        <button type="button" id="btn-var" class="btn btn-info btn-lg modal-close " v-on:click="say('var')">VAR</button>
-                    </div>
+                    <button type="button" id="btn-const" class="btn btn-info btn-lg modal-close " v-on:click="say('const')">CONST</button>
+                    <button type="button" id="btn-let" class="btn btn-info btn-lg modal-close " v-on:click="say('let')">LET</button>
+                    <button type="button" id="btn-var" class="btn btn-info btn-lg modal-close " v-on:click="say('var')">VAR</button>
+                </div>
 
+                <div id="div-funcao">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix">casino
+                            </i>
+                            <input id="input-funcao" type="text" class="validate" />
+                            <label for="icon_prefix">Objeto</label>
+                        </div>
+                    </div>
+                    <div id="div-funcao-lista">
+                        <table class="responsive-table centered striped highlight bordered">
+                          
+                            <!--corpo-->
+                            <tbody id="myTable">
+                              <tr>
+                                <td>  prompt
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>print
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>releaseEvents
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>event
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>error
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>number
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>node
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>iframe
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>bluer
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>close
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>clearTimeout
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>clearInterval
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>focus
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>find
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>moveTo
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>moveBy
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>resizeTo
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>resizeBy
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>scroll
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>open
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>openDatabase
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+
+                    </div>
+                </div>
             </div>
         </div>
+
+    </div>
+    </div>
 
     </div>
 
@@ -456,73 +572,80 @@
     <div id="ix2y4m" class="row">
 
         <div id="code">
-        
-            <!-- this page is generateded by Gramateria -->
-            <div id="div-operadores">
-                <div class="toolbar-fixed black ">
-                    <ul>
-                        <li class="waves-effect waves-light red">
-                            <a href="#!" class="">
-                                <i class="material-icons">delete</i>
-                            </a>
-                        </li>
+        </div>
+        <!-- this page is generateded by Gramateria -->
+        <div id="div-operadores">
+            <div class="toolbar-fixed black ">
+                <ul>
+                    <li class="waves-effect waves-light red">
+                        <a href="#!" class="">
+                            <i class="material-icons">delete</i>
+                        </a>
+                    </li>
 
-                        <li class="waves-effect waves-light">
-                            <a href="#!" class="">
-                                <i class="material-icons">code</i>
-                            </a>
-                        </li>
-                        <li class="waves-effect waves-light">
-                            <a href="#!">
-                                <i class="material-icons">format_quote</i>
-                            </a>
-                        </li>
-                        <li class="waves-effect waves-light">
-                            <a href="#!">
-                                <i class="material-icons">( )</i>
-                            </a>
-                        </li>
-                        <li class="waves-effect waves-light">
-                            <a href="#!">
-                                <i class="material-icons">{ }</i>
-                            </a>
-                        </li>
-                        <li class="waves-effect waves-light">
-                            <a href="#!">
-                                <i class="material-icons">[ ]</i>
-                            </a>
-                        </li>
-                        <li class="waves-effect waves-light">
-                            <a href="#!">
-                                <i class="material-icons">=</i>
-                            </a>
-                        </li>
-                        <li class="waves-effect waves-light">
-                            <a href="#!">
-                                <i class="material-icons">:</i>
-                            </a>
-                        </li>
 
-                        <li class="waves-effect waves-light">
-                            <a href="#!">
-                                <i class="material-icons">.</i>
-                            </a>
-                        </li>
+                    <li class="waves-effect waves-light blue">
+                        <a href="#!" class="">
+                            <i class="material-icons">border_color</i>
+                        </a>
+                    </li>
 
-                        <li class="waves-effect waves-light">
+                    <li class="waves-effect waves-light">
+                        <a href="#!">
+                            <i class="material-icons">format_quote</i>
+                        </a>
+                    </li>
+                    <li class="waves-effect waves-light">
+                        <a href="#!">
+                            <i class="material-icons ">( )</i>
+                        </a>
+                    </li>
+                    <li class="waves-effect waves-light">
                             <a href="#!">
-                                <i class="material-icons">,</i>
+                                <i class="material-icons">'</i>
                             </a>
                         </li>
-                        <li class="waves-effect waves-light">
-                            <a href="#!">
-                                <i class="material-icons">;</i>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+                    <li class="waves-effect waves-light">
+                        <a href="#!">
+                            <i class="material-icons">{ }</i>
+                        </a>
+                    </li>
+                    <li class="waves-effect waves-light">
+                        <a href="#!">
+                            <i class="material-icons">[ ]</i>
+                        </a>
+                    </li>
+                    <li class="waves-effect waves-light">
+                        <a href="#!">
+                            <i class="material-icons">=</i>
+                        </a>
+                    </li>
+                    <li class="waves-effect waves-light">
+                        <a href="#!">
+                            <i class="material-icons">:</i>
+                        </a>
+                    </li>
+
+                    <li class="waves-effect waves-light">
+                        <a href="#!">
+                            <i class="material-icons">.</i>
+                        </a>
+                    </li>
+
+                    <li class="waves-effect waves-light">
+                        <a href="#!">
+                            <i class="material-icons">,</i>
+                        </a>
+                    </li>
+                    <li class="waves-effect waves-light">
+                        <a href="#!">
+                            <i class="material-icons">;</i>
+                        </a>
+                    </li>
+                </ul>
             </div>
-            <script src="acoes.js"></script>
+        </div>
+        <script src="acoes.js"></script>
 </body>
 
 </html>
