@@ -2,7 +2,6 @@ let telaPrincipalTemplate = `
 
 <!doctype html>
 <html>
-
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
@@ -780,6 +779,7 @@ let telaPrincipalTemplate = `
   <input style="display: block" id="icon_prefix" type="text" class="validate termo"/>
   <input style="display: block" id="icon_telephone" type="tel" class="validate posicao"/>
   <a style="display: block" class="btn waves-effect  black adicionar">adicionar<br/></a>
+<a style="display: block" class="btn waves-effect  black salvar">salvar<br/></a>
   <a style="display: block" class="btn waves-effect  black selecao">selecao<br/></a>
   <a style="display: block" class="btn waves-effect  black excluir">excluir<br data-highlightable="1"/></a>
   </div>
@@ -1082,6 +1082,7 @@ let inputPosicao = $('.posicao')
 let inputToken = $('.termo')
 let botaoAdicionar = $('.adicionar')
 let botaoExcluir = $('.excluir')
+let botaoSalvar = $('.salvar')
 let arrayTokens = []
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -1149,7 +1150,6 @@ let carregarClick = function (elementoClicavel, elementoClicavelDeSelecao) {
     inputToken.focus()
   })
 
-
   posicaoArray.on('click', function (eventoClick) {
     let classDoClick = eventoClick.target.classList.value;
     classDoClick.split(" ").forEach(function (elementoDoArray) {
@@ -1192,13 +1192,22 @@ botaoExcluir.on("click", function () {
   escreverCodigoNaTela(divCodigo, arrayToHTML(arrayCode))
 });
 
+botaoSalvar.on('click', function(){
+  fetch('http://port-3001.tcc-hmneto911871.codeanyapp.com', {
+    method: 'post',
+    body: JSON.stringify(arrayTokens)
+  }).then(function(){
+    window.location = "mynewfile3.html";
+  })
+  
+  
+  
+})
 
 
 
 $('.selecao').on('click', function () {
-
   $('.selecionado').toggle()
-
 })
 
 

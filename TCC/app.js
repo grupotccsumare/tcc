@@ -4,9 +4,9 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var fs = require('fs');
 
-var index = require('./routes/index');
-var users = require('./routes/users');
+
 
 var app = express();
 
@@ -22,8 +22,45 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', index);
-app.use('/users', users);
+
+
+app.post('/', function(req, res, next) {
+  req.on('data', function(chunk){
+    console.log(chunk.toString())
+    a = JSON.parse(chunk.toString())
+    e = a.reduce(function(acm, cur){
+      acm += ' '+cur
+      return acm
+    },'')
+  console.log(e)
+    
+    rr = `<!DOCTYPE HTML>
+
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Your Website</title>
+</head>
+
+<body>
+
+<script>
+  ${e}
+</script>
+</body>
+
+</html>`
+    
+    fs.writeFile('./public/mynewfile3.html', rr, function (err) {
+      if (err) throw err;
+      console.log('Saved!');
+    });
+    
+    res.send('ok')
+  })
+})
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
