@@ -1068,7 +1068,7 @@ let telaPrincipal = new Vue({
 let app = new Vue({
   el: "#modal-body",
   methods: {
-    say: function (message) {
+    say: function(message) {
       $(".termo").val(message);
       $(".adicionar").trigger("click");
     }
@@ -1085,9 +1085,13 @@ let botaoExcluir = $('.excluir')
 let botaoSalvar = $('.salvar')
 let arrayTokens = []
 
+arrayTokens = JSON.parse(localStorage.getItem("code"))
+
+
+
 /////////////////////////////////////////////////////////////////////////////////
 
-let escreverCodigoNaTela = function (viewCodigo, codigoProcessado) {
+let escreverCodigoNaTela = function(viewCodigo, codigoProcessado) {
   viewCodigo.empty();
   viewCodigo.append(codigoProcessado)
   carregarClick($('.posicaoArray'), $('.selecionado'))
@@ -1095,7 +1099,7 @@ let escreverCodigoNaTela = function (viewCodigo, codigoProcessado) {
 
 //////////////////////////////////////////////////////////////////////////////////
 
-let manipuladorDoArrayCodigo = function (arrayCode, posicaoQueSeraInseridoNoArray, tokemQueSeraInseridoNoArray, quantidadeDeElementosDoArrayQueSeramExcluidos) {
+let manipuladorDoArrayCodigo = function(arrayCode, posicaoQueSeraInseridoNoArray, tokemQueSeraInseridoNoArray, quantidadeDeElementosDoArrayQueSeramExcluidos) {
   arrayCode.splice(posicaoQueSeraInseridoNoArray, quantidadeDeElementosDoArrayQueSeramExcluidos, tokemQueSeraInseridoNoArray);
   escreverCodigoNaTela(divCodigo, arrayToHTML(arrayCode))
   inputPosicao.val(posicaoQueSeraInseridoNoArray)
@@ -1103,9 +1107,9 @@ let manipuladorDoArrayCodigo = function (arrayCode, posicaoQueSeraInseridoNoArra
 
 //////////////////////////////////////////////////////////////////////////////////
 
-let snippets = function (arrayTokens, arraySnippet) {
-  let posicao = Number(inputPosicao.val())
-  arraySnippet.forEach(function (elemento) {
+let snippets = function(arrayTokens, arraySnippet) {
+  let posicao = Number(inputPosicao.val())+1
+  arraySnippet.forEach(function(elemento) {
     manipuladorDoArrayCodigo(arrayTokens, posicao, elemento, 0)
     posicao++
   })
@@ -1114,8 +1118,10 @@ let snippets = function (arrayTokens, arraySnippet) {
 
 //////////////////////////////////////////////////////////////////////////////////
 
-let arrayToHTML = function (arrayCode) {
-  return arrayCode.reduce(function (acumulador, atual, index) {
+function arrayToHTML (arrayCode) {
+  localStorage.setItem("code", JSON.stringify(arrayCode));
+ 
+  return arrayCode.reduce(function(acumulador, atual, index) {
 
     if (atual == '{') {
       let className = `class='posicaoArray ${index}'`
@@ -1140,19 +1146,19 @@ let arrayToHTML = function (arrayCode) {
 
 /////////////////////////////////////////////////////////////////////////////////
 
-let carregarClick = function (elementoClicavel, elementoClicavelDeSelecao) {
+function carregarClick(elementoClicavel, elementoClicavelDeSelecao) {
   let a = elementoClicavelDeSelecao
   let posicaoArray = elementoClicavel
 
 
-  a.on('click',function(){
+  a.on('click', function() {
     inputToken.val('')
     inputToken.focus()
   })
 
-  posicaoArray.on('click', function (eventoClick) {
+  posicaoArray.on('click', function(eventoClick) {
     let classDoClick = eventoClick.target.classList.value;
-    classDoClick.split(" ").forEach(function (elementoDoArray) {
+    classDoClick.split(" ").forEach(function(elementoDoArray) {
       let elementoStringConvertidoParaNumber = Number(elementoDoArray);
       if (!Number.isNaN(elementoStringConvertidoParaNumber)) {
         inputPosicao.val(elementoStringConvertidoParaNumber)
@@ -1163,12 +1169,12 @@ let carregarClick = function (elementoClicavel, elementoClicavelDeSelecao) {
 
 //////////////////////////////////////////////////////////////////////////////////
 
-botaoAdicionar.on('click', function () {
+botaoAdicionar.on('click', function() {
   let token = inputToken.val()
   if (token == 'if') {
-    snippets(arrayTokens, ['if', '(', ')', '{','' ,'}'])
+    snippets(arrayTokens, ['if', '(', ')', '{', '', '}'])
   } else if (token == 'function') {
-    snippets(arrayTokens, ['function', prompt('nome da função'), '(', ')', '{','','}'])
+    snippets(arrayTokens, ['function', prompt('nome da função'), '(', ')', '{', '', '}'])
   } else if (token == 'for') {
     snippets(arrayTokens, ['for', '(', prompt('primeiro parametro'), prompt('segundo parametro'), prompt('terceiro parametro'), ')', '{', '<br>', '<br>', '}'])
   } else if (token == 'while') {
@@ -1179,65 +1185,32 @@ botaoAdicionar.on('click', function () {
     snippets(arrayTokens, ['switch', '(', ')', '{', '}', '<br>', 'case', '<br>', '<br>', 'break', '<br>', 'default'])
   } else {
     let posicaoDoArray = Number(inputPosicao.val()) + 1
-    manipuladorDoArrayCodigo(arrayTokens, posicaoDoArray, inputToken.val(), 0)
+    manipuladorDoArrayCodigo(arrayTokens, posicaoDoArray, inputToken.val())
   }
 })
 
 //////////////////////////////////////////////////////////////////////////////////
 
-botaoExcluir.on("click", function () {
+botaoExcluir.on("click", function() {
   let posicaoQueSeraRetirada = Number(inputPosicao.val())
   let arrayCode = arrayTokens
   arrayCode.splice(posicaoQueSeraRetirada, 1)
   escreverCodigoNaTela(divCodigo, arrayToHTML(arrayCode))
 });
 
-botaoSalvar.on('click', function(){
+botaoSalvar.on('click', function() {
   fetch('http://port-3001.tcc-hmneto911871.codeanyapp.com', {
     method: 'post',
     body: JSON.stringify(arrayTokens)
-  }).then(function(){
+  }).then(function() {
     window.location = "mynewfile3.html";
   })
-  
-  
-  
 })
 
 
 
-$('.selecao').on('click', function () {
+$('.selecao').on('click', function() {
   $('.selecionado').toggle()
 })
 
-
-
-/*
-  $(".excluir").on("click", function() {
-    appTcc["posicao"] = Number($(".posicao").val()); 
-    appTcc["main"].splice(appTcc["posicao"], 1); 
-   
-    render();
-    carregarClique();
-  });
-
-  let arrayToHTML = function (arrayCode) {
-  let posicaoCodigo = 0
-  return arrayCode.reduce(function (acumulador, atual) {
-    let className = ''
-    if (atual == '}' || atual == 'if' || atual == '{' || atual == ')' || atual == '<br>' || atual == ';') {
-      className = `class='posicaoArray ${posicaoCodigo}'`
-      acumulador += `<span ${className}>${atual}</span>`
-      posicaoCodigo++
-    } else {
-      className = `class='posicaoArray ${posicaoCodigo}'`
-      acumulador += `<span ${className}>${atual}</span>`
-      posicaoCodigo++
-      className = `class='posicaoArray ${posicaoCodigo}'`
-      acumulador += `<span ${className}> *** </span>`
-      posicaoCodigo++
-    }
-    return acumulador
-  }, "")
-}
-*/
+escreverCodigoNaTela(divCodigo, arrayToHTML(JSON.parse(localStorage.getItem("code"))))
