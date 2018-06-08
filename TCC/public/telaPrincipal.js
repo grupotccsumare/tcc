@@ -967,7 +967,7 @@ let telaPrincipalTemplate = `
 
           <li class="blue " v-on:click="say('escrever')">
               <a href="#!" class="" >
-                  <i class="material-icons ">border_color</i>
+                  <i class="material-icons selecao">border_color</i>
               </a>
           </li>
 
@@ -1108,7 +1108,7 @@ let manipuladorDoArrayCodigo = function(arrayCode, posicaoQueSeraInseridoNoArray
 //////////////////////////////////////////////////////////////////////////////////
 
 let snippets = function(arrayTokens, arraySnippet) {
-  let posicao = Number(inputPosicao.val())+1
+  let posicao = Number(inputPosicao.val()) + 1
   arraySnippet.forEach(function(elemento) {
     manipuladorDoArrayCodigo(arrayTokens, posicao, elemento, 0)
     posicao++
@@ -1118,28 +1118,41 @@ let snippets = function(arrayTokens, arraySnippet) {
 
 //////////////////////////////////////////////////////////////////////////////////
 
-function arrayToHTML (arrayCode) {
+function arrayToHTML(arrayCode) {
   localStorage.setItem("code", JSON.stringify(arrayCode));
- 
+  console.log(arrayTokens)
+  let chaves = 0
   return arrayCode.reduce(function(acumulador, atual, index) {
 
     if (atual == '{') {
-      let className = `class='posicaoArray ${index}'`
+      console.log(chaves++)
+      let className = `class='selecionado posicaoArray ${index}'`
       acumulador += `<span>${atual}</span><br>`
+      for (let i = 0; i < chaves; i++)
+        acumulador += `<span class="tab">-----</span>`
+        acumulador += `<span ${className}> * </span>`
     } else if (atual == ';') {
       let className = `class='selecionado posicaoArray ${index}'`
       acumulador += `<span>${atual}</span><br>`
-      acumulador += `<span ${className}> * </span>`
+      for (let i = 0; i < chaves; i++)
+        acumulador += `<span class="tab">-----</span>`
+      acumulador += `<span ${className}>*</span>`
+
     } else if (atual == '}') {
+      console.log(chaves--)
       let className = `class='selecionado posicaoArray ${index}'`
-      acumulador += `<br><span>${atual}</span>`
+      acumulador += `<br>`
+      for (let i = 0; i < chaves; i++)
+        acumulador += `<span class="tab">-----</span>`
+      acumulador += `<span>${atual}</span>`
       acumulador += `<span ${className}> * </span>`
+      
     } else {
       let className = `class='selecionado posicaoArray ${index}'`
       acumulador += `<span>${atual}</span> `
       acumulador += `<span ${className}> * </span>`
     }
-
+    
     return acumulador
   }, "")
 }
@@ -1155,6 +1168,8 @@ function carregarClick(elementoClicavel, elementoClicavelDeSelecao) {
     inputToken.val('')
     inputToken.focus()
   })
+  
+  $('.tab').css('color','white')
 
   posicaoArray.on('click', function(eventoClick) {
     let classDoClick = eventoClick.target.classList.value;
@@ -1174,7 +1189,7 @@ botaoAdicionar.on('click', function() {
   if (token == 'if') {
     snippets(arrayTokens, ['if', '(', ')', '{', '', '}'])
   } else if (token == 'function') {
-    snippets(arrayTokens, ['function', prompt('nome da função'), '(', ')', '{', '', '}'])
+    snippets(arrayTokens, ['function', prompt('nome da função'), '(', ')', '{', '}'])
   } else if (token == 'for') {
     snippets(arrayTokens, ['for', '(', prompt('primeiro parametro'), prompt('segundo parametro'), prompt('terceiro parametro'), ')', '{', '<br>', '<br>', '}'])
   } else if (token == 'while') {
