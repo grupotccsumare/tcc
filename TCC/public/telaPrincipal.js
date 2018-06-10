@@ -244,11 +244,12 @@ let telaPrincipalTemplate = `
       margin-bottom: 5px;
       margin-top: 5px;
     }
-
+    #div-objeto,
     #div-declarar,
     #div-inserir,
     #div-condicional,
-    #div-repeticao {
+    #div-repeticao,
+    #div-escrever {
       display: none;
       text-align: center;
 
@@ -713,6 +714,91 @@ let telaPrincipalTemplate = `
         .btn btn-funcoes-list{
           height:20px;;
         }
+
+
+        /*08-06*/
+        .selecionado:link{
+            color:#FFFAFA;
+            text-decoration:none;
+          }
+          .selecionado:visited{
+            color:#FFDEAD;
+            text-decoration:none;
+          }
+          .selecionado:hover{
+            color:#00FF00;
+            text-decoration:underline;
+          }
+          .selecionado:active{
+            color:#FF0000;
+            text-decoration:underline;
+            background-color:#000000;
+          }
+          .a-escrever{
+              float:right;
+          }
+          .tela-escreve{
+              font-size:18px;
+              font-family:Arial Narrow;
+              padding-left:2%;
+              padding-right:5%;
+              padding-top:2%;
+          }
+          div.scrollmenu1 {
+            background-color: black;
+            overflow: auto;
+            white-space: nowrap;
+            font-size: 14px;
+            position: relative;
+
+        }
+
+        div.scrollmenu1 a {
+            display: inline-block;
+            color: white;
+            text-align: center;
+            padding: 5px;
+            text-decoration: none;
+           
+            height: 50px;
+            width: 50px;
+            margin-top: -1px;
+            margin-bottom:2px;
+        }
+        div.scrollmenu1 body {
+            margin: 0;
+        }
+        .footer1 {
+            
+            bottom: 0;
+            left: 0;
+            height: 50px;
+            position: fixed;
+            width: 100%;
+        }
+        .aoperadores{
+            background-color: black;
+        }
+        .aoperadores:hover {
+            background-color: white;
+            color: black;
+        }
+
+        .aicons1{
+            background-color: green;
+        }
+        .aicons2{
+            background-color: red;
+        }
+         .aicons2:hover {
+            background-color: white;
+            color: red;
+        }
+        .aicons1:hover {
+            background-color: white;
+            color: green;
+        }
+
     </style>
 </style>
 </head>
@@ -771,11 +857,13 @@ let telaPrincipalTemplate = `
 
 
 
-
-  <div id="code">
+    <!--08-06-->
+  <div id="code" class="tela-escreve">
+arrumando a fonte 2018
     </div>
+
     <!-- ******** DIV HONORIO TESTE*********** -->
-  <div id="telahonorio">
+  <div id="telahonorio" style="display:none">
   <input style="display: block" id="icon_prefix" type="text" class="validate termo"/>
   <input style="display: block" id="icon_telephone" type="tel" class="validate posicao"/>
   <a style="display: block" class="btn waves-effect  black adicionar">adicionar<br/></a>
@@ -805,7 +893,19 @@ let telaPrincipalTemplate = `
                   <span class="concertaTextoCondicional">DECLARAÇÃO</span>
               </a>
           </div>
+          <!--08-06-->
+          <div class="col m6 btn-declaração mesmo-tamanho">
+              <a id="btn-obj" class="btn  blue ">
+                  <span class="concertaTextoCondicional">OBJETO</span>
+              </a>
+          </div>
+          <div class="col m6 btn-declaração mesmo-tamanho">
+              <a id="btn-escrever" class="btn  blue ">
+                  <span class="concertaTextoCondicional">ESCREVER</span>
+              </a>
+          </div>
       </div>
+      <!--08-06-->
       <hr/>
 
       <div id="modal-body">
@@ -823,7 +923,6 @@ let telaPrincipalTemplate = `
               <button type="button" id="btn-let" class="btn btn-info btn-lg modal-close " v-on:click="say('let')">LET</button>
               <button type="button" id="btn-var" class="btn btn-info btn-lg modal-close " v-on:click="say('var')">VAR</button>
           </div>
-
           <div id="div-funcao">
               <div class="row">
                   <div class="input-field col s12">
@@ -926,13 +1025,64 @@ let telaPrincipalTemplate = `
                   </table>
 
               </div>
+          </div> 
+          <!--08-06-->  
+         <div id="div-objeto" style="display:none;">
+              <div class="row">
+                  <div class="input-field col s12">
+                      <i class="material-icons prefix">search
+                      </i>
+                      <input id="input-funcao" type="text" class="validate" />
+                      <label for="icon_prefix">objeto</label>
+                  </div>
+              </div>
+              
+                  <table class="responsive-table centered striped highlight bordered">
+                      <!--corpo-->
+                      <tbody id="myTable2">
+                          <tr>
+                              <td v-on:click="say('objetoqualquer')"  class="modal-close"> objetoqualquer
+                              </td>
+                          </tr>
+                          <tr>
+                              <td v-on:click="say('objetoqualquer')"  class="modal-close"> objetoqualquer2
+                              </td>
+                          </tr>
+                         
+                      </tbody>
+                  </table>                 
           </div>
+         
+          <div id="div-escrever" style="display:none;">
+          <div class="row">
+              <div class="input-field col s12">
+                  <i class="material-icons prefix">search
+                  </i>
+                  <input id="input-funcao" type="text" class="validate" />
+                  <label for="icon_prefix">escrever</label>
+                    <a class="btn-floating btn-large blue a-escrever modal-close"><i class="material-icons">done
+                    </i></a>
+              </div>
+              
+        
+          </div>
+          <!--08-06-->
+          
+          
       </div>
-  </div>
+
+         
+          
+          </div>
+      
+          </div>
+
+
+
   <!--@30-05-->
   <div class="modal-footer" id="div-play">
       <a id="btn-executa" class="btn-floating btn-large waves-effect  green ">
-          <i class="material-icons">play_arrow
+          <i class="large material-icons">play_arrow
           </i>
       </a>
   </div>
@@ -947,105 +1097,120 @@ let telaPrincipalTemplate = `
   <!-- ******** BOTAO  PARA ABRIR O MODAL*********** -->
   <div id="btn-opcoes" class="fixed-action-btn horizontal click-to-toggle">
         <a href="#modal1" class="btn-floating btn-large  modal-trigger green">
-            <i class="material-icons">add
+            <i class=" medium material-icons">add
             </i>
         </a>
     </div>
   
 
   <!-- *****      div operadores ******-->
+  <div class="footer1">
+        <div class="  scrollmenu1">
+            <a class=" aicons1">
+                <i class="material-icons selecao">adjust</i>
+            </a>
 
-  <div id="div-operadores">
-  <div class="toolbar-fixed black ">
-      <ul>
-          <li class=" red" v-on:click="say('deleter')">
-              <a href="#!"  v-on:click="say('deleter')">
-                  <i class="material-icons" v-on:click="say('deleter')">delete</i>
-              </a>
-          </li>
+            <a class="  aicons2">
+                <i class="material-icons excluir">delete</i>
+            </a>
+            <a class=" aoperadores">
+                <i class="material-icons">.</i>
+            </a>
+            <a class="aoperadores ">
+                <i class="material-icons">( )</i>
+            </a>
+            <a class=" aoperadores">
+                <i class="material-icons">[ ]</i>
+            </a>
+            <a class="aoperadores ">
+                <i class="material-icons">{ }</i>
+            </a>
+            <a class="aoperadores ">
+                <i class="material-icons">=</i>
+            </a>
+            <a class=" aoperadores">
+                <i class="material-icons">:</i>
+            </a>
+            <a class=" aoperadores">
+                <i class="material-icons">" "</i>
+            </a>
 
+            <a class="aoperadores ">
+                <i class="material-icons">' '</i>
+            </a>
+            <a class="aoperadores ">
+                <i class="material-icons">,</i>
+            </a>
 
-          <li class="blue " v-on:click="say('escrever')">
-              <a href="#!" class="" >
-                  <i class="material-icons selecao">border_color</i>
-              </a>
-          </li>
+            <a class=" aoperadores">
+                <i class="material-icons">;</i>
+            </a>
+            <a class=" aoperadores">
+                    <i class="material-icons">/</i>
+            </a>
+            <a class=" aoperadores">
+                    <i class="material-icons">\\</i>
+            </a>
+            <a class=" aoperadores">
+                    <i class="material-icons">*</i>
+            </a>
+            <a class=" aoperadores">
+                    <i class="material-icons">-</i>
+            </a>
+            <a class=" aoperadores">
+                    <i class="material-icons">+</i>
+            </a>
+            <a class=" aoperadores">
+                    <i class="material-icons">?</i>
+            </a>
+            <a class=" aoperadores">
+                    <i class="material-icons">!</i>
+            </a>
+            <a class=" aoperadores">
+                    <i class="material-icons">%</i>
+            </a>
+            <a class=" aoperadores">
+                    <i class="material-icons">$</i>
+            </a>
+            <a class=" aoperadores">
+                    <i class="material-icons">#</i>
+            </a>
+            <a class=" aoperadores">
+                    <i class="material-icons">@</i>
+            </a>
+            <a class=" aoperadores">
+                    <i class="material-icons">&</i>
+            </a>
+            <a class=" aoperadores">
+                    <i class="material-icons">|</i>
+            </a>
+            <a class=" aoperadores">
+                    <i class="material-icons"><</i>
+            </a>
+            <a class=" aoperadores">
+                    <i class="material-icons">></i>
+            </a>
+            <a class=" aoperadores">
+                    <i class="material-icons"></i>break</i>
+            </a>
+            <a class=" aoperadores">
+                    <i class="material-icons"></i>break</i>
+            </a>
+            <a class=" aoperadores">
+                    <i class="material-icons"></i>return</i>
+            </a>
+            <a class=" aoperadores">
+                    <i class="material-icons"></i>continue</i>
+            </a>
+            <a class=" aoperadores">
+                    <i class="material-icons"></i>typeof</i>
+            </a>
+            <a class=" aoperadores">
+                    <i class="material-icons"></i>finally</i>
+            </a>
 
-          <li class="waves-effect " v-on:click="say('" " ')">
-              <a href="#!">
-                  <i class="material-icons ">format_quote</i>
-              </a>
-          </li>
-          <li class="waves-effect " v-on:click="say('( )')">
-              <a href="#!" class="" >
-                  <i class="material-icons ">( )</i>
-              </a>
-          </li>
-          <li class="waves-effect  " v-on:click="say(''')">
-              <a href="#!">
-                  <i class="material-icons">'</i>
-              </a>
-          </li>
-          <li class="waves-effect  " v-on:click="say('{}')">
-              <a href="#!">
-                  <i class="material-icons">{}</i>
-              </a>
-          </li>
-          <li class="waves-effect  " v-on:click="say('[ ]')">
-              <a href="#!">
-                  <i class="material-icons">[ ]</i>
-              </a>
-          </li>
-          <li class="waves-effect  " v-on:click="say('=')">
-              <a href="#!">
-                  <i class="material-icons">=</i>
-              </a>
-          </li>
-          <li class="waves-effect " v-on:click="say(':')">
-              <a href="#!">
-                  <i class="material-icons">:</i>
-              </a>
-          </li>
-
-          <li class="waves-effect  " v-on:click="say('.')">
-              <a href="#!">
-                  <i class="material-icons ">.</i>
-              </a>
-          </li>
-
-          <li class="waves-effect  " v-on:click="say(',')">
-              <a href="#!">
-                  <i class="material-icons">,</i>
-              </a>
-          </li>
-          <li class="waves-effect  " v-on:click="say(';')">
-              <a href="#!">
-                  <i class="material-icons">;</i>
-              </a>
-          </li>
-          <li class="waves-effect  " v-on:click="say('-')">
-              <a href="#!">
-                  <i class="material-icons">-</i>
-              </a>
-          </li>
-          <li class="waves-effect  " v-on:click="say('+')">
-              <a href="#!">
-                  <i class="material-icons">+</i>
-              </a>
-          </li>
-          <li class="waves-effect  " v-on:click="say('*')">
-              <a href="#!">
-                  <i class="material-icons">*</i>
-              </a>
-          </li>
-          <li class="waves-effect  " v-on:click="say('/')">
-              <a href="#!">
-                  <i class="material-icons">/</i>
-              </a>
-          </li>
-      </ul>
-  </div>
-</div>
+        </div>
+    </div>
   
 </body>
 
