@@ -1222,6 +1222,8 @@ arrumando a fonte 2018
 
 
 
+
+
 let telaPrincipal = new Vue({
   el: "#telaprincipal",
   data: {
@@ -1250,7 +1252,7 @@ let botaoExcluir = $('.excluir')
 let botaoSalvar = $('.salvar')
 let arrayTokens = []
 
-arrayTokens = JSON.parse(localStorage.getItem("code"))
+//arrayTokens = JSON.parse(localStorage.getItem("code"))
 
 
 
@@ -1284,6 +1286,7 @@ let snippets = function(arrayTokens, arraySnippet) {
 //////////////////////////////////////////////////////////////////////////////////
 
 function arrayToHTML(arrayCode) {
+  console.log(arrayCode)
   localStorage.setItem("code", JSON.stringify(arrayCode));
   console.log(arrayTokens)
   let chaves = 0
@@ -1365,7 +1368,8 @@ botaoAdicionar.on('click', function() {
     snippets(arrayTokens, ['switch', '(', ')', '{', '}', '<br>', 'case', '<br>', '<br>', 'break', '<br>', 'default'])
   } else {
     let posicaoDoArray = Number(inputPosicao.val()) + 1
-    manipuladorDoArrayCodigo(arrayTokens, posicaoDoArray, inputToken.val())
+    console.log(arrayTokens)
+    manipuladorDoArrayCodigo(arrayTokens, posicaoDoArray, token)
   }
 })
 
