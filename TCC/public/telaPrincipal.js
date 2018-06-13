@@ -3,6 +3,7 @@ let telaPrincipalTemplate = `
 <!doctype html>
 <html>
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -10,312 +11,7 @@ let telaPrincipalTemplate = `
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-<!--
-  <style>
-     * {
-      box-sizing: border-box;
-    }
 
-    body {
-      margin: 0;
-    }
-
-    .row {
-      display: table;
-      padding-top: 2px;
-      padding-right: 2px;
-      padding-bottom: 2px;
-      padding-left: 0px;
-      width: 100%;
-    }
-
-    #banner-gradient {
-      background-image: linear-gradient(45deg, rgb(122, 188, 255) 0%, rgb(96, 171, 248) 44%, rgb(64, 150, 238) 100%);
-      background-position-x: initial;
-      background-position-y: initial;
-      background-size: initial;
-      background-repeat-x: initial;
-      background-repeat-y: initial;
-      background-attachment: initial;
-      background-origin: initial;
-      background-clip: initial;
-      background-color: initial;
-    }
-
-    .col:empty {
-      display: table-cell;
-      height: 75px;
-    }
-
-    #myForm .col:empty {
-      display: table-cell;
-      height: 75px;
-      position: relative;
-    }
-
-    #myForm .col:empty::after {
-      content: "Add form elements here";
-      color: rgb(136, 136, 136);
-      position: absolute;
-      left: 10px;
-      top: 10px;
-      display: block;
-      width: 400px;
-    }
-
-    nav ul a,
-    nav .brand-logo {
-      color: rgb(68, 68, 68);
-    }
-
-    p {
-      line-height: 2rem;
-    }
-
-    .parallax-container .section {
-      width: 100%;
-    }
-
-    footer.gram-footer ul.collection>li.collection-item,
-    footer.gram-footer ul.collection>li.collection-header {
-      background-image: initial;
-      background-position-x: initial;
-      background-position-y: initial;
-      background-size: initial;
-      background-repeat-x: initial;
-      background-repeat-y: initial;
-      background-attachment: initial;
-      background-origin: initial;
-      background-clip: initial;
-      background-color: transparent;
-      border-top-width: 0px;
-      border-right-width: 0px;
-      border-bottom-width: 0px;
-      border-left-width: 0px;
-      border-top-style: initial;
-      border-right-style: initial;
-      border-bottom-style: initial;
-      border-left-style: initial;
-      border-top-color: initial;
-      border-right-color: initial;
-      border-bottom-color: initial;
-      border-left-color: initial;
-      border-image-source: initial;
-      border-image-slice: initial;
-      border-image-width: initial;
-      border-image-outset: initial;
-      border-image-repeat: initial;
-    }
-
-    footer.gram-footer ul.collection {
-      border-top-width: 0px;
-      border-right-width: 0px;
-      border-bottom-width: 0px;
-      border-left-width: 0px;
-      border-top-style: initial;
-      border-right-style: initial;
-      border-bottom-style: initial;
-      border-left-style: initial;
-      border-top-color: initial;
-      border-right-color: initial;
-      border-bottom-color: initial;
-      border-left-color: initial;
-      border-image-source: initial;
-      border-image-slice: initial;
-      border-image-width: initial;
-      border-image-outset: initial;
-      border-image-repeat: initial;
-    }
-
-    .input-field [type="checkbox"]+label,
-    .input-field [type="radio"]:not(:checked)+label,
-    .input-field [type="radio"]:checked+label {
-      pointer-events: auto;
-    }
-
-    input:not([type]):focus:not([readonly]),
-    input[type="text"]:not(.browser-default):focus:not([readonly]),
-    input[type="password"]:not(.browser-default):focus:not([readonly]),
-    input[type="email"]:not(.browser-default):focus:not([readonly]),
-    input[type="url"]:not(.browser-default):focus:not([readonly]),
-    input[type="time"]:not(.browser-default):focus:not([readonly]),
-    input[type="date"]:not(.browser-default):focus:not([readonly]),
-    input[type="datetime"]:not(.browser-default):focus:not([readonly]),
-    input[type="datetime-local"]:not(.browser-default):focus:not([readonly]),
-    input[type="tel"]:not(.browser-default):focus:not([readonly]),
-    input[type="number"]:not(.browser-default):focus:not([readonly]),
-    input[type="search"]:not(.browser-default):focus:not([readonly]),
-    textarea.materialize-textarea:focus:not([readonly]) {
-      border-bottom-width: 1px;
-      border-bottom-style: solid;
-      border-bottom-color: orange;
-      box-shadow: orange 0px 1px 0px 0px;
-    }
-
-    #contact input#your-email {
-      color: rgb(255, 255, 255);
-    }
-
-    #contact textarea#your-message {
-      color: rgb(255, 255, 255);
-    }
-
-    .icon-block .material-icons {
-      font-size: inherit;
-    }
-
-    footer.page-footer {
-      margin-top: 0px;
-      margin-right: 0px;
-      margin-bottom: 0px;
-      margin-left: 0px;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin-top: 0px;
-      margin-right: 0px;
-      margin-bottom: 0px;
-      margin-left: 0px;
-    }
-
-    #ix2y4m {
-      height: 100%;
-    }
-
-    .red {
-      width: 100%;
-    }
-
-    .blue {
-      float: right;
-      width: 100%;
-    }
-
-    @media only screen and (max-width: 992px) {
-      .parallax-container .section {
-        position: absolute;
-        top: 40%;
-      }
-      #index-banner .section {
-        top: 10%;
-      }
-    }
-
-    @media only screen and (max-width: 600px) {
-      #index-banner .section {
-        top: 0px;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .c3138 {
-        width: 100%;
-      }
-      .c3138 {
-        width: 100%;
-      }
-    }
-
-    #btn-ok {
-      background-color: green;
-      color: white;
-    }
-
-    #div-declarar>button,
-    #div-repeticao>button,
-    #div-condicional>button {
-      background-color: #2196f3;
-      margin-right: 10px;
-
-    }
-
-    #div-inserir>button {
-      background-color: red;
-      margin-right: 10px;
-
-    }
-
-    button,
-    a {
-      margin-bottom: 5px;
-      margin-top: 5px;
-    }
-    #div-objeto,
-    #div-declarar,
-    #div-inserir,
-    #div-condicional,
-    #div-repeticao,
-    #div-escrever {
-      display: none;
-      text-align: center;
-
-    }
-
-    .c4462 {
-      margin-top: 5px;
-      margin-right: 0px;
-      margin-bottom: 0px;
-      margin-left: 0px;
-      font-size: 15px;
-      text-align: center;
-    }
-
-
-    .c4318 {
-      text-align: center;
-      font-size: 36px;
-      margin-top: 5px;
-      margin-right: 0px;
-      margin-bottom: 0px;
-      margin-left: 0px;
-    }
-
-    #iwjjee {
-      width: 100%;
-    }
-
-    #iab7uk {
-      width: 100%;
-    }
-
-
-
-    #btn-condicional {
-      margin-left: -12px;
-    }
-
-    .modal .modal-content {
-      padding: 14px;
-    }
-
-    #code{
-      padding-top:20px;
-    }
-    .linkestilo:link{
-      color:#FFFAFA;
-      text-decoration:none;
-    }
-    .linkestilo:visited{
-      color:#FFDEAD;
-      text-decoration:none;
-    }
-    .linkestilo:hover{
-      color:#00FF00;
-      text-decoration:underline;
-    }
-    .linkestilo:active{
-      color:#FF0000;
-      text-decoration:underline;
-      background-color:#000000;
-    }
-
-  </style>
--->
-<style>
 <style>
         /* --------*/
 
@@ -557,7 +253,8 @@ let telaPrincipalTemplate = `
         #div-condicional,
         #div-repeticao,
         #div-declaracao,
-        #div-funcao {
+        #div-funcao,
+        .div-voltar {
             display: none;
             text-align: center;
 
@@ -603,7 +300,7 @@ let telaPrincipalTemplate = `
             padding: 14px;
         }
 
-        /*modifiquei aqui, subi um pouco o botao */
+    
 
         #btn-opcoes {
             margin-bottom: 35px;
@@ -799,8 +496,27 @@ let telaPrincipalTemplate = `
             color: green;
         }
 
+        /*------------------12-06------
+        nao selecionar---------*/
+        .footer1, div-ferramentas,  #modal1, .material-icons, btn-opcoes {
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+         }
+
+
+         .div-voltar {
+            margin-top: -25px;
+            margin-right: 20px;
+            text-align: center;
+            height: 17px;
+        }
+
     </style>
-</style>
+
 </head>
 
 <body>
@@ -859,7 +575,7 @@ let telaPrincipalTemplate = `
 
     <!--08-06-->
   <div id="code" class="tela-escreve">
-arrumando a fonte 2018
+TESTE
     </div>
 
     <!-- ******** DIV HONORIO TESTE*********** -->
@@ -1081,10 +797,13 @@ arrumando a fonte 2018
 
   <!--@30-05-->
   <div class="modal-footer" id="div-play">
-      <a id="btn-executa" class="btn-floating btn-large waves-effect  green ">
-          <i class="large material-icons">play_arrow
+  <!--***********12-06********-->
+  <div class="row div-voltar">
+      <a id="btn-voltar" class="btn-floating btn-large   green ">
+          <i class="large material-icons">home
           </i>
       </a>
+  </div>
   </div>
 </div>
   
@@ -1107,105 +826,102 @@ arrumando a fonte 2018
   <div class="footer1">
         <div class="  scrollmenu1">
             <a class=" aicons1">
-                <i class="material-icons selecao">adjust</i>
+                <i class="material-icons selecao" >adjust</i>
             </a>
 
             <a class="  aicons2">
                 <i class="material-icons excluir">delete</i>
             </a>
-            <a class=" aoperadores">
+            <a class=" aoperadores" v-on:click=".">
                 <i class="material-icons">.</i>
             </a>
-            <a class="aoperadores ">
+            <a class="aoperadores " v-on:click="say('( )')">
                 <i class="material-icons">( )</i>
             </a>
-            <a class=" aoperadores">
+            <a class=" aoperadores" v-on:click="say('[ ])">
                 <i class="material-icons">[ ]</i>
             </a>
-            <a class="aoperadores ">
+            <a class="aoperadores " v-on:click="say('{ }')">
                 <i class="material-icons">{ }</i>
             </a>
-            <a class="aoperadores ">
+            <a class="aoperadores " v-on:click="say('=')">
                 <i class="material-icons">=</i>
             </a>
-            <a class=" aoperadores">
+            <a class=" aoperadores" v-on:click="say(':')">
                 <i class="material-icons">:</i>
             </a>
-            <a class=" aoperadores">
+            <a class=" aoperadores" v-on:click="say('\"\"')">
                 <i class="material-icons">" "</i>
             </a>
 
-            <a class="aoperadores ">
+            <a class="aoperadores " v-on:click="say('\'\'')">
                 <i class="material-icons">' '</i>
             </a>
-            <a class="aoperadores ">
+            <a class="aoperadores " v-on:click="say(',')">
                 <i class="material-icons">,</i>
             </a>
 
-            <a class=" aoperadores">
+            <a class=" aoperadores" v-on:click="say(';')">
                 <i class="material-icons">;</i>
             </a>
-            <a class=" aoperadores">
+            <a class=" aoperadores" v-on:click="say('/')">
                     <i class="material-icons">/</i>
             </a>
-            <a class=" aoperadores">
+            <a class=" aoperadores" v-on:click="say('\\')">
                     <i class="material-icons">\\</i>
             </a>
-            <a class=" aoperadores">
+            <a class=" aoperadores" v-on:click="say('*')">
                     <i class="material-icons">*</i>
             </a>
-            <a class=" aoperadores">
+            <a class=" aoperadores" v-on:click="say('-')">
                     <i class="material-icons">-</i>
             </a>
-            <a class=" aoperadores">
+            <a class=" aoperadores" v-on:click="say('+')">
                     <i class="material-icons">+</i>
             </a>
-            <a class=" aoperadores">
+            <a class=" aoperadores" v-on:click="say('?')">
                     <i class="material-icons">?</i>
             </a>
-            <a class=" aoperadores">
+            <a class=" aoperadores" v-on:click="say('!')">
                     <i class="material-icons">!</i>
             </a>
-            <a class=" aoperadores">
+            <a class=" aoperadores" v-on:click="say('%')">
                     <i class="material-icons">%</i>
             </a>
-            <a class=" aoperadores">
+            <a class=" aoperadores" v-on:click="say('$')">
                     <i class="material-icons">$</i>
             </a>
-            <a class=" aoperadores">
+            <a class=" aoperadores" v-on:click="say('#')">
                     <i class="material-icons">#</i>
             </a>
-            <a class=" aoperadores">
+            <a class=" aoperadores" v-on:click="say('@')">
                     <i class="material-icons">@</i>
             </a>
-            <a class=" aoperadores">
+            <a class=" aoperadores" v-on:click="say('&')">
                     <i class="material-icons">&</i>
             </a>
-            <a class=" aoperadores">
+            <a class=" aoperadores" v-on:click="say('|')">
                     <i class="material-icons">|</i>
             </a>
-            <a class=" aoperadores">
+            <a class=" aoperadores" v-on:click="say('<')">
                     <i class="material-icons"><</i>
             </a>
-            <a class=" aoperadores">
+            <a class=" aoperadores" v-on:click="say('>')">
                     <i class="material-icons">></i>
             </a>
-            <a class=" aoperadores">
+            <a class=" aoperadores" v-on:click="say('break')">
                     <i class="material-icons"></i>break</i>
             </a>
-            <a class=" aoperadores">
-                    <i class="material-icons"></i>break</i>
-            </a>
-            <a class=" aoperadores">
+            <a class=" aoperadores" v-on:click="say('return')">
                     <i class="material-icons"></i>return</i>
             </a>
-            <a class=" aoperadores">
+            <a class=" aoperadores" v-on:click="say('continue')">
                     <i class="material-icons"></i>continue</i>
             </a>
-            <a class=" aoperadores">
-                    <i class="material-icons"></i>typeof</i>
+            <a class=" aoperadores" v-on:click="say('typeof')">
+                    <i class="material-icons" v-on:click="say('typeof')"></i>typeof</i>
             </a>
-            <a class=" aoperadores">
+            <a class=" aoperadores" v-on:click="say('finally')">
                     <i class="material-icons"></i>finally</i>
             </a>
 
