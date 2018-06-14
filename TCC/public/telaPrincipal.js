@@ -254,7 +254,10 @@ let telaPrincipalTemplate = `
         #div-repeticao,
         #div-declaracao,
         #div-funcao,
-        .div-voltar {
+        .div-voltar,
+        #div-obj,
+        #div-escrever,
+        #div-obj-date {
             display: none;
             text-align: center;
 
@@ -515,6 +518,10 @@ let telaPrincipalTemplate = `
             height: 17px;
         }
 
+
+        .cor-executar{
+            color:red;
+        }
     </style>
 
 </head>
@@ -543,6 +550,11 @@ let telaPrincipalTemplate = `
             <li>
                 <a href="#modal2" class="white-text modal-trigger black">
                     <i class="material-icons">list
+                    </i>.</a>
+            </li>
+            <li>
+                <a  class="white-text modal-trigger black cor-executar">
+                    <i class="material-icons cor-executar">play_arrow
                     </i>.</a>
             </li>
         </ul>
@@ -626,25 +638,34 @@ TESTE
 
       <div id="modal-body">
           <div id="div-condicional">
+          <h3>Condicionais</h3>
+          <hr/>
               <button type="button" id="btn-if" class="btn btn-info btn-lg modal-close" v-on:click="say('if')">IF</button>
               <button type="button" id="btn-switch" class="btn btn-info btn-lg modal-close" v-on:click="say('switch')">SWITCH</button>
           </div>
           <div id="div-repeticao">
+          <h3>Repetições</h3>
+          <hr/>
               <button type="button" id="btn-for" class="btn btn-info btn-lg modal-close" v-on:click="say('for')">FOR</button>
               <button type="button" id="btn-while" class="btn btn-info btn-lg modal-close" v-on:click="say('while')">WHILE</button>
               <button type="button" id="btn-doWhile" class="btn btn-info btn-lg modal-close" v-on:click="say('do while')">DO WHILE</button>
           </div>
           <div id="div-declaracao">
+          <h3>Declarações</h3>
+          <hr/>
               <button type="button" id="btn-const" class="btn btn-info btn-lg modal-close " v-on:click="say('const')">CONST</button>
               <button type="button" id="btn-let" class="btn btn-info btn-lg modal-close " v-on:click="say('let')">LET</button>
               <button type="button" id="btn-var" class="btn btn-info btn-lg modal-close " v-on:click="say('var')">VAR</button>
           </div>
+          <!--*************FUNCOES****************--> 
           <div id="div-funcao">
+          <h3>Funções</h3>
+          <hr/>
               <div class="row">
                   <div class="input-field col s12">
                       <i class="material-icons prefix">search
                       </i>
-                      <input id="input-funcao" type="text" class="validate" />
+                      <input class="input-filter" type="text" class="validate" />
                       <label for="icon_prefix">Função</label>
                   </div>
               </div>
@@ -652,7 +673,7 @@ TESTE
                   <table class="responsive-table centered striped highlight bordered">
 
                       <!--corpo-->
-                      <tbody id="myTable">
+                      <tbody class="myTable">
                           <tr>
                               <td v-on:click="say('prompt')"  class="modal-close"> prompt
                               </td>
@@ -742,34 +763,488 @@ TESTE
 
               </div>
           </div> 
-          <!--08-06-->  
-         <div id="div-objeto" style="display:none;">
-              <div class="row">
-                  <div class="input-field col s12">
-                      <i class="material-icons prefix">search
-                      </i>
-                      <input id="input-funcao" type="text" class="validate" />
-                      <label for="icon_prefix">objeto</label>
-                  </div>
+          <!--*************OBJETO****************-->  
+          <div id="div-obj">
+          <h3>Objetos</h3>
+          <hr/>
+          <div class="row">
+              <div class="input-field col s12">
+                  <i class="material-icons prefix">search
+                  </i>
+                  <input class="input-filter" id="input-obj" type="text" class="validate" />
+                  <label for="icon_prefix">Objeto</label>
               </div>
-              
-                  <table class="responsive-table centered striped highlight bordered">
-                      <!--corpo-->
-                      <tbody id="myTable2">
-                          <tr>
-                              <td v-on:click="say('objetoqualquer')"  class="modal-close"> objetoqualquer
-                              </td>
-                          </tr>
-                          <tr>
-                              <td v-on:click="say('objetoqualquer')"  class="modal-close"> objetoqualquer2
-                              </td>
-                          </tr>
-                         
-                      </tbody>
-                  </table>                 
           </div>
+          <div class="div-funcao-lista">
+              <table class="responsive-table centered striped highlight bordered">
+                  <!--corpo-->
+                  <tbody class="myTable">
+                      <tr>
+                          <td>
+                              <div class="col m10 ">
+                                  <a id="btn-obj-date" class="btn  blue ">
+                                      <span class="concertaTextoCondicional">Date</span>
+                                  </a>
+                              </div>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td>
+                              <div class="col m10 ">
+                                  <a id="btn-obj-date" class="btn  blue ">
+                                      <span class="concertaTextoCondicional">Math</span>
+                                  </a>
+                              </div>
+                          </td>
+                      </tr>
+
+                      <tr>
+                          <td>
+                              <div class="col m10 ">
+                                  <a id="btn-obj-number" class="btn  blue ">
+                                      <span class="concertaTextoCondicional">Number</span>
+                                  </a>
+                              </div>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td>
+                              <div class="col m10 ">
+                                  <a id="btn-obj-regExp" class="btn  blue ">
+                                      <span class="concertaTextoCondicional">RegExp</span>
+                                  </a>
+                              </div>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td>
+                              <div class="col m10 ">
+                                  <a id="btn-obj-String" class="btn  blue ">
+                                      <span class="concertaTextoCondicional">String</span>
+                                  </a>
+                              </div>
+                          </td>
+                      </tr>
+
+                      <tr>
+                          <td>
+                              <div class="col m10 ">
+                                  <a id="btn-obj-Object" class="btn  blue ">
+                                      <span class="concertaTextoCondicional">Object</span>
+                                  </a>
+                              </div>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td>
+                              <div class="col m10 ">
+                                  <a id="btn-obj-Function" class="btn  blue ">
+                                      <span class="concertaTextoCondicional">Function</span>
+                                  </a>
+                              </div>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td>
+                              <div class="col m10 ">
+                                  <a id="btn-obj-Symbol" class="btn  blue ">
+                                      <span class="concertaTextoCondicional">Symbol</span>
+                                  </a>
+                              </div>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td>
+                              <div class="col m10 ">
+                                  <a id="btn-obj-Error" class="btn  blue ">
+                                      <span class="concertaTextoCondicional">Error</span>
+                                  </a>
+                              </div>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td>
+                              <div class="col m10 ">
+                                  <a id="btn-obj-InternalError" class="btn  blue ">
+                                      <span class="concertaTextoCondicional">InternalError</span>
+                                  </a>
+                              </div>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td>
+                              <div class="col m10 ">
+                                  <a id="btn-obj-InternalError" class="btn  blue ">
+                                      <span class="concertaTextoCondicional">InternalError</span>
+                                  </a>
+                              </div>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td>
+                              <div class="col m10 ">
+                                  <a id="btn-obj-RangeError" class="btn  blue ">
+                                      <span class="concertaTextoCondicional">RangeError</span>
+                                  </a>
+                              </div>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td>
+                              <div class="col m10 ">
+                                  <a id="btn-obj-Array" class="btn  blue ">
+                                      <span class="concertaTextoCondicional">Array</span>
+                                  </a>
+                              </div>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td>
+                              <div class="col m10 ">
+                                  <a id="btn-obj-Map" class="btn  blue ">
+                                      <span class="concertaTextoCondicional">Map</span>
+                                  </a>
+                              </div>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td>
+                              <div class="col m10 ">
+                                  <a id="btn-obj-Set" class="btn  blue ">
+                                      <span class="concertaTextoCondicional">Set</span>
+                                  </a>
+                              </div>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td>
+                              <div class="col m10 ">
+                                  <a id="btn-obj-WeakMap" class="btn  blue ">
+                                      <span class="concertaTextoCondicional">WeakMap</span>
+                                  </a>
+                              </div>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td>
+                              <div class="col m10 ">
+                                  <a id="btn-obj-WeakSet" class="btn  blue ">
+                                      <span class="concertaTextoCondicional">WeakSet</span>
+                                  </a>
+                              </div>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td>
+                              <div class="col m10 ">
+                                  <a id="btn-obj-WeakSet" class="btn  blue ">
+                                      <span class="concertaTextoCondicional">ArrayBuffer</span>
+                                  </a>
+                              </div>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td>
+                              <div class="col m10 ">
+                                  <a id="btn-obj-WeakSet" class="btn  blue ">
+                                      <span class="concertaTextoCondicional">DataView</span>
+                                  </a>
+                              </div>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td>
+                              <div class="col m10 ">
+                                  <a id="btn-obj-WeakSet" class="btn  blue ">
+                                      <span class="concertaTextoCondicional">JSON</span>
+                                  </a>
+                              </div>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td>
+                              <div class="col m10 ">
+                                  <a id="btn-obj-Promise" class="btn  blue ">
+                                      <span class="concertaTextoCondicional">Promise</span>
+                                  </a>
+                              </div>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td>
+                              <div class="col m10 ">
+                                  <a id="btn-obj-Generator" class="btn  blue ">
+                                      <span class="concertaTextoCondicional">Generator</span>
+                                  </a>
+                              </div>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td>
+                              <div class="col m10 ">
+                                  <a id="btn-obj-Reflect" class="btn  blue ">
+                                      <span class="concertaTextoCondicional">Reflect</span>
+                                  </a>
+                              </div>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td>
+                              <div class="col m10 ">
+                                  <a id="btn-obj-Proxy" class="btn  blue ">
+                                      <span class="concertaTextoCondicional">Proxy</span>
+                                  </a>
+                              </div>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td>
+                              <div class="col m10 ">
+                                  <a id="btn-obj-Intl" class="btn  blue ">
+                                      <span class="concertaTextoCondicional">Intl</span>
+                                  </a>
+                              </div>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td>
+                              <div class="col m10 ">
+                                  <a id="btn-obj-Iterator" class="btn  blue ">
+                                      <span class="concertaTextoCondicional">Iterator</span>
+                                  </a>
+                              </div>
+                          </td>
+                      </tr>
+
+
+                  </tbody>
+              </table>
+
+          </div>
+      </div>
+
+      <!--***********OBJ DATE********** -->
+      <div id="div-obj-date">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix">search
+                            </i>
+                            <input class="input-filter"  id="input-date" type="text" class="validate" />
+                            <label for="icon_prefix">Date</label>
+                        </div>
+                    </div>
+                    <table class="responsive-table centered striped highlight bordered">
+                        <!--corpo-->
+                        <tbody class="myTable">
+                            <tr>
+                                <td v-on:click="say('value')" class="modal-close"> value
+                                </td>
+                            </tr>
+                            <tr>
+                                <td v-on:click="say('dataString')" class="modal-close">dataString
+                                </td>
+                            </tr>
+                            <tr>
+                                <td v-on:click="say('month')" class="modal-close">month
+                                </td>
+                            </tr>
+                            <tr>
+                                <td v-on:click="say('day')" class="modal-close">day
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td v-on:click="say('hour')" class="modal-close">hour
+                                </td>
+                            </tr>
+                            <tr>
+                                <td v-on:click="say('minute')" class="modal-close">minute
+                                </td>
+                            </tr>
+                            <tr>
+                                <td v-on:click="say('second')" class="modal-close">second
+                                </td>
+                            </tr>
+                            <tr>
+                                <td v-on:click="say('millisecond')" class="modal-close">millisecond
+                                </td>
+                            </tr>
+                            <tr>
+                                <td v-on:click="say('now()')" class="modal-close">now()
+                                </td>
+                            </tr>
+                            <tr>
+                                <td v-on:click="say('close()')" class="modal-close">parse()
+                                </td>
+                            </tr>
+                            <tr>
+                                <td v-on:click="say('UTC()')" class="modal-close">UTC()
+                                </td>
+                            </tr>
+                            <tr>
+                                <td v-on:click="say('prototype.getDate()')" class="modal-close">prototype.getDate()
+                                </td>
+                            </tr>
+                            <tr>
+                                <td v-on:click="say('prototype.getDay()')" class="modal-close">prototype.getDay()
+                                </td>
+                            </tr>
+                            <tr>
+                                <td v-on:click="say('prototype.getFullYear()')" class="modal-close">prototype.getFullYear()
+                                </td>
+                            </tr>
+                            <tr>
+                                <td v-on:click="say('prototype.getHours()')" class="modal-close">prototype.getHours()
+                                </td>
+                            </tr>
+                            <tr>
+                                <td v-on:click="say('prototype.getMilliseconds()')" class="modal-close">prototype.getMilliseconds()
+                                </td>
+                            </tr>
+                            <tr>
+                                <td v-on:click="say('prototype.getMinutes()')" class="modal-close">prototype.getMinutes()
+                                </td>
+                            </tr>
+                            <tr>
+                                <td v-on:click="say('prototype.getMonth()')" class="modal-close">prototype.getMonth()
+                                </td>
+                            </tr>
+                            <tr>
+                                <td v-on:click="say('prototype.getSeconds()')" class="modal-close">prototype.getSeconds()
+                                </td>
+                            </tr>
+                            <tr>
+                                <td v-on:click="say('prototype.getTime()')" class="modal-close">prototype.getTime()
+                                </td>
+                            </tr>
+                            <tr>
+                                <td v-on:click="say('prototype.getTimezoneOffset()')" class="modal-close">prototype.getTimezoneOffset()
+                                </td>
+                            </tr>
+                            <tr>
+                                <td v-on:click="say('prototype.getUTCDate()')" class="modal-close">prototype.getUTCDate()
+                                </td>
+                            </tr>
+                            <tr>
+                                <td v-on:click="say('prototype.getUTCDay()')" class="modal-close">prototype.getUTCDay()
+                                </td>
+                            </tr>
+                            <tr>
+                                <td v-on:click="say('prototype.getUTCFullYear()')" class="modal-close">prototype.getUTCFullYear()
+                                </td>
+                            </tr>
+                            <tr>
+                                <td v-on:click="say('prototype.getUTCHours()')" class="modal-close">prototype.getUTCHours()
+                                </td>
+                            </tr>
+                            <tr>
+                                <td v-on:click="say('prototype.xgetUTCMilliseconds()')" class="modal-close">prototype.getUTCMilliseconds()
+                                </td>
+                            </tr>
+                            <tr>
+                                <td v-on:click="say('prototype.getUTCMinutes()')" class="modal-close">prototype.getUTCMinutes()
+                                </td>
+                            </tr>
+                            <tr>
+                                <td v-on:click="say('prototype.getUTCMonth()')" class="modal-close">prototype.getUTCMonth()
+                                </td>
+                            </tr>
+                            <tr>
+                                <td v-on:click="say('prototype.getUTCSeconds()')" class="modal-close">prototype.getUTCSeconds()
+                                </td>
+                            </tr>
+                            <tr>
+                                <td v-on:click="say('prototype.setDate()')" class="modal-close">prototype.setDate()
+                                </td>
+                            </tr>
+                            <tr>
+                                <td v-on:click="say('prototype.setFullYear()')" class="modal-close">prototype.setFullYear()
+                                </td>
+                            </tr>
+                            <tr>
+                                <td v-on:click="say('prototype.setHours()')" class="modal-close">prototype.setHours()
+                                </td>
+                            </tr>
+                            <tr>
+                                <td v-on:click="say('prototype.setMilliseconds()')" class="modal-close">prototype.setMilliseconds()
+                                </td>
+                            </tr>
+                            <tr>
+                                <td v-on:click="say('prototype.setMinutes()')" class="modal-close">prototype.setMinutes()
+                                </td>
+                            </tr>
+                            <tr>
+                                <td v-on:click="say('prototype.setMonth()')" class="modal-close">prototype.setMonth()
+                                </td>
+                            </tr>
+                            <tr>
+                                <td v-on:click="say('prototype.setSeconds()')" class="modal-close">prototype.setSeconds()
+                                </td>
+                            </tr>
+                            <tr>
+                                <td v-on:click="say('prototype.setTime()')" class="modal-close">prototype.setTime()
+                                </td>
+                            </tr>
+                            <tr>
+                                <td v-on:click="say('prototype.setUTCDate()')" class="modal-close">prototype.setUTCDate()
+                                </td>
+                            </tr>
+                            <tr>
+                                <td v-on:click="say('prototype.setUTCHours()')" class="modal-close">prototype.setUTCHours()
+                                </td>
+                            </tr>
+                            <tr>
+                                <td v-on:click="say('prototype.setUTCMilliseconds()')" class="modal-close">prototype.setUTCMilliseconds()
+                                </td>
+                            </tr>
+                            <tr>
+                                <td v-on:click="say('prototype.setUTCMinutes()')" class="modal-close">prototype.setUTCMinutes()
+                                </td>
+                            </tr>
+                            <tr>
+                                <td v-on:click="say('prototype.setUTCMonth()')" class="modal-close">prototype.setUTCMonth()
+                                </td>
+                            </tr>
+                            <tr>
+                                <td v-on:click="say('prototype.setUTCSeconds()')" class="modal-close">prototype.setUTCSeconds()
+                                </td>
+                            </tr>
+                            <tr>
+                                <td v-on:click="say('prototype.toDateString()')" class="modal-close">prototype.toDateString()
+                                </td>
+                            </tr>
+                            <tr>
+                                <td v-on:click="say('prototype.toISOString()')" class="modal-close">prototype.toISOString()
+                                </td>
+                            </tr>
+                            <tr>
+                                <td v-on:click="say('prototype.toJSON()')" class="modal-close">prototype.toJSON()
+                                </td>
+                            </tr>
+                            <tr>
+                                <td v-on:click="say('prototype.toLocaleDateString()')" class="modal-close">prototype.toLocaleDateString()
+                                </td>
+                            </tr>
+                            <tr>
+                                <td v-on:click="say('prototype.toLocaleString()')" class="modal-close">prototype.toLocaleString()
+                                </td>
+                            </tr>
+                            <tr>
+                                <td v-on:click="say('prototype.toLocaleTimeString()')" class="modal-close">prototype.toLocaleTimeString()
+                                </td>
+                            </tr>
+                            <tr>
+                                <td v-on:click="say('prototype.valueOf()')" class="modal-close">prototype.valueOf()
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
          
-          <div id="div-escrever" style="display:none;">
+          <div id="div-escrever" >
+          <h3>Escrever</h3>
+          <hr/>
           <div class="row">
               <div class="input-field col s12">
                   <i class="material-icons prefix">search
@@ -941,21 +1416,21 @@ TESTE
 
 
 let telaPrincipal = new Vue({
-  el: "#telaprincipal",
-  data: {
-    template: telaPrincipalTemplate,
-    seen: true
-  }
+    el: "#telaprincipal",
+    data: {
+        template: telaPrincipalTemplate,
+        seen: true
+    }
 });
 
 let app = new Vue({
-  el: "#modal-body",
-  methods: {
-    say: function(message) {
-      $(".termo").val(message);
-      $(".adicionar").trigger("click");
+    el: "#modal-body",
+    methods: {
+        say: function (message) {
+            $(".termo").val(message);
+            $(".adicionar").trigger("click");
+        }
     }
-  }
 });
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -974,143 +1449,143 @@ let arrayTokens = []
 
 /////////////////////////////////////////////////////////////////////////////////
 
-let escreverCodigoNaTela = function(viewCodigo, codigoProcessado) {
-  viewCodigo.empty();
-  viewCodigo.append(codigoProcessado)
-  carregarClick($('.posicaoArray'), $('.selecionado'))
+let escreverCodigoNaTela = function (viewCodigo, codigoProcessado) {
+    viewCodigo.empty();
+    viewCodigo.append(codigoProcessado)
+    carregarClick($('.posicaoArray'), $('.selecionado'))
 }
 
 //////////////////////////////////////////////////////////////////////////////////
 
-let manipuladorDoArrayCodigo = function(arrayCode, posicaoQueSeraInseridoNoArray, tokemQueSeraInseridoNoArray, quantidadeDeElementosDoArrayQueSeramExcluidos) {
-  arrayCode.splice(posicaoQueSeraInseridoNoArray, quantidadeDeElementosDoArrayQueSeramExcluidos, tokemQueSeraInseridoNoArray);
-  escreverCodigoNaTela(divCodigo, arrayToHTML(arrayCode))
-  inputPosicao.val(posicaoQueSeraInseridoNoArray)
+let manipuladorDoArrayCodigo = function (arrayCode, posicaoQueSeraInseridoNoArray, tokemQueSeraInseridoNoArray, quantidadeDeElementosDoArrayQueSeramExcluidos) {
+    arrayCode.splice(posicaoQueSeraInseridoNoArray, quantidadeDeElementosDoArrayQueSeramExcluidos, tokemQueSeraInseridoNoArray);
+    escreverCodigoNaTela(divCodigo, arrayToHTML(arrayCode))
+    inputPosicao.val(posicaoQueSeraInseridoNoArray)
 }
 
 //////////////////////////////////////////////////////////////////////////////////
 
-let snippets = function(arrayTokens, arraySnippet) {
-  let posicao = Number(inputPosicao.val()) + 1
-  arraySnippet.forEach(function(elemento) {
-    manipuladorDoArrayCodigo(arrayTokens, posicao, elemento, 0)
-    posicao++
-  })
+let snippets = function (arrayTokens, arraySnippet) {
+    let posicao = Number(inputPosicao.val()) + 1
+    arraySnippet.forEach(function (elemento) {
+        manipuladorDoArrayCodigo(arrayTokens, posicao, elemento, 0)
+        posicao++
+    })
 }
 
 
 //////////////////////////////////////////////////////////////////////////////////
 
 function arrayToHTML(arrayCode) {
-  console.log(arrayCode)
-  localStorage.setItem("code", JSON.stringify(arrayCode));
-  console.log(arrayTokens)
-  let chaves = 0
-  return arrayCode.reduce(function(acumulador, atual, index) {
+    console.log(arrayCode)
+    localStorage.setItem("code", JSON.stringify(arrayCode));
+    console.log(arrayTokens)
+    let chaves = 0
+    return arrayCode.reduce(function (acumulador, atual, index) {
 
-    if (atual == '{') {
-      console.log(chaves++)
-      let className = `class='selecionado posicaoArray ${index}'`
-      acumulador += `<span>${atual}</span><br>`
-      for (let i = 0; i < chaves; i++)
-        acumulador += `<span class="tab">-----</span>`
-        acumulador += `<span ${className}> * </span>`
-    } else if (atual == ';') {
-      let className = `class='selecionado posicaoArray ${index}'`
-      acumulador += `<span>${atual}</span><br>`
-      for (let i = 0; i < chaves; i++)
-        acumulador += `<span class="tab">-----</span>`
-      acumulador += `<span ${className}>*</span>`
+        if (atual == '{') {
+            console.log(chaves++)
+            let className = `class='selecionado posicaoArray ${index}'`
+            acumulador += `<span>${atual}</span><br>`
+            for (let i = 0; i < chaves; i++)
+                acumulador += `<span class="tab">-----</span>`
+            acumulador += `<span ${className}> * </span>`
+        } else if (atual == ';') {
+            let className = `class='selecionado posicaoArray ${index}'`
+            acumulador += `<span>${atual}</span><br>`
+            for (let i = 0; i < chaves; i++)
+                acumulador += `<span class="tab">-----</span>`
+            acumulador += `<span ${className}>*</span>`
 
-    } else if (atual == '}') {
-      console.log(chaves--)
-      let className = `class='selecionado posicaoArray ${index}'`
-      acumulador += `<br>`
-      for (let i = 0; i < chaves; i++)
-        acumulador += `<span class="tab">-----</span>`
-      acumulador += `<span>${atual}</span>`
-      acumulador += `<span ${className}> * </span>`
-      
-    } else {
-      let className = `class='selecionado posicaoArray ${index}'`
-      acumulador += `<span>${atual}</span> `
-      acumulador += `<span ${className}> * </span>`
-    }
-    
-    return acumulador
-  }, "")
+        } else if (atual == '}') {
+            console.log(chaves--)
+            let className = `class='selecionado posicaoArray ${index}'`
+            acumulador += `<br>`
+            for (let i = 0; i < chaves; i++)
+                acumulador += `<span class="tab">-----</span>`
+            acumulador += `<span>${atual}</span>`
+            acumulador += `<span ${className}> * </span>`
+
+        } else {
+            let className = `class='selecionado posicaoArray ${index}'`
+            acumulador += `<span>${atual}</span> `
+            acumulador += `<span ${className}> * </span>`
+        }
+
+        return acumulador
+    }, "")
 }
 
 /////////////////////////////////////////////////////////////////////////////////
 
 function carregarClick(elementoClicavel, elementoClicavelDeSelecao) {
-  let a = elementoClicavelDeSelecao
-  let posicaoArray = elementoClicavel
+    let a = elementoClicavelDeSelecao
+    let posicaoArray = elementoClicavel
 
 
-  a.on('click', function() {
-    inputToken.val('')
-    inputToken.focus()
-  })
-  
-  $('.tab').css('color','white')
+    a.on('click', function () {
+        inputToken.val('')
+        inputToken.focus()
+    })
 
-  posicaoArray.on('click', function(eventoClick) {
-    let classDoClick = eventoClick.target.classList.value;
-    classDoClick.split(" ").forEach(function(elementoDoArray) {
-      let elementoStringConvertidoParaNumber = Number(elementoDoArray);
-      if (!Number.isNaN(elementoStringConvertidoParaNumber)) {
-        inputPosicao.val(elementoStringConvertidoParaNumber)
-      }
-    });
-  })
+    $('.tab').css('color', 'white')
+
+    posicaoArray.on('click', function (eventoClick) {
+        let classDoClick = eventoClick.target.classList.value;
+        classDoClick.split(" ").forEach(function (elementoDoArray) {
+            let elementoStringConvertidoParaNumber = Number(elementoDoArray);
+            if (!Number.isNaN(elementoStringConvertidoParaNumber)) {
+                inputPosicao.val(elementoStringConvertidoParaNumber)
+            }
+        });
+    })
 }
 
 //////////////////////////////////////////////////////////////////////////////////
 
-botaoAdicionar.on('click', function() {
-  let token = inputToken.val()
-  if (token == 'if') {
-    snippets(arrayTokens, ['if', '(', ')', '{', '', '}'])
-  } else if (token == 'function') {
-    snippets(arrayTokens, ['function', prompt('nome da função'), '(', ')', '{', '}'])
-  } else if (token == 'for') {
-    snippets(arrayTokens, ['for', '(', prompt('primeiro parametro'), prompt('segundo parametro'), prompt('terceiro parametro'), ')', '{', '<br>', '<br>', '}'])
-  } else if (token == 'while') {
-    snippets(arrayTokens, ['while', '(', ')', '{', '<br>', '<br>', '}'])
-  } else if (token == 'do while') {
-    snippets(arrayTokens, ['do', '{', '<br>', '<br>', '}', 'while', '(', ')'])
-  } else if (token == 'switch') {
-    snippets(arrayTokens, ['switch', '(', ')', '{', '}', '<br>', 'case', '<br>', '<br>', 'break', '<br>', 'default'])
-  } else {
-    let posicaoDoArray = Number(inputPosicao.val()) + 1
-    console.log(arrayTokens)
-    manipuladorDoArrayCodigo(arrayTokens, posicaoDoArray, token)
-  }
+botaoAdicionar.on('click', function () {
+    let token = inputToken.val()
+    if (token == 'if') {
+        snippets(arrayTokens, ['if', '(', ')', '{', '', '}'])
+    } else if (token == 'function') {
+        snippets(arrayTokens, ['function', prompt('nome da função'), '(', ')', '{', '}'])
+    } else if (token == 'for') {
+        snippets(arrayTokens, ['for', '(', prompt('primeiro parametro'), prompt('segundo parametro'), prompt('terceiro parametro'), ')', '{', '<br>', '<br>', '}'])
+    } else if (token == 'while') {
+        snippets(arrayTokens, ['while', '(', ')', '{', '<br>', '<br>', '}'])
+    } else if (token == 'do while') {
+        snippets(arrayTokens, ['do', '{', '<br>', '<br>', '}', 'while', '(', ')'])
+    } else if (token == 'switch') {
+        snippets(arrayTokens, ['switch', '(', ')', '{', '}', '<br>', 'case', '<br>', '<br>', 'break', '<br>', 'default'])
+    } else {
+        let posicaoDoArray = Number(inputPosicao.val()) + 1
+        console.log(arrayTokens)
+        manipuladorDoArrayCodigo(arrayTokens, posicaoDoArray, token)
+    }
 })
 
 //////////////////////////////////////////////////////////////////////////////////
 
-botaoExcluir.on("click", function() {
-  let posicaoQueSeraRetirada = Number(inputPosicao.val())
-  let arrayCode = arrayTokens
-  arrayCode.splice(posicaoQueSeraRetirada, 1)
-  escreverCodigoNaTela(divCodigo, arrayToHTML(arrayCode))
+botaoExcluir.on("click", function () {
+    let posicaoQueSeraRetirada = Number(inputPosicao.val())
+    let arrayCode = arrayTokens
+    arrayCode.splice(posicaoQueSeraRetirada, 1)
+    escreverCodigoNaTela(divCodigo, arrayToHTML(arrayCode))
 });
 
-botaoSalvar.on('click', function() {
-  fetch('http://port-3001.tcc-hmneto911871.codeanyapp.com', {
-    method: 'post',
-    body: JSON.stringify(arrayTokens)
-  }).then(function() {
-    window.location = "mynewfile3.html";
-  })
+botaoSalvar.on('click', function () {
+    fetch('http://port-3001.tcc-hmneto911871.codeanyapp.com', {
+        method: 'post',
+        body: JSON.stringify(arrayTokens)
+    }).then(function () {
+        window.location = "mynewfile3.html";
+    })
 })
 
 
 
-$('.selecao').on('click', function() {
-  $('.selecionado').toggle()
+$('.selecao').on('click', function () {
+    $('.selecionado').toggle()
 })
 
 escreverCodigoNaTela(divCodigo, arrayToHTML(JSON.parse(localStorage.getItem("code"))))

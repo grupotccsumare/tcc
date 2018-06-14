@@ -10,7 +10,6 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-
     <style>
         /* --------*/
 
@@ -252,7 +251,10 @@
         #div-condicional,
         #div-repeticao,
         #div-declaracao,
-        #div-funcao {
+        #div-funcao,
+        .div-voltar,
+        #div-obj,
+        #div-obj-date {
             display: none;
             text-align: center;
 
@@ -298,15 +300,13 @@
             padding: 14px;
         }
 
-        /*modifiquei aqui, subi um pouco o botao */
+
 
         #btn-opcoes {
             margin-bottom: 35px;
         }
 
         /*acrecentar a div para os operadores*/
-
-        #div-operadores {}
 
         .toolbar-fixed {
             width: 100%;
@@ -379,18 +379,6 @@
             background-color: #2196F3;
         }
 
-
-        /* @30-05 */
-
-        #btn-executa {
-            margin-top: -25px;
-            margin-right: 20px;
-        }
-
-        #div-play {
-            text-align: center;
-        }
-
         #div-ferramentas {
 
             height: 15%;
@@ -398,27 +386,155 @@
             float: right;
         }
 
-
-
         #btn-ferramentas {
 
             float: right;
             margin-right: 5px;
         }
+
+        .btn btn-funcoes-list {
+            height: 20px;
+            ;
+        }
+
+
+        /*08-06*/
+
+        .selecionado:link {
+            color: #FFFAFA;
+            text-decoration: none;
+        }
+
+        .selecionado:visited {
+            color: #FFDEAD;
+            text-decoration: none;
+        }
+
+        .selecionado:hover {
+            color: #00FF00;
+            text-decoration: underline;
+        }
+
+        .selecionado:active {
+            color: #FF0000;
+            text-decoration: underline;
+            background-color: #000000;
+        }
+
+        .a-escrever {
+            float: right;
+        }
+
+        .tela-escreve {
+            font-size: 18px;
+            font-family: Arial Narrow;
+            padding-left: 2%;
+            padding-right: 5%;
+            padding-top: 2%;
+        }
+
+        div.scrollmenu1 {
+            background-color: black;
+            overflow: auto;
+            white-space: nowrap;
+            font-size: 14px;
+            position: relative;
+
+        }
+
+        div.scrollmenu1 a {
+            display: inline-block;
+            color: white;
+            text-align: center;
+            padding: 5px;
+            text-decoration: none;
+
+            height: 50px;
+            width: 50px;
+            margin-top: -1px;
+            margin-bottom: 2px;
+        }
+
+        div.scrollmenu1 body {
+            margin: 0;
+        }
+
+        .footer1 {
+
+            bottom: 0;
+            left: 0;
+            height: 50px;
+            position: fixed;
+            width: 100%;
+        }
+
+        .aoperadores {
+            background-color: black;
+        }
+
+        .aoperadores:hover {
+            background-color: white;
+            color: black;
+        }
+
+        .aicons1 {
+            background-color: green;
+        }
+
+        .aicons2 {
+            background-color: red;
+        }
+
+        .aicons2:hover {
+            background-color: white;
+            color: red;
+        }
+
+        .aicons1:hover {
+            background-color: white;
+            color: green;
+        }
+
+        /*------------------12-06------
+        nao selecionar---------*/
+
+        .footer1,
+        div-ferramentas,
+        #modal1,
+        .material-icons,
+        btn-opcoes {
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        .div-voltar {
+            margin-top: -25px;
+            margin-right: 20px;
+            text-align: center;
+            height: 17px;
+        }
+
+        .myTable {
+            text-align: center;
+        }
     </style>
+
     <!--tirar-->
 
     <script src="acoes.js"></script>
     <!--tirar-->
-    <script>
-    </script>
+
 </head>
 
 <body>
     <script type="text/javascript">
         $('.modal').modal();
     </script>
-    <!--@30-05-->
+
     <div id="div-ferramentas">
         <a id="btn-ferramentas" href="#" data-activates="dropdown1" class="dropdown-button btn-floating black">
             <i class="material-icons ">settings
@@ -426,12 +542,12 @@
         </a>
         <ul id="dropdown1" class="dropdown-content">
             <li>
-                <a href="#!" class="white-text black">
+                <a class="white-text black">
                     <i class="material-icons">delete_forever
                     </i>.</a>
             </li>
             <li>
-                <a href="#!" class="white-text black">
+                <a class="white-text black">
                     <i class="material-icons">save
                     </i>.</a>
             </li>
@@ -440,9 +556,13 @@
                     <i class="material-icons">list
                     </i>.</a>
             </li>
+            <li>
+                <a class="white-text modal-trigger black cor-executar">
+                    <i class="material-icons">play_arrow
+                    </i>.</a>
+            </li>
         </ul>
     </div>
-   
     <div id="modal2" class="modal modal-fixed-footer black-text">
         <div class="modal-content">
             <h3>Selecione</h3>
@@ -466,44 +586,69 @@
             <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">OK</a>
         </div>
     </div>
-    <!--@30-05 fim-->
-    <div id="div-ohonorio">
-        <input style="display: none" id="icon_prefix" type="text" class="validate termo" />
-        <input style="display: none" id="icon_telephone" type="tel" class="validate posicao" />
-        <a style="display: none" class="btn waves-effect waves-light black adicionar">adicionar
+
+
+
+    <!--08-06-->
+    <div id="code" class="tela-escreve">
+
+    </div>
+
+    <!-- ******** DIV HONORIO TESTE*********** -->
+    <div id="telahonorio" style="display:none">
+        <input style="display: block" id="icon_prefix" type="text" class="validate termo" />
+        <input style="display: block" id="icon_telephone" type="tel" class="validate posicao" />
+        <a style="display: block" class="btn waves-effect  black adicionar">adicionar
             <br/>
         </a>
-        <a style="display: none" class="btn waves-effect waves-light black excluir">excluir
+        <a style="display: block" class="btn waves-effect  black salvar">salvar
+            <br/>
+        </a>
+        <a style="display: block" class="btn waves-effect  black selecao">selecao
+            <br/>
+        </a>
+        <a style="display: block" class="btn waves-effect  black excluir">excluir
             <br data-highlightable="1" />
         </a>
     </div>
 
-<!--MODAL 1-->
+    <!-- ********  MODAL*********** -->
     <div id="modal1" class="modal modal-fixed-footer black-text c3138 ">
         <div class="modal-content ">
 
             <div class="row div-botoes">
                 <div class="col m6 btn-condicional  mesmo-tamanho ">
-                    <a id="btn-condicional" class="btn waves-light blue btn-classe">
+                    <a id="btn-condicional" class="btn  blue btn-classe">
                         <span class="concertaTextoCondicional">CONDICIONAL</span>
                     </a>
                 </div>
                 <div class="col m6 btn-repeticao  mesmo-tamanho">
-                    <a id="btn-repeticao" class="btn waves-light blue">REPETIÇÃO</a>
+                    <a id="btn-repeticao" class="btn  blue">REPETIÇÃO</a>
                 </div>
                 <div class="col m6 btn-funcao mesmo-tamanho ">
                     <a id="btn-funcao" class="btn blue ">FUNÇÃO</a>
                 </div>
                 <div class="col m6 btn-declaração mesmo-tamanho">
-                    <a id="btn-declaracao" class="btn waves-light blue ">
+                    <a id="btn-declaracao" class="btn  blue ">
                         <span class="concertaTextoCondicional">DECLARAÇÃO</span>
                     </a>
                 </div>
+                <!--08-06-->
+                <div class="col m6 btn-declaração mesmo-tamanho">
+                    <a id="btn-obj" class="btn  blue ">
+                        <span class="concertaTextoCondicional">OBJETO</span>
+                    </a>
+                </div>
+                <div class="col m6 btn-declaração mesmo-tamanho">
+                    <a id="btn-escrever" class="btn  blue ">
+                        <span class="concertaTextoCondicional">ESCREVER</span>
+                    </a>
+                </div>
             </div>
-            <hr/>
-
             <div id="modal-body">
-                <div id="div-condicional">
+                <!-- <div id="div-condicional">
+                    <h3>Condicionais</h3>
+                  <hr/>
                     <button type="button" id="btn-if" class="btn btn-info btn-lg modal-close" v-on:click="say('if')">IF</button>
                     <button type="button" id="btn-switch" class="btn btn-info btn-lg modal-close" v-on:click="say('switch')">SWITCH</button>
                 </div>
@@ -517,103 +662,103 @@
                     <button type="button" id="btn-let" class="btn btn-info btn-lg modal-close " v-on:click="say('let')">LET</button>
                     <button type="button" id="btn-var" class="btn btn-info btn-lg modal-close " v-on:click="say('var')">VAR</button>
                 </div>
-
+                <!-- FUNCAO
                 <div id="div-funcao">
                     <div class="row">
                         <div class="input-field col s12">
-                            <i class="material-icons prefix">casino
+                            <i class="material-icons prefix">search
                             </i>
-                            <input id="input-funcao" type="text" class="validate" />
+                            <input class="input-funcao" type="text" class="validate" />
                             <label for="icon_prefix">Função</label>
                         </div>
                     </div>
                     <div id="div-funcao-lista">
                         <table class="responsive-table centered striped highlight bordered">
 
-                            <!--corpo-->
-                            <tbody id="myTable">
+                            corpo
+                            <tbody class="myTable">
                                 <tr>
-                                    <td> prompt
+                                    <td v-on:click="say('prompt')" class="modal-close"> prompt
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>print
+                                    <td v-on:click="say('print')" class="modal-close">print
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>releaseEvents
+                                    <td v-on:click="say('releaseEvents')" class="modal-close">releaseEvents
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>event
+                                    <td v-on:click="say('event')" class="modal-close">event
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>error
+                                    <td v-on:click="say('error')" class="modal-close">error
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>number
+                                    <td v-on:click="say('number')" class="modal-close">number
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>node
+                                    <td v-on:click="say('node')" class="modal-close">node
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>iframe
+                                    <td v-on:click="say('iframe')" class="modal-close">iframe
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>bluer
+                                    <td v-on:click="say('bluer')" class="modal-close">bluer
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>close
+                                    <td v-on:click="say('close')" class="modal-close">close
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>clearTimeout
+                                    <td v-on:click="say('clearTimeout')" class="modal-close">clearTimeout
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>clearInterval
+                                    <td v-on:click="say('clearInterval')" class="modal-close">clearInterval
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>focus
+                                    <td v-on:click="say('focus')" class="modal-close">focus
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>find
+                                    <td v-on:click="say('find')" class="modal-close">find
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>moveTo
+                                    <td v-on:click="say('moveTo')" class="modal-close">moveTo
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>moveBy
+                                    <td v-on:click="say('moveBy')" class="modal-close">moveBy
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>resizeTo
+                                    <td v-on:click="say('resizeTo')" class="modal-close">resizeTo
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>resizeBy
+                                    <td v-on:click="say('resizeBy')" class="modal-close">resizeBy
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>scroll
+                                    <td v-on:click="say('scroll')" class="modal-close">scroll
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>open
+                                    <td v-on:click="say('open')" class="modal-close">open
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>openDatabase
+                                    <td v-on:click="say('openDatabase')" class="modal-close">openDatabase
                                     </td>
                                 </tr>
                             </tbody>
@@ -621,129 +766,647 @@
 
                     </div>
                 </div>
+            -->
+                <div id="div-obj">
+                    <h3>Objetos</h3>
+                    <hr/>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix">search
+                            </i>
+                            <input class="input-filter" type="text" class="validate" />
+                            <label for="icon_prefix">Objeto</label>
+                        </div>
+                    </div>
+                    <div class="div-funcao-lista">
+                        <table class="responsive-table centered striped highlight bordered">
+                            <!--corpo-->
+                            <tbody class="myTable">
+                                <tr>
+                                    <td>
+                                        <div class="col m10 ">
+                                            <a id="btn-obj-date" class="btn  blue ">
+                                                <span class="concertaTextoCondicional">Date</span>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="col m10 ">
+                                            <a id="btn-obj-date" class="btn  blue ">
+                                                <span class="concertaTextoCondicional">Math</span>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <div class="col m10 ">
+                                            <a id="btn-obj-number" class="btn  blue ">
+                                                <span class="concertaTextoCondicional">Number</span>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="col m10 ">
+                                            <a id="btn-obj-regExp" class="btn  blue ">
+                                                <span class="concertaTextoCondicional">RegExp</span>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="col m10 ">
+                                            <a id="btn-obj-String" class="btn  blue ">
+                                                <span class="concertaTextoCondicional">String</span>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <div class="col m10 ">
+                                            <a id="btn-obj-Object" class="btn  blue ">
+                                                <span class="concertaTextoCondicional">Object</span>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="col m10 ">
+                                            <a id="btn-obj-Function" class="btn  blue ">
+                                                <span class="concertaTextoCondicional">Function</span>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="col m10 ">
+                                            <a id="btn-obj-Symbol" class="btn  blue ">
+                                                <span class="concertaTextoCondicional">Symbol</span>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="col m10 ">
+                                            <a id="btn-obj-Error" class="btn  blue ">
+                                                <span class="concertaTextoCondicional">Error</span>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="col m10 ">
+                                            <a id="btn-obj-InternalError" class="btn  blue ">
+                                                <span class="concertaTextoCondicional">InternalError</span>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="col m10 ">
+                                            <a id="btn-obj-InternalError" class="btn  blue ">
+                                                <span class="concertaTextoCondicional">InternalError</span>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="col m10 ">
+                                            <a id="btn-obj-RangeError" class="btn  blue ">
+                                                <span class="concertaTextoCondicional">RangeError</span>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="col m10 ">
+                                            <a id="btn-obj-Array" class="btn  blue ">
+                                                <span class="concertaTextoCondicional">Array</span>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="col m10 ">
+                                            <a id="btn-obj-Map" class="btn  blue ">
+                                                <span class="concertaTextoCondicional">Map</span>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="col m10 ">
+                                            <a id="btn-obj-Set" class="btn  blue ">
+                                                <span class="concertaTextoCondicional">Set</span>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="col m10 ">
+                                            <a id="btn-obj-WeakMap" class="btn  blue ">
+                                                <span class="concertaTextoCondicional">WeakMap</span>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="col m10 ">
+                                            <a id="btn-obj-WeakSet" class="btn  blue ">
+                                                <span class="concertaTextoCondicional">WeakSet</span>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="col m10 ">
+                                            <a id="btn-obj-WeakSet" class="btn  blue ">
+                                                <span class="concertaTextoCondicional">ArrayBuffer</span>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="col m10 ">
+                                            <a id="btn-obj-WeakSet" class="btn  blue ">
+                                                <span class="concertaTextoCondicional">DataView</span>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="col m10 ">
+                                            <a id="btn-obj-WeakSet" class="btn  blue ">
+                                                <span class="concertaTextoCondicional">JSON</span>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="col m10 ">
+                                            <a id="btn-obj-Promise" class="btn  blue ">
+                                                <span class="concertaTextoCondicional">Promise</span>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="col m10 ">
+                                            <a id="btn-obj-Generator" class="btn  blue ">
+                                                <span class="concertaTextoCondicional">Generator</span>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="col m10 ">
+                                            <a id="btn-obj-Reflect" class="btn  blue ">
+                                                <span class="concertaTextoCondicional">Reflect</span>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="col m10 ">
+                                            <a id="btn-obj-Proxy" class="btn  blue ">
+                                                <span class="concertaTextoCondicional">Proxy</span>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="col m10 ">
+                                            <a id="btn-obj-Intl" class="btn  blue ">
+                                                <span class="concertaTextoCondicional">Intl</span>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="col m10 ">
+                                            <a id="btn-obj-Iterator" class="btn  blue ">
+                                                <span class="concertaTextoCondicional">Iterator</span>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+
+
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+
+
+
+
+
+                <div id="div-obj-date">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix">search
+                            </i>
+                            <input class="input-filter" type="text" class="validate" />
+                            <label for="icon_prefix">Date</label>
+                        </div>
+                    </div>
+                    <table class="responsive-table centered striped highlight bordered">
+                        <!--corpo-->
+                        <tbody class="myTable">
+                            <tr>
+                                <td v-on:click="say('value')" class="modal-close"> value
+                                </td>
+                            </tr>
+                            <tr>
+                                <td v-on:click="say('dataString')" class="modal-close">dataString
+                                </td>
+                            </tr>
+                            <tr>
+                                <td v-on:click="say('month')" class="modal-close">month
+                                </td>
+                            </tr>
+                            <tr>
+                                <td v-on:click="say('day')" class="modal-close">day
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td v-on:click="say('hour')" class="modal-close">hour
+                                </td>
+                            </tr>
+                            <tr>
+                                <td v-on:click="say('minute')" class="modal-close">minute
+                                </td>
+                            </tr>
+                            <tr>
+                                <td v-on:click="say('second')" class="modal-close">second
+                                </td>
+                            </tr>
+                            <tr>
+                                <td v-on:click="say('millisecond')" class="modal-close">millisecond
+                                </td>
+                            </tr>
+                            <tr>
+                                <td v-on:click="say('now()')" class="modal-close">now()
+                                </td>
+                            </tr>
+                            <tr>
+                                <td v-on:click="say('close()')" class="modal-close">parse()
+                                </td>
+                            </tr>
+                            <tr>
+                                <td v-on:click="say('UTC()')" class="modal-close">UTC()
+                                </td>
+                            </tr>
+                            <tr>
+                                <td v-on:click="say('prototype.getDate()')" class="modal-close">prototype.getDate()
+                                </td>
+                            </tr>
+                            <tr>
+                                <td v-on:click="say('prototype.getDay()')" class="modal-close">prototype.getDay()
+                                </td>
+                            </tr>
+                            <tr>
+                                <td v-on:click="say('prototype.getFullYear()')" class="modal-close">prototype.getFullYear()
+                                </td>
+                            </tr>
+                            <tr>
+                                <td v-on:click="say('prototype.getHours()')" class="modal-close">prototype.getHours()
+                                </td>
+                            </tr>
+                            <tr>
+                                <td v-on:click="say('prototype.getMilliseconds()')" class="modal-close">prototype.getMilliseconds()
+                                </td>
+                            </tr>
+                            <tr>
+                                <td v-on:click="say('prototype.getMinutes()')" class="modal-close">prototype.getMinutes()
+                                </td>
+                            </tr>
+                            <tr>
+                                <td v-on:click="say('prototype.getMonth()')" class="modal-close">prototype.getMonth()
+                                </td>
+                            </tr>
+                            <tr>
+                                <td v-on:click="say('prototype.getSeconds()')" class="modal-close">prototype.getSeconds()
+                                </td>
+                            </tr>
+                            <tr>
+                                <td v-on:click="say('prototype.getTime()')" class="modal-close">prototype.getTime()
+                                </td>
+                            </tr>
+                            <tr>
+                                <td v-on:click="say('prototype.getTimezoneOffset()')" class="modal-close">prototype.getTimezoneOffset()
+                                </td>
+                            </tr>
+                            <tr>
+                                <td v-on:click="say('prototype.getUTCDate()')" class="modal-close">prototype.getUTCDate()
+                                </td>
+                            </tr>
+                            <tr>
+                                <td v-on:click="say('prototype.getUTCDay()')" class="modal-close">prototype.getUTCDay()
+                                </td>
+                            </tr>
+                            <tr>
+                                <td v-on:click="say('prototype.getUTCFullYear()')" class="modal-close">prototype.getUTCFullYear()
+                                </td>
+                            </tr>
+                            <tr>
+                                <td v-on:click="say('prototype.getUTCHours()')" class="modal-close">prototype.getUTCHours()
+                                </td>
+                            </tr>
+                            <tr>
+                                <td v-on:click="say('prototype.xgetUTCMilliseconds()')" class="modal-close">prototype.getUTCMilliseconds()
+                                </td>
+                            </tr>
+                            <tr>
+                                <td v-on:click="say('prototype.getUTCMinutes()')" class="modal-close">prototype.getUTCMinutes()
+                                </td>
+                            </tr>
+                            <tr>
+                                <td v-on:click="say('prototype.getUTCMonth()')" class="modal-close">prototype.getUTCMonth()
+                                </td>
+                            </tr>
+                            <tr>
+                                <td v-on:click="say('prototype.getUTCSeconds()')" class="modal-close">prototype.getUTCSeconds()
+                                </td>
+                            </tr>
+                            <tr>
+                                <td v-on:click="say('prototype.setDate()')" class="modal-close">prototype.setDate()
+                                </td>
+                            </tr>
+                            <tr>
+                                <td v-on:click="say('prototype.setFullYear()')" class="modal-close">prototype.setFullYear()
+                                </td>
+                            </tr>
+                            <tr>
+                                <td v-on:click="say('prototype.setHours()')" class="modal-close">prototype.setHours()
+                                </td>
+                            </tr>
+                            <tr>
+                                <td v-on:click="say('prototype.setMilliseconds()')" class="modal-close">prototype.setMilliseconds()
+                                </td>
+                            </tr>
+                            <tr>
+                                <td v-on:click="say('prototype.setMinutes()')" class="modal-close">prototype.setMinutes()
+                                </td>
+                            </tr>
+                            <tr>
+                                <td v-on:click="say('prototype.setMonth()')" class="modal-close">prototype.setMonth()
+                                </td>
+                            </tr>
+                            <tr>
+                                <td v-on:click="say('prototype.setSeconds()')" class="modal-close">prototype.setSeconds()
+                                </td>
+                            </tr>
+                            <tr>
+                                <td v-on:click="say('prototype.setTime()')" class="modal-close">prototype.setTime()
+                                </td>
+                            </tr>
+                            <tr>
+                                <td v-on:click="say('prototype.setUTCDate()')" class="modal-close">prototype.setUTCDate()
+                                </td>
+                            </tr>
+                            <tr>
+                                <td v-on:click="say('prototype.setUTCHours()')" class="modal-close">prototype.setUTCHours()
+                                </td>
+                            </tr>
+                            <tr>
+                                <td v-on:click="say('prototype.setUTCMilliseconds()')" class="modal-close">prototype.setUTCMilliseconds()
+                                </td>
+                            </tr>
+                            <tr>
+                                <td v-on:click="say('prototype.setUTCMinutes()')" class="modal-close">prototype.setUTCMinutes()
+                                </td>
+                            </tr>
+                            <tr>
+                                <td v-on:click="say('prototype.setUTCMonth()')" class="modal-close">prototype.setUTCMonth()
+                                </td>
+                            </tr>
+                            <tr>
+                                <td v-on:click="say('prototype.setUTCSeconds()')" class="modal-close">prototype.setUTCSeconds()
+                                </td>
+                            </tr>
+                            <tr>
+                                <td v-on:click="say('prototype.toDateString()')" class="modal-close">prototype.toDateString()
+                                </td>
+                            </tr>
+                            <tr>
+                                <td v-on:click="say('prototype.toISOString()')" class="modal-close">prototype.toISOString()
+                                </td>
+                            </tr>
+                            <tr>
+                                <td v-on:click="say('prototype.toJSON()')" class="modal-close">prototype.toJSON()
+                                </td>
+                            </tr>
+                            <tr>
+                                <td v-on:click="say('prototype.toLocaleDateString()')" class="modal-close">prototype.toLocaleDateString()
+                                </td>
+                            </tr>
+                            <tr>
+                                <td v-on:click="say('prototype.toLocaleString()')" class="modal-close">prototype.toLocaleString()
+                                </td>
+                            </tr>
+                            <tr>
+                                <td v-on:click="say('prototype.toLocaleTimeString()')" class="modal-close">prototype.toLocaleTimeString()
+                                </td>
+                            </tr>
+                            <tr>
+                                <td v-on:click="say('prototype.valueOf()')" class="modal-close">prototype.valueOf()
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+
+
+
+
+                <div id="div-escrever" style="display:none;">
+                    <div class="row">
+                        <div class="input-field col s12">
+
+                            <textarea id="input-filter" type="text" class="materialize-textarea"></textarea>
+                            <label for="textarea1">escreva aqui</label>
+
+                            <a class="btn-floating btn-large blue a-escrever modal-close">
+                                <i class="material-icons">done
+                                </i>
+                            </a>
+                        </div>
+                    </div>
+                    <!--08-06-->
+                </div>
+            </div>
+
+        </div>
+
+        <div class="modal-footer" id="div-voltar">
+            <!--***********AQUI********-->
+            <div class="row div-voltar">
+
+                <a id="btn-voltar" class="btn-floating btn-large waves-effect  green ">
+                    <i class="large material-icons">home
+                    </i>
+                </a>
             </div>
         </div>
-        <!--@30-05-->
-        <div class="modal-footer" id="div-play">
-            <a id="btn-executa" class="btn-floating btn-large waves-effect waves-light green ">
-                <i class="material-icons">play_arrow
-                </i>
-            </a>
-        </div>
     </div>
-    
 
-    </div>
+
+
 
     <script type="text/javascript">
         $('.modal').modal();
     </script>
-
-
+    <!-- ******** BOTAO  PARA ABRIR O MODAL*********** -->
     <div id="btn-opcoes" class="fixed-action-btn horizontal click-to-toggle">
         <a href="#modal1" class="btn-floating btn-large  modal-trigger green">
-            <i class="material-icons">add
+            <i class=" medium material-icons">add
             </i>
         </a>
-
     </div>
-    <div id="ix2y4m" class="row">
 
-        <div id="code">
+
+    <!-- *****      div operadores ******-->
+    <div class="footer1">
+        <div class="  scrollmenu1">
+            <a class=" aicons1">
+                <i class="material-icons selecao">adjust</i>
+            </a>
+
+            <a class="  aicons2">
+                <i class="material-icons excluir">delete</i>
+            </a>
+            <a class=" aoperadores">
+                <i class="material-icons">.</i>
+            </a>
+            <a class="aoperadores ">
+                <i class="material-icons">( )</i>
+            </a>
+            <a class=" aoperadores">
+                <i class="material-icons">[ ]</i>
+            </a>
+            <a class="aoperadores ">
+                <i class="material-icons">{ }</i>
+            </a>
+            <a class="aoperadores ">
+                <i class="material-icons">=</i>
+            </a>
+            <a class=" aoperadores">
+                <i class="material-icons">:</i>
+            </a>
+            <a class=" aoperadores">
+                <i class="material-icons">" "</i>
+            </a>
+
+            <a class="aoperadores ">
+                <i class="material-icons">' '</i>
+            </a>
+            <a class="aoperadores ">
+                <i class="material-icons">,</i>
+            </a>
+
+            <a class=" aoperadores">
+                <i class="material-icons">;</i>
+            </a>
+            <a class=" aoperadores">
+                <i class="material-icons">/</i>
+            </a>
+            <a class=" aoperadores">
+                <i class="material-icons">\\</i>
+            </a>
+            <a class=" aoperadores">
+                <i class="material-icons">*</i>
+            </a>
+            <a class=" aoperadores">
+                <i class="material-icons">-</i>
+            </a>
+            <a class=" aoperadores">
+                <i class="material-icons">+</i>
+            </a>
+            <a class=" aoperadores">
+                <i class="material-icons">?</i>
+            </a>
+            <a class=" aoperadores">
+                <i class="material-icons">!</i>
+            </a>
+            <a class=" aoperadores">
+                <i class="material-icons">%</i>
+            </a>
+            <a class=" aoperadores">
+                <i class="material-icons">$</i>
+            </a>
+            <a class=" aoperadores">
+                <i class="material-icons">#</i>
+            </a>
+            <a class=" aoperadores">
+                <i class="material-icons">@</i>
+            </a>
+            <a class=" aoperadores">
+                <i class="material-icons">&</i>
+            </a>
+            <a class=" aoperadores">
+                <i class="material-icons">|</i>
+            </a>
+            <a class=" aoperadores">
+                <i class="material-icons">
+                    <</i>
+            </a>
+            <a class=" aoperadores">
+                <i class="material-icons">></i>
+            </a>
+            <a class=" aoperadores">
+                <i class="material-icons"></i>break</i>
+            </a>
+            <a class=" aoperadores">
+                <i class="material-icons"></i>break</i>
+            </a>
+            <a class=" aoperadores">
+                <i class="material-icons"></i>return</i>
+            </a>
+            <a class=" aoperadores">
+                <i class="material-icons"></i>continue</i>
+            </a>
+            <a class=" aoperadores">
+                <i class="material-icons"></i>typeof</i>
+            </a>
+            <a class=" aoperadores">
+                <i class="material-icons"></i>finally</i>
+            </a>
+
         </div>
-        <!-- this page is generateded by Gramateria -->
-        <div id="div-operadores">
-            <div class="toolbar-fixed black ">
-                <ul>
-                    <li class="waves-effect waves-light red">
-                        <a href="#!" class="">
-                            <i class="material-icons">delete</i>
-                        </a>
-                    </li>
+    </div>
 
-
-                    <li class="waves-effect waves-light blue ">
-                        <a href="#!" class="">
-                            <i class="material-icons ">border_color</i>
-                        </a>
-                    </li>
-
-                    <li class="waves-effect waves-light">
-                        <a href="#!">
-                            <i class="material-icons ">format_quote</i>
-                        </a>
-                    </li>
-                    <li class="waves-effect waves-light">
-                        <a href="#!" class="">
-                            <i class="material-icons ">( )</i>
-                        </a>
-                    </li>
-                    <li class="waves-effect waves-light ">
-                        <a href="#!">
-                            <i class="material-icons">'</i>
-                        </a>
-                    </li>
-                    <li class="waves-effect waves-light ">
-                        <a href="#!">
-                            <i class="material-icons">{ }</i>
-                        </a>
-                    </li>
-                    <li class="waves-effect waves-light ">
-                        <a href="#!">
-                            <i class="material-icons">[ ]</i>
-                        </a>
-                    </li>
-                    <li class="waves-effect waves-light ">
-                        <a href="#!">
-                            <i class="material-icons">=</i>
-                        </a>
-                    </li>
-                    <li class="waves-effect waves-light ">
-                        <a href="#!">
-                            <i class="material-icons">:</i>
-                        </a>
-                    </li>
-
-                    <li class="waves-effect waves-light ">
-                        <a href="#!">
-                            <i class="material-icons ">.</i>
-                        </a>
-                    </li>
-
-                    <li class="waves-effect waves-light ">
-                        <a href="#!">
-                            <i class="material-icons">,</i>
-                        </a>
-                    </li>
-                    <li class="waves-effect waves-light ">
-                        <a href="#!">
-                            <i class="material-icons">;</i>
-                        </a>
-                    </li>
-                    <li class="waves-effect waves-light ">
-                        <a href="#!">
-                            <i class="material-icons">-</i>
-                        </a>
-                    </li>
-                    <li class="waves-effect waves-light ">
-                        <a href="#!">
-                            <i class="material-icons">+</i>
-                        </a>
-                    </li>
-                    <li class="waves-effect waves-light ">
-                        <a href="#!">
-                            <i class="material-icons">*</i>
-                        </a>
-                    </li>
-                    <li class="waves-effect waves-light ">
-                        <a href="#!">
-                            <i class="material-icons">/</i>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <script src="acoes.js"></script>
 </body>
 
 </html>

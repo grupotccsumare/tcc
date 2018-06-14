@@ -12,7 +12,7 @@ $(document).ready(function () {
     $("#div-repeticao").hide();
     $("#div-declaracao").hide();
     $("#div-funcao").hide();
-    $("#div-objeto").hide();
+    $("#div-obj").hide();
     $("#div-escrever").hide();
   });
   $("#btn-repeticao").click(function () {
@@ -22,7 +22,7 @@ $(document).ready(function () {
     $("#div-condicional").hide();
     $("#div-declaracao").hide();
     $("#div-funcao").hide();
-    $("#div-objeto").hide();
+    $("#div-obj").hide();
     $("#div-escrever").hide();
   });
   
@@ -33,7 +33,7 @@ $(document).ready(function () {
     $("#div-condicional").hide();
     $("#div-repeticao").hide();
     $("#div-funcao").hide();
-    $("#div-objeto").hide();
+    $("#div-obj").hide();
     $("#div-escrever").hide();
   });
   
@@ -44,12 +44,12 @@ $(document).ready(function () {
     $("#div-condicional").hide();
     $("#div-repeticao").hide();
     $("#div-declaracao").hide();
-    $("#div-objeto").hide();
+    $("#div-obj").hide();
     $("#div-escrever").hide();
   });
   
   $("#btn-obj").click(function () {
-    $("#div-objeto").show();
+    $("#div-obj").show();
     $(".div-voltar").show();
     $(".div-botoes").hide();
     $("#div-condicional").hide();
@@ -68,7 +68,7 @@ $(document).ready(function () {
     $("#div-repeticao").hide();
     $("#div-declaracao").hide();
     $("#div-funcao").hide();
-    $("#div-objeto").hide();
+    $("#div-obj").hide();
 
   });
   
@@ -79,19 +79,40 @@ $(document).ready(function () {
     $("#div-repeticao").hide();
     $("#div-declaracao").hide();
     $("#div-funcao").hide();
-    $("#div-objeto").hide();
+    $("#div-obj").hide();
     $("#div-escrever").hide();
+    $("#div-obj-date").hide();
   });
   
+      /*date*/
+      $("#btn-obj-date").click(function () {
+        $("#div-obj-date").show();
+        $('#input-obj"').val("");
+        $('#input-date"').val("");
+        $("#div-condicional").hide();
+        $("#div-repeticao").hide();
+        $("#div-declaracao").hide();
+        $("#div-funcao").hide();
+        $("#div-obj").hide();
+        $("#div-escrever").hide();
+     
+      });
   
   });
 
-/**/ 
+/*comandos para o listar*/ 
 $(document).ready(function () {
-  $("#input-funcao").on("keyup", function () {
+  $(".input-filter").on("keyup", function () {
       var value = $(this).val().toLowerCase();
-      $("#myTable tr").filter(function() {
+      $(".myTable tr").filter(function() {
           $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
       });
   });
   });
+
+
+  
+
+
+    
+    
